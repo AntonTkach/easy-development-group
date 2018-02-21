@@ -20,8 +20,9 @@ package com.clothobserve.todo
 			starling.start();
 			starling.antiAliasing = 4;
 			starling.skipUnchangedFrames = true;
+			starling.showStats = true;
 			
-			stage.color = starling.stage.color = (0xFF << 24) | ClientTheme.BACKGROUND;
+			stage.color = starling.stage.color = 0xFF73FF65;
 			
 			stage.nativeWindow.width = int(Capabilities.screenResolutionX * 0.9);
 			stage.nativeWindow.height = int(Capabilities.screenResolutionY * 0.9);

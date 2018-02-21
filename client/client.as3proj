@@ -52,7 +52,10 @@
   </includeLibraries>
   <!-- SWC Libraries -->
   <libraryPaths>
-    <!-- example: <element path="..." /> -->
+    <element path="lib\expect.swc" />
+    <element path="lib\feathers.swc" />
+    <element path="lib\graphics.swc" />
+    <element path="lib\starling.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

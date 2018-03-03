@@ -39,7 +39,7 @@ public class WebServer {
         System.out.println("Server is listening on port " + socketNumber);
         System.out.println("Go to \n localhost:" + socketNumber
                 + " \n 127.0.0.1:" + socketNumber
-                + " \n LAN IP 192.168.1.108:" + socketNumber);
+                );
     }
 }
 

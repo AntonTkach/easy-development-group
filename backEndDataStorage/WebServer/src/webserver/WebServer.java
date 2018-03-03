@@ -17,6 +17,25 @@ import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import com.sun.net.httpserver.Headers;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpServer;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,7 +56,8 @@ public class WebServer {
         server.start();
         System.out.println("Server is listening on port " + socketNumber);
         System.out.println("Go to localhost:" + socketNumber
-                + " or 127.0.0.1:" + socketNumber);
+                + " or 127.0.0.1:" + socketNumber
+                + " \n OR to 192.168.1.108:" + socketNumber);
     }
 }
 
@@ -54,8 +74,8 @@ class DefaultHandler implements HttpHandler {
 //            Headers requestHeaders = exchange.getRequestHeaders();
 //            Set<String> keySet = requestHeaders.keySet();
 //            Iterator<String> iter = keySet.iterator();
-            
-            String output="HELLO WORLD";
+
+            String output = "HELLO WORLD";
 //            while (iter.hasNext()) {
 //                String key = iter.next();
 //                List values = requestHeaders.get(key);
@@ -65,27 +85,54 @@ class DefaultHandler implements HttpHandler {
             responseBody.write(output.getBytes());
             responseBody.close();
         }
-        
-        
+
         if (requestMethod.equalsIgnoreCase("POST")) {
             Headers responseHeaders = exchange.getResponseHeaders();
             responseHeaders.set("Content-Type", "text/plain");
             exchange.sendResponseHeaders(200, 0);
 
             OutputStream responseBody = exchange.getResponseBody();
-//            Headers requestHeaders = exchange.getRequestHeaders();
-//            Set<String> keySet = requestHeaders.keySet();
-//            Iterator<String> iter = keySet.iterator();
-            
-            String output="This is a POST response";
-//            while (iter.hasNext()) {
-//                String key = iter.next();
-//                List values = requestHeaders.get(key);
-//                String s = key + " = " + values.toString() + "\n";
-//                responseBody.write(s.getBytes());
-//            }
+            Headers requestHeaders = exchange.getRequestHeaders();
+            Set<String> keySet = requestHeaders.keySet();
+            Iterator<String> iter = keySet.iterator();
+
+//            Set<Map.Entry<String, List<String>>> entries = requestHeaders.entrySet();
+//
+//            int contentLength = Integer.parseInt(requestHeaders.getFirst("Content-length"));
+//
+//            // REQUEST Body
+//            InputStream is = exchange.getRequestBody();
+//
+//            byte[] data = new byte[contentLength];
+//            int length = is.read(data);
+//
+//            // RESPONSE Headers
+//            
+//
+//            // Send RESPONSE Headers
+////            extends.sendResponseHeaders(HttpURLConnection.HTTP_OK, contentLength);
+//
+//            // RESPONSE Body
+//            OutputStream os = exchange.getResponseBody();
+//
+//            os.write(data);
+//            String output = "This is a POST response \n"
+//                    + os.toString()+ "\n"
+//                    +length+ "\n"
+//                    +data.toString()+ "\n"
+//                    +entries.toString()+ "\n"
+//                    +contentLength+ "\n";
+            String output = "This is a POST response \n";
+
+            while (iter.hasNext()) {
+                String key = iter.next();
+                List values = requestHeaders.get(key);
+                String s = key + " = " + values.toString() + "\n";
+                responseBody.write(s.getBytes());
+            }
             responseBody.write(output.getBytes());
             responseBody.close();
         }
     }
+
 }

@@ -36,6 +36,8 @@ public class WebServer {
         server.setExecutor(Executors.newCachedThreadPool());
         server.start();
         System.out.println("Server is listening on port " + socketNumber);
+        System.out.println("Go to localhost:" + socketNumber
+                + " or 127.0.0.1:" + socketNumber);
     }
 }
 
@@ -49,15 +51,40 @@ class DefaultHandler implements HttpHandler {
             exchange.sendResponseHeaders(200, 0);
 
             OutputStream responseBody = exchange.getResponseBody();
-            Headers requestHeaders = exchange.getRequestHeaders();
-            Set<String> keySet = requestHeaders.keySet();
-            Iterator<String> iter = keySet.iterator();
-            while (iter.hasNext()) {
-                String key = iter.next();
-                List values = requestHeaders.get(key);
-                String s = key + " = " + values.toString() + "\n";
-                responseBody.write(s.getBytes());
-            }
+//            Headers requestHeaders = exchange.getRequestHeaders();
+//            Set<String> keySet = requestHeaders.keySet();
+//            Iterator<String> iter = keySet.iterator();
+            
+            String output="HELLO WORLD";
+//            while (iter.hasNext()) {
+//                String key = iter.next();
+//                List values = requestHeaders.get(key);
+//                String s = key + " = " + values.toString() + "\n";
+//                responseBody.write(s.getBytes());
+//            }
+            responseBody.write(output.getBytes());
+            responseBody.close();
+        }
+        
+        
+        if (requestMethod.equalsIgnoreCase("POST")) {
+            Headers responseHeaders = exchange.getResponseHeaders();
+            responseHeaders.set("Content-Type", "text/plain");
+            exchange.sendResponseHeaders(200, 0);
+
+            OutputStream responseBody = exchange.getResponseBody();
+//            Headers requestHeaders = exchange.getRequestHeaders();
+//            Set<String> keySet = requestHeaders.keySet();
+//            Iterator<String> iter = keySet.iterator();
+            
+            String output="This is a POST response";
+//            while (iter.hasNext()) {
+//                String key = iter.next();
+//                List values = requestHeaders.get(key);
+//                String s = key + " = " + values.toString() + "\n";
+//                responseBody.write(s.getBytes());
+//            }
+            responseBody.write(output.getBytes());
             responseBody.close();
         }
     }

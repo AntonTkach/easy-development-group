@@ -33,10 +33,10 @@ import java.net.InetSocketAddress;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -115,13 +115,15 @@ class DefaultHandler implements HttpHandler {
 //
 //            os.write(data);
             responseBody.write(data);
+            
+
 //            String output = "This is a POST response \n"
 //                    + os.toString() + "\n"
 //                    + length + "\n"
 //                    + data.toString() + "\n"
 //                    + entries.toString() + "\n"
 //                    + contentLength + "\n";
-            String output = "\n\n\nThis is a POST response \n\n\n"+ data + "\n";
+            String output = "\n\n\nThis is a POST response \n\n\n";
 //            output+=HttpServletRequest.getHeaderNames();
 
 //            while (iter.hasNext()) {

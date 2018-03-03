@@ -36,6 +36,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -96,43 +97,55 @@ class DefaultHandler implements HttpHandler {
             Set<String> keySet = requestHeaders.keySet();
             Iterator<String> iter = keySet.iterator();
 
-//            Set<Map.Entry<String, List<String>>> entries = requestHeaders.entrySet();
-//
-//            int contentLength = Integer.parseInt(requestHeaders.getFirst("Content-length"));
-//
-//            // REQUEST Body
-//            InputStream is = exchange.getRequestBody();
-//
-//            byte[] data = new byte[contentLength];
-//            int length = is.read(data);
-//
-//            // RESPONSE Headers
-//            
-//
-//            // Send RESPONSE Headers
-////            extends.sendResponseHeaders(HttpURLConnection.HTTP_OK, contentLength);
-//
-//            // RESPONSE Body
+            Set<Map.Entry<String, List<String>>> entries = requestHeaders.entrySet();
+
+            int contentLength = Integer.parseInt(requestHeaders.getFirst("Content-length"));
+
+            // REQUEST Body
+            InputStream is = exchange.getRequestBody();
+
+            byte[] data = new byte[contentLength];
+            int length = is.read(data);
+
+            // RESPONSE Headers
+            // Send RESPONSE Headers
+//            extends.sendResponseHeaders(HttpURLConnection.HTTP_OK, contentLength);
+            // RESPONSE Body
 //            OutputStream os = exchange.getResponseBody();
 //
 //            os.write(data);
+            responseBody.write(data);
 //            String output = "This is a POST response \n"
-//                    + os.toString()+ "\n"
-//                    +length+ "\n"
-//                    +data.toString()+ "\n"
-//                    +entries.toString()+ "\n"
-//                    +contentLength+ "\n";
-            String output = "This is a POST response \n";
+//                    + os.toString() + "\n"
+//                    + length + "\n"
+//                    + data.toString() + "\n"
+//                    + entries.toString() + "\n"
+//                    + contentLength + "\n";
+            String output = "\n\n\nThis is a POST response \n\n\n"+ data + "\n";
+//            output+=HttpServletRequest.getHeaderNames();
 
-            while (iter.hasNext()) {
-                String key = iter.next();
-                List values = requestHeaders.get(key);
-                String s = key + " = " + values.toString() + "\n";
-                responseBody.write(s.getBytes());
-            }
+//            while (iter.hasNext()) {
+//                String key = iter.next();
+//                List values = requestHeaders.get(key);
+//                String s = key + " = " + values.toString() + "\n";
+//                responseBody.write(s.getBytes());
+//            }
             responseBody.write(output.getBytes());
             responseBody.close();
         }
     }
 
+//    public boolean isInQuery(HttpServletRequest request, String key) {
+//        String query = request.getQueryString();
+//        System.out.println(query);
+//        String[] nameValuePairs = query.split("&");
+//        System.out.println(nameValuePairs.toString());
+//        for (String nameValuePair : nameValuePairs) {
+//            if (nameValuePair.startsWith(key + "=")) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+//
 }

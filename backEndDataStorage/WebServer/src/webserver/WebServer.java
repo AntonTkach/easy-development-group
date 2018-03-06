@@ -11,6 +11,7 @@ import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.List;
 import java.util.Map;
@@ -38,9 +39,12 @@ public class WebServer {
         server.createContext(defaultHandlerAdress, new DefaultHandler());
         server.setExecutor(Executors.newCachedThreadPool());
         server.start();
+        InetAddress IP=InetAddress.getLocalHost();
+        System.out.println("IP of my system is := "+IP.getHostAddress()+":"+socketNumber);
         System.out.println("Server is listening on port " + socketNumber);
         System.out.println("Go to \n localhost:" + socketNumber
                 + " \n 127.0.0.1:" + socketNumber
+                + " \n Local web adress: "+IP.getHostAddress()+":"+socketNumber
                 );
     }
 }

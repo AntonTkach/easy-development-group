@@ -14,7 +14,9 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
+
 
 /**
  *
@@ -85,9 +87,12 @@ class DefaultHandler implements HttpHandler {
 
             // REQUEST Body
             InputStream is = exchange.getRequestBody();
+            
+            Scanner s = new Scanner(is).useDelimiter("\\A");
+            String inputStreamString = s.hasNext() ? s.next() : "";
 
-            byte[] data = new byte[contentLength];
-            int length = is.read(data);
+//            byte[] data = new byte[contentLength];
+//            int length = is.read(data);
 
             // RESPONSE Headers
             // Send RESPONSE Headers
@@ -98,9 +103,11 @@ class DefaultHandler implements HttpHandler {
 //            OutputStream os = exchange.getResponseBody();
 //
 //            os.write(data);
-            responseBody.write(data);
+//            responseBody.write(data);
+            
+            
            
-            String output = "\n\n\nThis is a POST response \n\n\n";
+            String output = "\n\n\nThis is a POST response \n\n\n"+inputStreamString;
             
             responseBody.write(output.getBytes());
             responseBody.close();

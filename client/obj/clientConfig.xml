@@ -14,7 +14,7 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'21.02.2018'</value>
+      <value>'07.03.2018'</value>
     </define>
     <define append="true">
       <name>CONFIG::air</name>
@@ -34,10 +34,10 @@
       <path-element>C:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
     <library-path append="true">
-      <path-element>C:\Users\Harry Sky\Documents\GitHub\easy-development-group\client\lib\expect.swc</path-element>
       <path-element>C:\Users\Harry Sky\Documents\GitHub\easy-development-group\client\lib\feathers.swc</path-element>
       <path-element>C:\Users\Harry Sky\Documents\GitHub\easy-development-group\client\lib\graphics.swc</path-element>
       <path-element>C:\Users\Harry Sky\Documents\GitHub\easy-development-group\client\lib\starling.swc</path-element>
+      <path-element>C:\Users\Harry Sky\Documents\GitHub\easy-development-group\client\lib\codebase.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>

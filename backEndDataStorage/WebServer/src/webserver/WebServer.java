@@ -111,7 +111,7 @@ class DefaultHandler implements HttpHandler {
             String output = "\n\n\nThis is a POST response \n\n\n" + inputStreamString;
             JSONObject jsonOutput;
 
-            if ("login".equals(getFieldValue(inputStreamString, "hashNumber"))) { //TODO login change to stored pswrd
+            if ("testPSWD".equals(getFieldValue(inputStreamString, "pswd"))) { //TODO login change to stored pswrd
                 //jsonOutput = new JSONObject("{\"phonetype\":\"N95\",\"cat\":\"WP\"}");
                 output="{\"pswrdAnswer\":\"true\"}";
                 //responseBody.write(jsonOutput.getBytes());
@@ -134,8 +134,8 @@ class DefaultHandler implements HttpHandler {
 //            responseBody.write(data);
             
 
-            responseBody.write(output.getBytes());
-            responseBody.close();
+//            responseBody.write(output.getBytes());
+//            responseBody.close();
         }
     }
     public String getFieldValue(String JsonString, String searchable) throws JSONException {

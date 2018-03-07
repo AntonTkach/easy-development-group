@@ -31,7 +31,20 @@ package com.clothobserve.todo.screens
 			screenNavigator.addScreen(Login.ID, loginScreen);
 			
 			var menuScreen:ScreenNavigatorItem = new ScreenNavigatorItem(ToDoMenu);
+			menuScreen.setScreenIDForEvent(ToDoMenu.SHOW_TASKS, ToDoTasks.ID);
+			menuScreen.setScreenIDForEvent(ToDoMenu.SHOW_STATISTICS, Statistics.ID);
 			screenNavigator.addScreen(ToDoMenu.ID, menuScreen);
+			
+			var todoTasksScreen:ScreenNavigatorItem = new ScreenNavigatorItem(ToDoTasks);
+			todoTasksScreen.setScreenIDForEvent(ToDoTasks.SHOW_TIMER, TaskPomodoro.ID);
+			todoTasksScreen.setScreenIDForEvent(Event.COMPLETE, ToDoMenu.ID);
+			screenNavigator.addScreen(ToDoTasks.ID, todoTasksScreen);
+			
+			var timerScreen:ScreenNavigatorItem = new ScreenNavigatorItem(TaskPomodoro);
+			screenNavigator.addScreen(TaskPomodoro.ID, timerScreen);
+			
+			var statisticsScreen:ScreenNavigatorItem = new ScreenNavigatorItem(Statistics);
+			screenNavigator.addScreen(Statistics.ID, statisticsScreen);
 		}
 	}
 }

@@ -32,6 +32,8 @@ package com.clothobserve.todo.screens
 		private static var _activeTask:TodoItem;
 		public static function get activeTask():TodoItem { return _activeTask; }
 		
+		private static var tasks:VectorCollection = null;
+		
 		private var tabs:TabBar;
 		private var items:VectorCollection;
 		private var list:List;
@@ -57,7 +59,8 @@ package com.clothobserve.todo.screens
 			tabs.addEventListener(Event.CHANGE, tabs_changeHandler);
 			addChild(tabs);
 			
-			items = new VectorCollection(new <TodoItem>[]);
+			if (tasks) { items = tasks; }
+			else { tasks = items = new VectorCollection(new <TodoItem>[]); }
 
 			list = new List();
 			list.dataProvider = items;

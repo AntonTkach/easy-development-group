@@ -41,9 +41,11 @@ package com.clothobserve.todo.screens
 			screenNavigator.addScreen(ToDoTasks.ID, todoTasksScreen);
 			
 			var timerScreen:ScreenNavigatorItem = new ScreenNavigatorItem(TaskPomodoro);
+			timerScreen.setScreenIDForEvent(Event.COMPLETE, ToDoTasks.ID);
 			screenNavigator.addScreen(TaskPomodoro.ID, timerScreen);
 			
 			var statisticsScreen:ScreenNavigatorItem = new ScreenNavigatorItem(Statistics);
+			statisticsScreen.setScreenIDForEvent(Event.COMPLETE, ToDoMenu.ID);
 			screenNavigator.addScreen(Statistics.ID, statisticsScreen);
 		}
 	}

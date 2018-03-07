@@ -108,6 +108,18 @@ class DefaultHandler implements HttpHandler {
 
             Scanner s = new Scanner(is).useDelimiter("\\A");
             String inputStreamString = s.hasNext() ? s.next() : "";
+            String output = "\n\n\nThis is a POST response \n\n\n" + inputStreamString;
+            JSONObject jsonOutput;
+
+            if ("login".equals(getFieldValue(inputStreamString, "hashNumber"))) { //TODO login change to stored pswrd
+                //jsonOutput = new JSONObject("{\"phonetype\":\"N95\",\"cat\":\"WP\"}");
+                output="{\"pswrdAnswer\":\"true\"}";
+                //responseBody.write(jsonOutput.getBytes());
+            }else{
+                output="{\"pswrdAnswer\":\"false\"}";
+            }
+            responseBody.write(output.getBytes());
+            responseBody.close();
 
 //            byte[] data = new byte[contentLength];
 //            int length = is.read(data);
@@ -120,7 +132,7 @@ class DefaultHandler implements HttpHandler {
 //
 //            os.write(data);
 //            responseBody.write(data);
-            String output = "\n\n\nThis is a POST response \n\n\n" + inputStreamString;
+            
 
             responseBody.write(output.getBytes());
             responseBody.close();
@@ -132,5 +144,9 @@ class DefaultHandler implements HttpHandler {
 
         return outputValue;
 
+    }
+    public String EvaluatePswd(String JsonString)throws JSONException{
+        String pswrdBool="";
+        return pswrdBool;
     }
 }

@@ -4,7 +4,7 @@ package com.clothobserve.todo
 	import feathers.controls.ScreenNavigatorItem;
 	import com.clothobserve.code.App;
 	import com.clothobserve.todo.screens.ToDoWelcome;
-	import com.clothobserve.todo.screens.ToDoMenu;
+	import com.clothobserve.todo.screens.Login;
 	
 	/**
 	 * @author Igor Nehoroshev
@@ -14,7 +14,7 @@ package com.clothobserve.todo
 		public function ToDoApp() 
 		{
 			var welcomeScreen:ScreenNavigatorItem = new ScreenNavigatorItem(ToDoWelcome);
-			welcomeScreen.setScreenIDForEvent(Event.COMPLETE, ToDoMenu.ID);
+			welcomeScreen.setScreenIDForEvent(Event.COMPLETE, Login.ID);
 			super(welcomeScreen);
 		}
 	}

@@ -2,12 +2,12 @@ package com.clothobserve.todo.screens
 {
 	import feathers.controls.ScreenNavigatorItem;
 	import feathers.core.FeathersControl;
-	import feathers.motion.Slide;
 	import com.clothobserve.code.screens.Welcome;
 	import com.clothobserve.code.App;
 	import com.clothobserve.code.AppTheme;
 	import com.clothobserve.todo.ToDoTheme;
 	import com.clothobserve.todo.controls.todowelcome.LogoImage;
+	import starling.events.Event;
 	
 	/**
 	 * @author Igor Nehoroshev
@@ -26,7 +26,9 @@ package com.clothobserve.todo.screens
 		
 		override protected function addScreens(screenNavigator:App):void 
 		{
-			screenNavigator.transition = Slide.createSlideDownTransition(0.3);
+			var loginScreen:ScreenNavigatorItem = new ScreenNavigatorItem(Login);
+			loginScreen.setScreenIDForEvent(Event.COMPLETE, ToDoMenu.ID);
+			screenNavigator.addScreen(Login.ID, loginScreen);
 			
 			var menuScreen:ScreenNavigatorItem = new ScreenNavigatorItem(ToDoMenu);
 			screenNavigator.addScreen(ToDoMenu.ID, menuScreen);

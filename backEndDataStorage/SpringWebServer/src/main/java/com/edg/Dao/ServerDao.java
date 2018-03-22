@@ -9,6 +9,9 @@ import java.util.Collection;
 @Repository
 public class ServerDao {
 
+    String dbName="TODOpomodoro.db"
+    String url="jdbc:sqlite:"+dbName;
+
     Collection<User> getAllUsers(){
         return new ArrayList<User>(){
             {

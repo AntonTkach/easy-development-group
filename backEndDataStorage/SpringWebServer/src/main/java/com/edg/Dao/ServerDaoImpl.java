@@ -26,7 +26,7 @@ public class ServerDaoImpl implements ServerDao {
     }
 
 
-    public JSONArray getAllUsers() {
+    public String getAllUsers() {
         String sql = "SELECT * FROM Users";
         JSONArray arrayJsonResult = new JSONArray();
 
@@ -47,6 +47,26 @@ public class ServerDaoImpl implements ServerDao {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return arrayJsonResult;
+        return arrayJsonResult.toString();
+    }
+
+    public String getDataFromDB(String sqlQuery, String dbName){
+        JSONArray jsonArrayResult = new JSONArray();
+        try (Connection conn = this.connect(dbName);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sqlQuery)) {
+            int columnCount = rs.getMetaData().getColumnCount();
+            while (rs.next()) {
+                JSONObject jsonObjectResult = new JSONObject();
+                for (int i = 0; i < columnCount; i++) {
+                    jsonObjectResult.put(rs.getMetaData().getColumnName(i + 1), rs.getString(i + 1)); // sqlite starts counting from 1
+                }
+                jsonArrayResult.put(jsonObjectResult);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
+        return jsonArrayResult.toString();
+    }
 }

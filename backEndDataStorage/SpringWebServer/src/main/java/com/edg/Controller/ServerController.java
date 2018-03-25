@@ -14,33 +14,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/")
 public class ServerController {
 
     @Autowired
     private ServerService serverService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public Collection<User> getAllUsers(){
-        return serverService.getAllUsers();
-    }
-
-    /*@RequestMapping(value = "/rows", method = RequestMethod.GET)
-    public void getAllRows(){
-        serverService.getAllRows();
-    }*/
-
-    @RequestMapping(value = "/array", method = RequestMethod.GET)
-    public ArrayList<String[]> getAllRows(){
-        return serverService.getAllRows();
-    }
-
-    @RequestMapping(value = "/json", method = RequestMethod.GET)
+    /**
+     * Gives back all users
+     * @return String representation of JsonArray
+     */
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String getAllRowsJson(){
-        String result;
-        result=serverService.getAllRowsJson().toString();
-        //System.out.println(result);
-        JSONArray jsonResult=new JSONArray(result);
-        return jsonResult.toString();
+        return serverService.getAllRowsJson().toString();
     }
 }

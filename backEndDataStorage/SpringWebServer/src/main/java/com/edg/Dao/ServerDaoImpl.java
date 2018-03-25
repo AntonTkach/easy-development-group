@@ -1,14 +1,10 @@
 package com.edg.Dao;
 
-import com.edg.Entity.User;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
 
-import java.awt.List;
-import java.io.DataOutputStream;
 import java.sql.*;
-import java.util.*;
 
 @Repository
 public class ServerDaoImpl implements ServerDao {

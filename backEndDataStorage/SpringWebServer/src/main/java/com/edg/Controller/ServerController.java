@@ -1,8 +1,15 @@
 package com.edg.Controller;
 
 import com.edg.Service.ServerService;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 @RestController
 @RequestMapping("/")
@@ -30,18 +37,28 @@ public class ServerController {
     }*/
 
     /**
-     * Retrieves password for a given person
+     * Checks password for a given person
      *
      * @param userName The user, whose data is to be grabbed.
      *                 Must be the same header name in request
      * @return JSON with the password
      */
-    @RequestMapping(value = "/checkpass", method = RequestMethod.GET)
-    public String checkPassword(@RequestHeader String userName) {
+    @RequestMapping(value = "/checkpass", method = RequestMethod.POST)
+    public ResponseEntity<Object> checkPassword(@RequestHeader String userName, @RequestHeader String password) {
         String sqlQuery = "SELECT passwordHash " +
                 "FROM Users " +
                 "WHERE (userName=\"" + userName + "\")";
-        return serverService.getDataFromDB(sqlQuery, "TODOpomodoro.db");
+
+        String jsonString = serverService.getDataFromDB(sqlQuery, "TODOpomodoro.db");
+
+        JSONArray jsonObject = new JSONArray(jsonString);
+        String responsePass = jsonObject.getJSONObject(0).getString("passwordHash");
+
+        if (responsePass.equals(password)) {
+            return ResponseEntity.ok("Authenticated");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
     }
 
     /**
@@ -66,4 +83,14 @@ public class ServerController {
 //        return serverService.getDataFromDB(sqlQuery, "TODOpomodoro.db");
     }
 
+    /**
+     * Draft for POST data handling
+     *
+     * @param headerPost
+     */
+    @RequestMapping(value = "/data", method = RequestMethod.POST)
+    public void storeData(@RequestHeader String headerPost) {
+        System.out.println(headerPost);
+//        return serverService.getDataFromDB(sqlQuery, "TODOpomodoro.db");
+    }
 }

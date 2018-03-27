@@ -25,28 +25,29 @@ public class ServerDaoImpl implements ServerDao {
         return conn;
     }
 
-
+    /**
+     * Testing method. Gets all users
+     * @return
+     */
     public String getAllUsers() {
         String sql = "SELECT * FROM Users";
         JSONArray arrayJsonResult = new JSONArray();
-
         try (Connection conn = this.connect("TODOpomodoro.db");
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             int columnCount = rs.getMetaData().getColumnCount();
             while (rs.next()) {
-                JSONObject objJsonResult = new JSONObject();
-
+                JSONObject jsonObjectResult = new JSONObject();
                 for (int i = 0; i < columnCount; i++) {
-
-                    objJsonResult.put(rs.getMetaData().getColumnName(i + 1), rs.getString(i + 1));
+                    jsonObjectResult.put(rs.getMetaData().getColumnName(i + 1), rs.getString(i + 1)); // sqlite starts counting from 1
                 }
-                arrayJsonResult.put(objJsonResult);
+                arrayJsonResult.put(jsonObjectResult);
             }
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
+
         return arrayJsonResult.toString();
     }
 
@@ -69,4 +70,24 @@ public class ServerDaoImpl implements ServerDao {
         }
         return jsonArrayResult.toString();
     }
+
+    public void editDataInDB(String sqlQuery, String dbName){
+        JSONArray jsonArrayResult = new JSONArray();
+        executeSqlQuery(sqlQuery, dbName);
+
+    }
+
+    public ResultSet executeSqlQuery(String sqlQuery, String dbName){
+        ResultSet rs = null;
+        try (Connection conn = this.connect(dbName);
+             Statement stmt = conn.createStatement();
+             ) {
+            rs = stmt.executeQuery(sqlQuery);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return rs;
+    }
+
+//    public
 }

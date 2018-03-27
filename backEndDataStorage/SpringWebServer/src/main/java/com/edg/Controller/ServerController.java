@@ -51,10 +51,11 @@ public class ServerController {
 
         String jsonString = serverService.getDataFromDB(sqlQuery, "TODOpomodoro.db");
 
-        JSONArray jsonObject = new JSONArray(jsonString);
-        String responsePass = jsonObject.getJSONObject(0).getString("passwordHash");
+        /*JSONArray jsonObject = new JSONArray(jsonString);
+        String responsePass = jsonObject.getJSONObject(0).getString("passwordHash");*/
 
-        if (responsePass.equals(password)) {
+
+        if (serverService.getStringFromJsonArray(jsonString).equals(password)) {
             return ResponseEntity.ok("Authenticated");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);

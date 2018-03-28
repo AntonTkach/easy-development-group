@@ -25,7 +25,7 @@ public class ServerService {
         JSONObject jsonObject=new JSONObject(jsonStringed);
         String userName = jsonObject.getString("userName");
         String passwordHash = jsonObject.getString("passwordHash");
-        
+
         //serverDaoImpl.editDataInDB(sqlQuery);
     }
 
@@ -35,6 +35,16 @@ public class ServerService {
         return responsePass;
     }
 
-
+    /**
+     * Creates hash using BCrypt algorithm
+     * @param input String to encode
+     * @return Encoded string
+     */
+    public String encodeString(String input){
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);//default strength = 16 (response time 10.5 sec)
+        // Possible values 10 (instantly), 12 (1 sec), 14 (2.5 sec)
+        String inputEncripted = encoder.encode(input);
+        return inputEncripted;
+    }
 
 }

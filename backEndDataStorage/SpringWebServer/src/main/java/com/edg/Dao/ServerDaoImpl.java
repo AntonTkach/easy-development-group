@@ -8,13 +8,13 @@ import java.sql.*;
 
 @Repository
 public class ServerDaoImpl implements ServerDao {
-
     /**
      * Creates connection to specific database
      * @return Connection object
      */
-    private Connection connect(String dbName) {
+    private Connection connect() {
         // SQLite connection string
+        String dbName = "TODOpomodoro.db";
         String url = "jdbc:sqlite:" + dbName;
         Connection conn = null;
         try {
@@ -27,12 +27,12 @@ public class ServerDaoImpl implements ServerDao {
 
     /**
      * Testing method. Gets all users
-     * @return
+     * @return Array of jsonObjects
      */
     public String getAllUsers() {
         String sql = "SELECT * FROM Users";
         JSONArray arrayJsonResult = new JSONArray();
-        try (Connection conn = this.connect("TODOpomodoro.db");
+        try (Connection conn = this.connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             int columnCount = rs.getMetaData().getColumnCount();
@@ -53,7 +53,7 @@ public class ServerDaoImpl implements ServerDao {
 
     public String getDataFromDB(String sqlQuery, String dbName){
         JSONArray jsonArrayResult = new JSONArray();
-        try (Connection conn = this.connect(dbName);
+        try (Connection conn = this.connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sqlQuery)) {
             int columnCount = rs.getMetaData().getColumnCount();
@@ -73,15 +73,15 @@ public class ServerDaoImpl implements ServerDao {
 
     public void editDataInDB(String sqlQuery, String dbName){
         JSONArray jsonArrayResult = new JSONArray();
-        executeSqlQuery(sqlQuery, dbName);
+        executeSqlQuery(sqlQuery);
 
     }
 
-    public ResultSet executeSqlQuery(String sqlQuery, String dbName){
+    public ResultSet executeSqlQuery(String sqlQuery){
         ResultSet rs = null;
-        try (Connection conn = this.connect(dbName);
-             Statement stmt = conn.createStatement();
-             ) {
+        try (Connection conn = this.connect();
+             Statement stmt = conn.createStatement()
+        ) {
             rs = stmt.executeQuery(sqlQuery);
         } catch (SQLException e) {
             System.out.println(e.getMessage());

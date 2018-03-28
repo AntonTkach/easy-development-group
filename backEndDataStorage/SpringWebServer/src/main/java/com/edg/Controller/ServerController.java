@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -34,7 +35,7 @@ public class ServerController {
         String sqlQuery = "SELECT passwordHash " +
                 "FROM Users " +
                 "WHERE (userName=\"" + userName + "\")";
-        return serverService.getDataFromDB(sqlQuery, "TODOpomodoro.db");
+        return serverService.getDataFromDB(sqlQuery);
     }*/
 
     /**
@@ -50,17 +51,34 @@ public class ServerController {
                 "FROM Users " +
                 "WHERE (userName=\"" + userName + "\")";
 
-        String jsonString = serverService.getDataFromDB(sqlQuery, "TODOpomodoro.db");
+        String jsonString = serverService.getDataFromDB(sqlQuery);
 
-        /*JSONArray jsonObject = new JSONArray(jsonString);
-        String responsePass = jsonObject.getJSONObject(0).getString("passwordHash");*/
+        JSONArray jsonArray = new JSONArray(jsonString);
+        String responsePass = jsonArray.getJSONObject(0).getString("passwordHash");
 
 
-        if (serverService.getStringFromJsonArray(jsonString).equals(password)) {
+
+//        System.out.println((encoder.matches(password, responsePassEnc))); //gives out TRUE
+        //BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+        if (new BCryptPasswordEncoder().matches(password, serverService.encodeString(responsePass))) {
             return ResponseEntity.ok("Authenticated");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
+        
+        //TODO: uncomment, when storing hashes is implemented
+        /*if (new BCryptPasswordEncoder().matches(password, responsePass)) {
+            return ResponseEntity.ok("Authenticated");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }*/
+
+        /*if (serverService.getStringFromJsonArray(jsonString).equals(password)) {
+            return ResponseEntity.ok("Authenticated");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }*/
     }
 
     /**
@@ -71,7 +89,7 @@ public class ServerController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public void getData(@RequestHeader String headerGet) {
         System.out.println(headerGet);
-//        return serverService.getDataFromDB(sqlQuery, "TODOpomodoro.db");
+//        return serverService.getDataFromDB(sqlQuery);
     }
 
     /**
@@ -82,19 +100,21 @@ public class ServerController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public void handlePost(@RequestHeader String headerPost) {
         System.out.println(headerPost);
-//        return serverService.getDataFromDB(sqlQuery, "TODOpomodoro.db");
+//        return serverService.getDataFromDB(sqlQuery);
     }
 
     /**
      * Draft for POST data handling
      *
-     * @param headerPost
+     * @param editingType - type of SQL edit query
      */
-    @RequestMapping(value = "/data", method = RequestMethod.POST)
-    public void storeData(@RequestHeader String headerPost) {
-        System.out.println(headerPost);
-//        return serverService.getDataFromDB(sqlQuery, "TODOpomodoro.db");
+    @RequestMapping(value = "/storeData", method = RequestMethod.POST)
+    public void editData(@RequestHeader String editingType, @RequestHeader String jsonStringed) {
+        System.out.println(editingType);
+        serverService.editDataInDB(editingType, jsonStringed);
     }
+
+
     /*@RequestMapping(value = "/", method = RequestMethod.GET)
     public String greeting() {
 

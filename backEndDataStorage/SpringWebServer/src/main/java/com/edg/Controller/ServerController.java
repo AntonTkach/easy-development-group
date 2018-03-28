@@ -5,6 +5,7 @@ import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.charset.StandardCharsets;
@@ -94,4 +95,9 @@ public class ServerController {
         System.out.println(headerPost);
 //        return serverService.getDataFromDB(sqlQuery, "TODOpomodoro.db");
     }
+    /*@RequestMapping(value = "/", method = RequestMethod.GET)
+    public String greeting() {
+
+        return "index";
+    }*/
 }

@@ -2,6 +2,7 @@ package com.edg.Controller;
 
 import com.edg.Service.ServerService;
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -61,18 +62,18 @@ public class ServerController {
 //        System.out.println((encoder.matches(password, responsePassEnc))); //gives out TRUE
         //BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-        if (new BCryptPasswordEncoder().matches(password, serverService.encodeString(responsePass))) {
-            return ResponseEntity.ok("Authenticated");
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
-        }
-        
-        //TODO: uncomment, when storing hashes is implemented
-        /*if (new BCryptPasswordEncoder().matches(password, responsePass)) {
+        /*if (new BCryptPasswordEncoder().matches(password, serverService.encodeString(responsePass))) {
             return ResponseEntity.ok("Authenticated");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }*/
+
+        //TODO: uncomment, when storing hashes is implemented
+        if (new BCryptPasswordEncoder().matches(password, responsePass)) {
+            return ResponseEntity.ok("Authenticated");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
 
         /*if (serverService.getStringFromJsonArray(jsonString).equals(password)) {
             return ResponseEntity.ok("Authenticated");
@@ -109,8 +110,7 @@ public class ServerController {
      * @param editingType - type of SQL edit query
      */
     @RequestMapping(value = "/storeData", method = RequestMethod.POST)
-    public void editData(@RequestHeader String editingType, @RequestHeader String jsonStringed) {
-        System.out.println(editingType);
+    public void editData(@RequestHeader String editingType, @RequestBody String jsonStringed) {
         serverService.editDataInDB(editingType, jsonStringed);
     }
 

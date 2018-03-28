@@ -71,9 +71,19 @@ public class ServerDaoImpl implements ServerDao {
         return jsonArrayResult.toString();
     }
 
-    public void editDataInDB(String sqlQuery){
-        JSONArray jsonArrayResult = new JSONArray();
-        executeSqlQuery(sqlQuery);
+    public void saveUserInDB(String sqlQuery, String userName, String passwordHash){
+        //JSONArray jsonArrayResult = new JSONArray();
+
+        try (Connection conn = this.connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
+            preparedStatement.setString(1, userName);
+            preparedStatement.setString(2, passwordHash);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        //executeSqlQuery(sqlQuery);
 
     }
 

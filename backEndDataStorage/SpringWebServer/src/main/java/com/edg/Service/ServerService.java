@@ -2,7 +2,9 @@ package com.edg.Service;
 
 import com.edg.Dao.ServerDaoImpl;
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,12 +17,16 @@ public class ServerService {
         return serverDaoImpl.getAllUsers();
     }
 
-    public String getDataFromDB(String sqlQuery, String dbName){
-        return serverDaoImpl.getDataFromDB(sqlQuery, dbName);
+    public String getDataFromDB(String sqlQuery){
+        return serverDaoImpl.getDataFromDB(sqlQuery);
     }
 
-    public void editDataInDB(String sqlQuery, String dbName){
-        serverDaoImpl.editDataInDB(sqlQuery, dbName);
+    public void editDataInDB(String editingType, String jsonStringed){
+        JSONObject jsonObject=new JSONObject(jsonStringed);
+        String userName = jsonObject.getString("userName");
+        String passwordHash = jsonObject.getString("passwordHash");
+        
+        //serverDaoImpl.editDataInDB(sqlQuery);
     }
 
     public String getStringFromJsonArray(String jsonString){
@@ -28,4 +34,7 @@ public class ServerService {
         String responsePass = jsonObject.getJSONObject(0).getString("passwordHash");
         return responsePass;
     }
+
+
+
 }

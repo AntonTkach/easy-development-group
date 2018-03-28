@@ -51,7 +51,7 @@ public class ServerDaoImpl implements ServerDao {
         return arrayJsonResult.toString();
     }
 
-    public String getDataFromDB(String sqlQuery, String dbName){
+    public String getDataFromDB(String sqlQuery){
         JSONArray jsonArrayResult = new JSONArray();
         try (Connection conn = this.connect();
              Statement stmt = conn.createStatement();
@@ -71,7 +71,7 @@ public class ServerDaoImpl implements ServerDao {
         return jsonArrayResult.toString();
     }
 
-    public void editDataInDB(String sqlQuery, String dbName){
+    public void editDataInDB(String sqlQuery){
         JSONArray jsonArrayResult = new JSONArray();
         executeSqlQuery(sqlQuery);
 

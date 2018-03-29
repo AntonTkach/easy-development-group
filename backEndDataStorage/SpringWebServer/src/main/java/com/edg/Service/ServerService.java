@@ -2,6 +2,7 @@ package com.edg.Service;
 
 import com.edg.Dao.ServerDaoImpl;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,27 +22,39 @@ public class ServerService {
         return serverDaoImpl.getDataFromDB(sqlQuery);
     }
 
-    public void editDataInDB(String editingType, String jsonStringed) {
+    public void saveUserInDB(String jsonStringed) {
 
-        if (editingType.equals("store user")) {
-            JSONObject jsonObject = new JSONObject(jsonStringed);
-            String userName = jsonObject.getString("userName");
-            String password = jsonObject.getString("password");
-            password = encodeString(password);
+        JSONObject jsonObject = new JSONObject(jsonStringed);
+        String userName = jsonObject.getString("userName");
+        String password = jsonObject.getString("password");
+        password = encodeString(password);
 
-            String sqlQuery = "INSERT INTO Users (userName, passwordHash) VALUES(?,?)";
+        String sqlQuery = "INSERT INTO Users (userName, passwordHash) VALUES(?,?)";
 
-            serverDaoImpl.saveUserInDB(sqlQuery, userName, password);
-        }
-
-
+        serverDaoImpl.saveUserInDB(sqlQuery, userName, password);
     }
 
-    public String getStringFromJsonArray(String jsonString) {
+    public void saveTaskInDB(String jsonStringed) {
+        JSONObject jsonObject = new JSONObject(jsonStringed);
+        String taskName = jsonObject.getString("taskName");
+        String taskBody = "";
+        try {
+            taskBody = jsonObject.getString("taskBody");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        boolean isCompleted = jsonObject.getBoolean("isCompleted");
+
+        String sqlQuery = "INSERT INTO Tasks (taskName, taskBody, isCompleted) VALUES(?,?,?)";
+
+        serverDaoImpl.saveTaskInDB(sqlQuery, taskName, taskBody, isCompleted);
+    }
+
+    /*public String getStringFromJsonArray(String jsonString) {
         JSONArray jsonObject = new JSONArray(jsonString);
         String responsePass = jsonObject.getJSONObject(0).getString("passwordHash");
         return responsePass;
-    }
+    }*/
 
     /**
      * Creates hash using BCrypt algorithm
@@ -54,5 +67,6 @@ public class ServerService {
         // Possible values 10 (instantly), 12 (1 sec), 14 (2.5 sec)
         return encoder.encode(input);
     }
+
 
 }

@@ -87,6 +87,18 @@ public class ServerDaoImpl implements ServerDao {
 
     }
 
+    public void saveTaskInDB(String sqlQuery, String taskName, String taskBody, boolean isCompleted) {
+        try (Connection conn = this.connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
+            preparedStatement.setString(1, taskName);
+            preparedStatement.setString(2, taskBody);
+            preparedStatement.setBoolean(3, isCompleted);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public ResultSet executeSqlQuery(String sqlQuery){
         ResultSet rs = null;
         try (Connection conn = this.connect();
@@ -98,6 +110,8 @@ public class ServerDaoImpl implements ServerDao {
         }
         return rs;
     }
+
+
 
 //    public
 }

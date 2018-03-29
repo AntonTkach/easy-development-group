@@ -72,8 +72,6 @@ public class ServerDaoImpl implements ServerDao {
     }
 
     public void saveUserInDB(String sqlQuery, String userName, String passwordHash){
-        //JSONArray jsonArrayResult = new JSONArray();
-
         try (Connection conn = this.connect();
              PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
             preparedStatement.setString(1, userName);
@@ -82,9 +80,6 @@ public class ServerDaoImpl implements ServerDao {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
-        //executeSqlQuery(sqlQuery);
-
     }
 
     public void saveTaskInDB(String sqlQuery, String taskName, String taskBody, boolean isCompleted) {
@@ -129,7 +124,4 @@ public class ServerDaoImpl implements ServerDao {
         return rs;
     }
 
-
-
-//    public
 }

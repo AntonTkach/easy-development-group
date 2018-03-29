@@ -25,14 +25,6 @@ public class ServerController {
         return serverService.getAllUsers().toString();
     }
 
-    /*@RequestMapping(value = "/{userNameReceived}", method = RequestMethod.GET)
-    public String checkPassword(@PathVariable("userNameReceived") String userName) {
-        String sqlQuery = "SELECT passwordHash " +
-                "FROM Users " +
-                "WHERE (userName=\"" + userName + "\")";
-        return serverService.getDataFromDB(sqlQuery);
-    }*/
-
     /**
      * Checks password for a given person
      *

@@ -37,13 +37,19 @@ public class ServerService {
     public void saveTaskInDB(String jsonStringed) {
         JSONObject jsonObject = new JSONObject(jsonStringed);
         String taskName = jsonObject.getString("taskName");
-        String taskBody = "";
+        String taskBody;
+        boolean isCompleted;
         try {
             taskBody = jsonObject.getString("taskBody");
         } catch (JSONException e) {
-            e.printStackTrace();
+            taskBody = null;
         }
-        boolean isCompleted = jsonObject.getBoolean("isCompleted");
+        try {
+            isCompleted = jsonObject.getBoolean("isCompleted");
+        } catch (JSONException e) {
+            isCompleted = false;
+        }
+
 
         String sqlQuery = "INSERT INTO Tasks (taskName, taskBody, isCompleted) VALUES(?,?,?)";
 

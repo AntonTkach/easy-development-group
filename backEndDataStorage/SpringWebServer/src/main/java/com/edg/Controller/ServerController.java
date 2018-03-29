@@ -94,10 +94,10 @@ public class ServerController {
     public void saveTaskInDB(@RequestBody String jsonStringed) {
         serverService.saveTaskInDB(jsonStringed);
     }
-    /*@RequestMapping(value = "/savePomodoro", method = RequestMethod.POST)
+    @RequestMapping(value = "/savePomodoro", method = RequestMethod.POST)
     public void savePomodoroInDB(@RequestBody String jsonStringed) {
         serverService.savePomodoroInDB(jsonStringed);
-    }*/
+    }
 
 
     /*@RequestMapping(value = "/", method = RequestMethod.GET)

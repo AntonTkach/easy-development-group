@@ -49,11 +49,42 @@ public class ServerService {
         } catch (JSONException e) {
             isCompleted = false;
         }
-
-
         String sqlQuery = "INSERT INTO Tasks (taskName, taskBody, isCompleted) VALUES(?,?,?)";
-
         serverDaoImpl.saveTaskInDB(sqlQuery, taskName, taskBody, isCompleted);
+    }
+
+    public void savePomodoroInDB(String jsonStringed) {
+        JSONObject jsonObject = new JSONObject(jsonStringed);
+        String taskID = jsonObject.getString("taskID");
+        String userID = jsonObject.getString("userID");
+        int workTime;
+        int restTime;
+        boolean isWorkSkipped;
+        boolean isRestSkipped;
+
+        try {
+            workTime = jsonObject.getInt("workTime");
+        } catch (JSONException e) {
+            workTime = 1500;
+        }
+        try {
+            restTime = jsonObject.getInt("restTime");
+        } catch (JSONException e) {
+            restTime = 300;
+        }
+        try {
+            isWorkSkipped = jsonObject.getBoolean("isWorkSkipped");
+        } catch (JSONException e) {
+            isWorkSkipped = false;
+        }
+        try {
+            isRestSkipped = jsonObject.getBoolean("isRestSkipped");
+        } catch (JSONException e) {
+            isRestSkipped = false;
+        }
+        String sqlQuery = "INSERT INTO Pomodoros (taskID, userID, workTime, restTime, isWorkSkipped, isRestSkipped) VALUES(?,?,?,?,?,?)";
+
+        serverDaoImpl.savePomodoroInDB(sqlQuery, taskID, userID, workTime, restTime, isWorkSkipped, isRestSkipped);
     }
 
     /*public String getStringFromJsonArray(String jsonString) {

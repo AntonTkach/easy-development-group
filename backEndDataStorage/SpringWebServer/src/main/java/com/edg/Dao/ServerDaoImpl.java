@@ -99,6 +99,24 @@ public class ServerDaoImpl implements ServerDao {
         }
     }
 
+    public void savePomodoroInDB(String sqlQuery,
+                                 String taskID, String userID,
+                                 int workTime, int restTime,
+                                 boolean isWorkSkipped, boolean isRestSkipped){
+        try (Connection conn = this.connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
+            preparedStatement.setString(1, taskID);
+            preparedStatement.setString(2, userID);
+            preparedStatement.setInt(3, workTime);
+            preparedStatement.setInt(4, restTime);
+            preparedStatement.setBoolean(5, isWorkSkipped);
+            preparedStatement.setBoolean(6, isRestSkipped);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public ResultSet executeSqlQuery(String sqlQuery){
         ResultSet rs = null;
         try (Connection conn = this.connect();

@@ -5,11 +5,13 @@ import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@RestController
-@RequestMapping("/")
+@Controller
+//@RequestMapping("/")
 public class ServerController {
 
     @Autowired
@@ -56,12 +58,12 @@ public class ServerController {
      *
      * @param headerGet
      */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/", method = RequestMethod.GET)
     public void getData(@RequestHeader String headerGet) {
         System.out.println(headerGet);
 //        return serverService.getDataFromDB(sqlQuery);
     }
-
+*/
     /**
      * Draft for POST handling
      *
@@ -95,6 +97,11 @@ public class ServerController {
     /*@RequestMapping(value = "/", method = RequestMethod.GET)
     public String greeting() {
 
-        return "index";
+        return "greeting";
     }*/
+
+    @GetMapping(value = "/")
+    public String greeting() {
+        return "index";
+    }
 }

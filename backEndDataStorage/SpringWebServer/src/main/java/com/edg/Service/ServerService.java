@@ -22,6 +22,20 @@ public class ServerService {
         return serverDaoImpl.getDataFromDB(sqlQuery);
     }
 
+    public String getUserPass(String jsonStringed){
+        JSONObject jsonObject = new JSONObject(jsonStringed);
+        String userName = jsonObject.getString("userName");
+
+        String sqlQuery = "SELECT passwordHash " +
+                "FROM Users " +
+                "WHERE (userName=\"" + userName + "\")";
+
+        String jsonString = getDataFromDB(sqlQuery);
+        JSONArray jsonArray = new JSONArray(jsonString);
+
+        return jsonArray.getJSONObject(0).getString("passwordHash");
+    }
+
     public void saveUserInDB(String jsonStringed) {
 
         JSONObject jsonObject = new JSONObject(jsonStringed);

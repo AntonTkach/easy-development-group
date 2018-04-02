@@ -31,7 +31,11 @@ public class ServerService {
 
         String jsonString = getDataFromDB(sqlQuery);
         JSONArray jsonArray = new JSONArray(jsonString);
-        return jsonArray.getJSONObject(0).getString("passwordHash");
+        if (jsonArray.length() == 0) {
+            return "empty";
+        } else {
+            return jsonArray.getJSONObject(0).getString("passwordHash");
+        }
     }
 
     public void saveUserInDB(String jsonStringed) {

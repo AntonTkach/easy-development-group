@@ -2,6 +2,7 @@ package com.edg.Controller;
 
 import com.edg.Service.ServerService;
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,15 +36,11 @@ public class ServerController {
      * @return JSON with the password
      */
     @RequestMapping(value = "/checkpass", method = RequestMethod.POST)
-    public ResponseEntity<Object> checkPassword(@RequestHeader String userName, @RequestHeader String password) {
-        String sqlQuery = "SELECT passwordHash " +
-                "FROM Users " +
-                "WHERE (userName=\"" + userName + "\")";
+    public ResponseEntity<Object> checkPassword(@RequestBody String jsonStringed) {
 
-        String jsonString = serverService.getDataFromDB(sqlQuery);
-
-        JSONArray jsonArray = new JSONArray(jsonString);
-        String responsePass = jsonArray.getJSONObject(0).getString("passwordHash");
+        JSONObject jsonObject = new JSONObject(jsonStringed);
+        String password = jsonObject.getString("password");
+        String responcePass = serverService.getUserPass(jsonStringed);
 
         if (new BCryptPasswordEncoder().matches(password, responsePass)) {
             return ResponseEntity.ok("Authenticated");

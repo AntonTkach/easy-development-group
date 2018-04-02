@@ -31,7 +31,7 @@ public class ServerController {
     /**
      * Checks password for a given person
      *
-     * @param userName The user, whose data is to be grabbed.
+     * @param jsonStringed The user, whose data is to be grabbed.
      *                 Must be the same header name in request
      * @return JSON with the password
      */
@@ -77,7 +77,7 @@ public class ServerController {
      *
      * @param jsonStringed - Json in request body. Is parsed to string automatically
      */
-    @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
+    @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
     public void saveUserInDB(@RequestBody String jsonStringed) {
         serverService.saveUserInDB(jsonStringed);
     }

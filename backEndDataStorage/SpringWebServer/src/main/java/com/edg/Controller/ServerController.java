@@ -40,7 +40,7 @@ public class ServerController {
 
         JSONObject jsonObject = new JSONObject(jsonStringed);
         String password = jsonObject.getString("password");
-        String responcePass = serverService.getUserPass(jsonStringed);
+        String responsePass = serverService.getUserPass(jsonStringed);
 
         if (new BCryptPasswordEncoder().matches(password, responsePass)) {
             return ResponseEntity.ok("Authenticated");

@@ -116,7 +116,7 @@
         };
         xhttp.open("POST", "/saveUser", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("userName=New user&password=1234test");
+        xmlhttp.send(JSON.stringify({name:"John Rambo", time:"2pm"}));
     }
 </script>
 </html>

@@ -26,7 +26,7 @@ public class ServerDaoImpl implements ServerDao {
     }
 
     /**
-     * Testing method. Gets all users
+     * Testing method. Gets all users //TODO: delete when finished testing
      * @return Array of jsonObjects
      */
     public String getAllUsers() {
@@ -68,7 +68,12 @@ public class ServerDaoImpl implements ServerDao {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return jsonArrayResult.toString();
+        if (jsonArrayResult.length()==1){
+            return jsonArrayResult.getJSONObject(0).toString();
+        } else {
+            return jsonArrayResult.toString();
+        }
+
     }
 
     public void saveUserInDB(String sqlQuery, String userName, String passwordHash){

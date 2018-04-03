@@ -48,11 +48,11 @@ public class ServerService {
                 + "\")";
 
         String jsonString = getDataFromDB(sqlQuery);
-        JSONArray jsonArray = new JSONArray(jsonString);
-        if (jsonArray.length() == 0) {
+        JSONObject jsonObject = new JSONObject(jsonString);
+        if (jsonObject.length() == 0) {
             return "empty";
         } else {
-            return jsonArray.getJSONObject(0).getString("passwordHash");
+            return jsonObject.getString("passwordHash");
         }
     }
 

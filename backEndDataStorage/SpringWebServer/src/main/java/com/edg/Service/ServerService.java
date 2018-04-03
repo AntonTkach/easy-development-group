@@ -12,21 +12,39 @@ import org.springframework.stereotype.Service;
 public class ServerService {
 
     @Autowired
-    private ServerDaoImpl serverDaoImpl;
+    private ServerDaoImpl serverDaoImpl; //make able to use serverDaoImpl
 
+    /**
+     * Retrieve all users from database
+     *
+     * @return JsonString, containing every user, its ID and hashed password
+     */
+    //TODO: Delete, when leaving testing phase. Compromises security
     public String getAllUsers() {
         return serverDaoImpl.getAllUsers();
     }
 
+    /**
+     * General method for retrieving data from database
+     *
+     * @param sqlQuery The query that will be executed in database
+     * @return JsonString with data, relative to query
+     */
     public String getDataFromDB(String sqlQuery) {
         return serverDaoImpl.getDataFromDB(sqlQuery);
     }
 
-    public String getUserPass(String jsonStringed){
+    /**
+     * Retries hashed password from database based on client's JSON
+     *
+     * @param jsonStringed JSON in string format
+     * @return Stored user hashed password
+     */
+    public String getUserPass(String jsonStringed) {
         String sqlQuery = "SELECT passwordHash " +
                 "FROM Users " +
                 "WHERE (userName=\""
-                + getJsonStringValue(jsonStringed,"userName")
+                + getJsonStringValue(jsonStringed, "userName")
                 + "\")";
 
         String jsonString = getDataFromDB(sqlQuery);
@@ -38,6 +56,11 @@ public class ServerService {
         }
     }
 
+    /**
+     * Saves new user to database based on client's JSON
+     *
+     * @param jsonStringed JSON in string format
+     */
     public void saveUserInDB(String jsonStringed) {
         String sqlQuery = "INSERT INTO Users (userName, passwordHash) VALUES(?,?)";
         serverDaoImpl.saveUserInDB(sqlQuery,
@@ -47,11 +70,16 @@ public class ServerService {
                 ));
     }
 
+    /**
+     * Saves new task to database based on client's JSON
+     *
+     * @param jsonStringed JSON in string format
+     */
     public void saveTaskInDB(String jsonStringed) {
         String taskBody;
         boolean isCompleted;
         try {
-            taskBody = getJsonStringValue(jsonStringed,"taskBody");
+            taskBody = getJsonStringValue(jsonStringed, "taskBody");
         } catch (JSONException e) {
             taskBody = null;
         }
@@ -66,6 +94,11 @@ public class ServerService {
                 taskBody, isCompleted);
     }
 
+    /**
+     * Saves new pomodoro to database based on client's JSON
+     *
+     * @param jsonStringed JSON in string format
+     */
     public void savePomodoroInDB(String jsonStringed) {
         int workTime;
         int restTime;
@@ -73,7 +106,7 @@ public class ServerService {
         boolean isRestSkipped;
 
         try {
-            workTime = getJsonIntValue(jsonStringed,"workTime");
+            workTime = getJsonIntValue(jsonStringed, "workTime");
         } catch (JSONException e) {
             workTime = 1500;
         }
@@ -96,8 +129,8 @@ public class ServerService {
                 "VALUES(?,?,?,?,?,?)";
 
         serverDaoImpl.savePomodoroInDB(sqlQuery,
-                getJsonStringValue(jsonStringed,"taskID"),
-                getJsonStringValue(jsonStringed,"userID"),
+                getJsonStringValue(jsonStringed, "taskID"),
+                getJsonStringValue(jsonStringed, "userID"),
                 workTime, restTime, isWorkSkipped, isRestSkipped);
     }
 
@@ -119,15 +152,38 @@ public class ServerService {
         return encoder.encode(input);
     }
 
-    public String getJsonStringValue(String jsonStringed, String fieldName){
+    /**
+     * Gets a specific String value from single layer JSON
+     *
+     * @param jsonStringed JSON in string format
+     * @param fieldName    The field name which value is needed
+     * @return Field value
+     */
+    public String getJsonStringValue(String jsonStringed, String fieldName) {
         JSONObject jsonObject = new JSONObject(jsonStringed);
         return jsonObject.getString(fieldName);
     }
-    public int getJsonIntValue(String jsonStringed, String fieldName){
+
+    /**
+     * Gets a specific int value from single layer JSON
+     *
+     * @param jsonStringed JSON in string format
+     * @param fieldName    The field name which value is needed
+     * @return Field value
+     */
+    public int getJsonIntValue(String jsonStringed, String fieldName) {
         JSONObject jsonObject = new JSONObject(jsonStringed);
         return jsonObject.getInt(fieldName);
     }
-    public boolean getJsonBooleanValue(String jsonStringed, String fieldName){
+
+    /**
+     * Gets a specific boolean value from single layer JSON
+     *
+     * @param jsonStringed JSON in string format
+     * @param fieldName    The field name which value is needed
+     * @return Field value
+     */
+    public boolean getJsonBooleanValue(String jsonStringed, String fieldName) {
         JSONObject jsonObject = new JSONObject(jsonStringed);
         return jsonObject.getBoolean(fieldName);
     }

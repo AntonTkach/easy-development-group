@@ -32,7 +32,7 @@ public class ServerController {
      * Checks password for a given person
      *
      * @param jsonStringed The user, whose data is to be grabbed.
-     *                 Must be the same header name in request
+     *                     Must be the same header name in request
      * @return JSON with the password
      */
     @RequestMapping(value = "/checkpass", method = RequestMethod.POST)
@@ -65,6 +65,7 @@ public class ServerController {
 //        return serverService.getDataFromDB(sqlQuery);
     }
 */
+
     /**
      * Draft for POST handling
      *
@@ -77,18 +78,30 @@ public class ServerController {
     }
 
     /**
-     * Draft for POST data handling
+     * Register user with info received in JSON from client
      *
-     * @param jsonStringed - Json in request body. Is parsed to string automatically
+     * @param jsonStringed - JSON in request body. Is parsed to string automatically
      */
     @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
     public void saveUserInDB(@RequestBody String jsonStringed) {
         serverService.saveUserInDB(jsonStringed);
     }
+
+    /**
+     * Save a Task with info received in JSON from client
+     *
+     * @param jsonStringed - JSON in request body. Is parsed to string automatically
+     */
     @RequestMapping(value = "/saveTask", method = RequestMethod.POST)
     public void saveTaskInDB(@RequestBody String jsonStringed) {
         serverService.saveTaskInDB(jsonStringed);
     }
+
+    /**
+     * Save a Pomodoro with info received in JSON from client
+     *
+     * @param jsonStringed - JSON in request body. Is parsed to string automatically
+     */
     @RequestMapping(value = "/savePomodoro", method = RequestMethod.POST)
     public void savePomodoroInDB(@RequestBody String jsonStringed) {
         serverService.savePomodoroInDB(jsonStringed);
@@ -101,10 +114,21 @@ public class ServerController {
         return "greeting";
     }*/
 
+    /**
+     * Open a default (index) page
+     *
+     * @return A view named "index" from template resources/folder
+     */
     @GetMapping(value = "/")
     public String index() {
         return "index";
     }
+
+    /**
+     * Open a sign up page
+     *
+     * @return A view named "SignUpPage" from template resources/folder
+     */
     @GetMapping(value = "/signUp")
     public String signUp() {
         return "SignUpPage";

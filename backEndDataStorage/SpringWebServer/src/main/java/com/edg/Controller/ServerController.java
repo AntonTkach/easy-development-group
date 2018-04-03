@@ -1,14 +1,10 @@
 package com.edg.Controller;
 
 import com.edg.Service.ServerService;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -42,12 +38,15 @@ public class ServerController {
     @RequestMapping(value = "/checkpass", method = RequestMethod.POST)
     public ResponseEntity<Object> checkPassword(@RequestBody String jsonStringed, HttpServletResponse response) {
 
-        JSONObject jsonObject = new JSONObject(jsonStringed);
-        String password = jsonObject.getString("password");
+        String password = serverService.getJsonStringValue(jsonStringed, "password");
         String responsePass = serverService.getUserPass(jsonStringed);
 
         if (new BCryptPasswordEncoder().matches(password, responsePass)) {
-            response.addCookie(new Cookie("userName", jsonObject.getString("userName"))); // default(-1) = removed when browser is closed
+            response.addCookie(
+                    new Cookie(
+                            "userName",
+                            serverService.getJsonStringValue(jsonStringed, "userName")
+                    )); // default(-1) = removed when browser is closed
             return ResponseEntity.ok("Authenticated");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);

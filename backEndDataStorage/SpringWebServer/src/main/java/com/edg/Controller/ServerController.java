@@ -19,16 +19,6 @@ public class ServerController {
     private ServerService serverService;
 
     /**
-     * Gives back all users
-     *
-     * @return String representation of JsonArray
-     */
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public String getAllUsers() {
-        return serverService.getAllUsers().toString();
-    }
-
-    /**
      * Checks password for a given person
      *
      * @param jsonStringed The user, whose data is to be grabbed.

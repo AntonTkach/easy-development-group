@@ -78,10 +78,11 @@ public class ServerService {
         } catch (JSONException e) {
             isCompleted = false;
         }
-        String sqlQuery = "INSERT INTO Tasks (taskName, taskBody, isCompleted) VALUES(?,?,?)";
+        String sqlQuery = "INSERT INTO Tasks (taskName, taskBody, isCompleted, timestamp) VALUES(?,?,?,?)";
         serverDaoImpl.saveTaskInDB(sqlQuery,
                 getJsonStringValue(jsonStringed, "taskName"),
-                taskBody, isCompleted);
+                taskBody, isCompleted,
+                getJsonIntValue(jsonStringed, "timestamp"));
     }
 
     public String getAllTasks() {
@@ -132,13 +133,15 @@ public class ServerService {
         } catch (JSONException e) {
             isRestSkipped = false;
         }
-        String sqlQuery = "INSERT INTO Pomodoros (taskID, userID, workTime, restTime, isWorkSkipped, isRestSkipped) " +
-                "VALUES(?,?,?,?,?,?)";
+        String sqlQuery = "INSERT INTO Pomodoros " +
+                "(taskID, userID, workTime, restTime, isWorkSkipped, isRestSkipped, timestamp) " +
+                "VALUES(?,?,?,?,?,?,?)";
 
         serverDaoImpl.savePomodoroInDB(sqlQuery,
                 getJsonStringValue(jsonStringed, "taskID"),
                 getJsonStringValue(jsonStringed, "userID"),
-                workTime, restTime, isWorkSkipped, isRestSkipped);
+                workTime, restTime, isWorkSkipped, isRestSkipped,
+                getJsonIntValue(jsonStringed, "timestamp"));
     }
 
     /*public String getStringFromJsonArray(String jsonString) {

@@ -36,7 +36,9 @@ public class ServerDaoImpl implements ServerDao {
             while (rs.next()) {
                 JSONObject jsonObjectResult = new JSONObject();
                 for (int i = 0; i < columnCount; i++) {
-                    jsonObjectResult.put(rs.getMetaData().getColumnName(i + 1), rs.getString(i + 1)); // sqlite starts counting from 1
+                    jsonObjectResult.put(
+                            rs.getMetaData().getColumnName(i + 1),
+                            rs.getString(i + 1)); // sqlite starts counting from 1
                 }
                 jsonArrayResult.put(jsonObjectResult);
             }
@@ -68,12 +70,13 @@ public class ServerDaoImpl implements ServerDao {
         return getDataFromDB(sql);
     }
 
-    public void saveTaskInDB(String sqlQuery, String taskName, String taskBody, boolean isCompleted) {
+    public void saveTaskInDB(String sqlQuery, String taskName, String taskBody, boolean isCompleted, int timestamp) {
         try (Connection conn = this.connect();
              PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
             preparedStatement.setString(1, taskName);
             preparedStatement.setString(2, taskBody);
             preparedStatement.setBoolean(3, isCompleted);
+            preparedStatement.setInt(4, timestamp);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -109,10 +112,8 @@ public class ServerDaoImpl implements ServerDao {
         }
     }
 
-    public void savePomodoroInDB(String sqlQuery,
-                                 String taskID, String userID,
-                                 int workTime, int restTime,
-                                 boolean isWorkSkipped, boolean isRestSkipped) {
+    public void savePomodoroInDB(String sqlQuery, String taskID, String userID, int workTime, int restTime,
+                                 boolean isWorkSkipped, boolean isRestSkipped, int timestamp) {
         try (Connection conn = this.connect();
              PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
             preparedStatement.setString(1, taskID);
@@ -121,6 +122,7 @@ public class ServerDaoImpl implements ServerDao {
             preparedStatement.setInt(4, restTime);
             preparedStatement.setBoolean(5, isWorkSkipped);
             preparedStatement.setBoolean(6, isRestSkipped);
+            preparedStatement.setInt(7, timestamp);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

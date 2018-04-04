@@ -88,8 +88,8 @@ public class ServerController {
     }
 
     @RequestMapping(value = "/gettasks", method = RequestMethod.GET)
-    public void getTaskInDB(@RequestBody String jsonStringed) {
-        serverService.getAllTasks(jsonStringed);
+    public String getAllTasksInDB() {
+        return serverService.getAllTasks();
     }
 
     /**
@@ -98,7 +98,7 @@ public class ServerController {
      * @param jsonStringed - JSON in request body. Is parsed to string automatically
      */
     @RequestMapping(value = "/savetask", method = RequestMethod.POST)
-    public void updateTaskInDB(@RequestBody String jsonStringed) {
+    public void saveTaskInDB(@RequestBody String jsonStringed) {
         serverService.saveTaskInDB(jsonStringed);
     }
 
@@ -107,11 +107,11 @@ public class ServerController {
      * @param jsonStringed - JSON in request body. Is parsed to string automatically
      */
     @RequestMapping(value = "/updatetask", method = RequestMethod.POST)
-    public void saveTaskInDB(@RequestBody String jsonStringed) {
+    public void updateTaskInDB(@RequestBody String jsonStringed) {
         serverService.updateTaskInDB(jsonStringed);
     }
     @RequestMapping(value = "/deletetask", method = RequestMethod.POST)
-    public void saveTaskInDB(@RequestBody String jsonStringed) {
+    public void deleteTaskInDB(@RequestBody String jsonStringed) {
         serverService.deleteTaskInDB(jsonStringed);
     }
 

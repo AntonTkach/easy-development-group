@@ -94,6 +94,22 @@ public class ServerService {
                 taskBody, isCompleted);
     }
 
+    public String getAllTasks() {
+        return serverDaoImpl.getAllTasks();
+    }
+    public void updateTaskInDB(String jsonStringed) {
+        String sqlQuery="UPDATE Tasks SET taskName = ?, taskBody = ?, isCompleted = ? WHERE taskID = ?";
+        serverDaoImpl.updateTaskInDB(sqlQuery,
+                getJsonStringValue(jsonStringed,"taskName"),
+                getJsonStringValue(jsonStringed,"taskBody"),
+                getJsonBooleanValue(jsonStringed,"isCompleted"));
+    }
+
+    public void deleteTaskInDB(String jsonStringed) {
+        String sqlQuery="DELETE FROM Tasks WHERE taskID = ?";
+        serverDaoImpl.deleteTaskInDB(sqlQuery,getJsonStringValue(jsonStringed, "taskID"));
+    }
+
     /**
      * Saves new pomodoro to database based on client's JSON
      *

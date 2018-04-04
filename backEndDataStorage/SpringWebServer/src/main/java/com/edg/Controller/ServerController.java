@@ -103,11 +103,11 @@ public class ServerController {
     }*/
 
     @GetMapping(value = "/")
-    public String index() {
-        return "index";
+    public String signIn() {
+        return "signin";
     }
-    @GetMapping(value = "/signUp")
+    @GetMapping(value = "/register")
     public String signUp() {
-        return "SignUpPage";
+        return "register";
     }
 }

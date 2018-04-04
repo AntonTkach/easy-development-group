@@ -15,16 +15,6 @@ public class ServerService {
     private ServerDaoImpl serverDaoImpl; //make able to use serverDaoImpl
 
     /**
-     * Retrieve all users from database
-     *
-     * @return JsonString, containing every user, its ID and hashed password
-     */
-    //TODO: Delete, when leaving testing phase. Compromises security
-    public String getAllUsers() {
-        return serverDaoImpl.getAllUsers();
-    }
-
-    /**
      * General method for retrieving data from database
      *
      * @param sqlQuery The query that will be executed in database
@@ -97,17 +87,18 @@ public class ServerService {
     public String getAllTasks() {
         return serverDaoImpl.getAllTasks();
     }
+
     public void updateTaskInDB(String jsonStringed) {
-        String sqlQuery="UPDATE Tasks SET taskName = ?, taskBody = ?, isCompleted = ? WHERE taskID = ?";
+        String sqlQuery = "UPDATE Tasks SET taskName = ?, taskBody = ?, isCompleted = ? WHERE taskID = ?";
         serverDaoImpl.updateTaskInDB(sqlQuery,
-                getJsonStringValue(jsonStringed,"taskName"),
-                getJsonStringValue(jsonStringed,"taskBody"),
-                getJsonBooleanValue(jsonStringed,"isCompleted"));
+                getJsonStringValue(jsonStringed, "taskName"),
+                getJsonStringValue(jsonStringed, "taskBody"),
+                getJsonBooleanValue(jsonStringed, "isCompleted"));
     }
 
     public void deleteTaskInDB(String jsonStringed) {
-        String sqlQuery="DELETE FROM Tasks WHERE taskID = ?";
-        serverDaoImpl.deleteTaskInDB(sqlQuery,getJsonStringValue(jsonStringed, "taskID"));
+        String sqlQuery = "DELETE FROM Tasks WHERE taskID = ?";
+        serverDaoImpl.deleteTaskInDB(sqlQuery, getJsonIntValue(jsonStringed, "taskID"));
     }
 
     /**

@@ -10,6 +10,7 @@ import java.sql.*;
 public class ServerDaoImpl implements ServerDao {
     /**
      * Creates connection to specific database
+     *
      * @return Connection object
      */
     private Connection connect() {
@@ -25,33 +26,8 @@ public class ServerDaoImpl implements ServerDao {
         return conn;
     }
 
-    /**
-     * Testing method. Gets all users //TODO: delete when finished testing
-     * @return Array of jsonObjects
-     */
-    public String getAllUsers() {
-        String sql = "SELECT * FROM Users";
-        JSONArray arrayJsonResult = new JSONArray();
-        try (Connection conn = this.connect();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            int columnCount = rs.getMetaData().getColumnCount();
-            while (rs.next()) {
-                JSONObject jsonObjectResult = new JSONObject();
-                for (int i = 0; i < columnCount; i++) {
-                    jsonObjectResult.put(rs.getMetaData().getColumnName(i + 1), rs.getString(i + 1)); // sqlite starts counting from 1
-                }
-                arrayJsonResult.put(jsonObjectResult);
-            }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return arrayJsonResult.toString();
-    }
-
-    public String getDataFromDB(String sqlQuery){
+    public String getDataFromDB(String sqlQuery) {
         JSONArray jsonArrayResult = new JSONArray();
         try (Connection conn = this.connect();
              Statement stmt = conn.createStatement();
@@ -68,7 +44,7 @@ public class ServerDaoImpl implements ServerDao {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        if (jsonArrayResult.length()==1){
+        if (jsonArrayResult.length() == 1) {
             return jsonArrayResult.getJSONObject(0).toString();
         } else {
             return jsonArrayResult.toString();
@@ -76,7 +52,7 @@ public class ServerDaoImpl implements ServerDao {
 
     }
 
-    public void saveUserInDB(String sqlQuery, String userName, String passwordHash){
+    public void saveUserInDB(String sqlQuery, String userName, String passwordHash) {
         try (Connection conn = this.connect();
              PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
             preparedStatement.setString(1, userName);
@@ -85,6 +61,11 @@ public class ServerDaoImpl implements ServerDao {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public String getAllTasks() {
+        String sql = "SELECT * FROM Tasks";
+        return getDataFromDB(sql);
     }
 
     public void saveTaskInDB(String sqlQuery, String taskName, String taskBody, boolean isCompleted) {
@@ -99,10 +80,39 @@ public class ServerDaoImpl implements ServerDao {
         }
     }
 
+    public void updateTaskInDB(String sqlQuery, String taskName, String taskBody, boolean isCompleted) {
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sqlQuery)) {
+
+            // set the corresponding param
+            pstmt.setString(1, taskName);
+            pstmt.setString(2, taskBody);
+            pstmt.setBoolean(3, isCompleted);
+            // update
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void deleteTaskInDB(String sqlQuery, int taskID) {
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sqlQuery)) {
+
+            // set the corresponding param
+            pstmt.setInt(1, taskID);
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public void savePomodoroInDB(String sqlQuery,
                                  String taskID, String userID,
                                  int workTime, int restTime,
-                                 boolean isWorkSkipped, boolean isRestSkipped){
+                                 boolean isWorkSkipped, boolean isRestSkipped) {
         try (Connection conn = this.connect();
              PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
             preparedStatement.setString(1, taskID);
@@ -117,7 +127,7 @@ public class ServerDaoImpl implements ServerDao {
         }
     }
 
-    public ResultSet executeSqlQuery(String sqlQuery){
+    public ResultSet executeSqlQuery(String sqlQuery) {
         ResultSet rs = null;
         try (Connection conn = this.connect();
              Statement stmt = conn.createStatement()
@@ -128,5 +138,4 @@ public class ServerDaoImpl implements ServerDao {
         }
         return rs;
     }
-
 }

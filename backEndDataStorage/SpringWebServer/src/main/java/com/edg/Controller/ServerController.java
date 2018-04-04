@@ -35,7 +35,7 @@ public class ServerController {
      *                     Must be the same header name in request
      * @return JSON with the password
      */
-    @RequestMapping(value = "/checkpass", method = RequestMethod.POST)
+    @RequestMapping(value = "/signin", method = RequestMethod.POST)
     public ResponseEntity<Object> checkPassword(@RequestBody String jsonStringed, HttpServletResponse response) {
 
         String password = serverService.getJsonStringValue(jsonStringed, "password");
@@ -82,9 +82,14 @@ public class ServerController {
      *
      * @param jsonStringed - JSON in request body. Is parsed to string automatically
      */
-    @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public void saveUserInDB(@RequestBody String jsonStringed) {
         serverService.saveUserInDB(jsonStringed);
+    }
+
+    @RequestMapping(value = "/gettasks", method = RequestMethod.GET)
+    public void getTaskInDB(@RequestBody String jsonStringed) {
+        serverService.getAllTasks(jsonStringed);
     }
 
     /**
@@ -92,9 +97,22 @@ public class ServerController {
      *
      * @param jsonStringed - JSON in request body. Is parsed to string automatically
      */
-    @RequestMapping(value = "/saveTask", method = RequestMethod.POST)
-    public void saveTaskInDB(@RequestBody String jsonStringed) {
+    @RequestMapping(value = "/savetask", method = RequestMethod.POST)
+    public void updateTaskInDB(@RequestBody String jsonStringed) {
         serverService.saveTaskInDB(jsonStringed);
+    }
+
+    /**
+     * Update existing task by given ID
+     * @param jsonStringed - JSON in request body. Is parsed to string automatically
+     */
+    @RequestMapping(value = "/updatetask", method = RequestMethod.POST)
+    public void saveTaskInDB(@RequestBody String jsonStringed) {
+        serverService.updateTaskInDB(jsonStringed);
+    }
+    @RequestMapping(value = "/deletetask", method = RequestMethod.POST)
+    public void saveTaskInDB(@RequestBody String jsonStringed) {
+        serverService.deleteTaskInDB(jsonStringed);
     }
 
     /**
@@ -102,10 +120,11 @@ public class ServerController {
      *
      * @param jsonStringed - JSON in request body. Is parsed to string automatically
      */
-    @RequestMapping(value = "/savePomodoro", method = RequestMethod.POST)
+    @RequestMapping(value = "/savepomodoro", method = RequestMethod.POST)
     public void savePomodoroInDB(@RequestBody String jsonStringed) {
         serverService.savePomodoroInDB(jsonStringed);
     }
+
 
 
     /*@RequestMapping(value = "/", method = RequestMethod.GET)

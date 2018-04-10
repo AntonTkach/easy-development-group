@@ -21,7 +21,7 @@
                 alert(this.responseText);
             }
         };
-        xhttp.open("POST", "/checkpass", true);
+        xhttp.open("POST", "/signin", true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(JSON.stringify({userName:document.getElementById("login").value, password:document.getElementById("pass").value}));
     }

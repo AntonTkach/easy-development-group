@@ -12,7 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-//@RequestMapping("/")
+@RequestMapping("/")
 public class ServerController {
 
     @Autowired

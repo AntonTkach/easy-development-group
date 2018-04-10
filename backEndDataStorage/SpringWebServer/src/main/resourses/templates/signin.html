@@ -118,6 +118,14 @@
 			});
 		</script>
 		<script>
+			function success_handler(data,status)
+			{
+				window.location.href="http://localhost:8080/todo";
+			}
+			function error_handler(xhr)
+			{
+				alert(xhr.responseText+" "+xhr.status);
+			}
 			var form=$("#form");
 			function formToJSON()
 			{
@@ -135,10 +143,9 @@
 					type:"POST",
 					url:"http://localhost:8080/signin",
 					data:formToJSON(),
-					xhrFields:{withCredentials:true},
 					dataType:"text",
-					success:alert.call,
-					error:alert.call
+					success:success_handler,
+					error:error_handler
 				});
 			});
 		</script>

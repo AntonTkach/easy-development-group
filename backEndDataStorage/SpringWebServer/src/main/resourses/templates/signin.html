@@ -104,22 +104,23 @@
 		<script src="https://clothobserve.com/js/vendor/modernizr-2.6.2.min.js"></script>
 		<script>
 			var form=$("#form");
-			var formObject = {};
-			var elements = form.querySelectorAll("input");
-			for(var i = 0; i < elements.length; i++)
+			function formToJSON()
 			{
-				var element = elements[i];
-				formObject[element.name] = element.value;
+				var formObject = {
+					userName:$("#userName").val(),
+					password:$("#password").val()
+				};
+				var jsonData = JSON.stringify(formObject);
+				alert(jsonData);
+				return jsonData;
 			}
-			var jsonData = JSON.stringify(formObject);
-			alert(jsonData);
 			form.submit(function(e)
 			{
 				e.preventDefault();
 				$.ajax({
 					type:"POST",
 					url:"http://localhost:8080/signin",
-					data:jsonData,
+					data:formToJSON(),
 					xhrFields:{withCredentials:true},
 					dataType:"text",
 					success:alert.call,

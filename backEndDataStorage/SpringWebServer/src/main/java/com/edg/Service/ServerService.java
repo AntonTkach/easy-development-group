@@ -93,8 +93,9 @@ public class ServerService {
         return serverDaoImpl.getDataFromDB(getLastIDQuery);
     }
 
-    public String getAllTasks() {
-        return serverDaoImpl.getAllTasks();
+    public String getAllTasks(String userName) {
+        String sqlQuery = "SELECT * FROM Tasks WHERE (userName='" + userName + "');";
+        return serverDaoImpl.getAllTasks(sqlQuery);
     }
 
     public void updateTaskInDB(String jsonStringed) {

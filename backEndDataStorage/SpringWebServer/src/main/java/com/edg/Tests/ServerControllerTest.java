@@ -3,9 +3,11 @@ package com.edg.Tests;
 
 import com.edg.Controller.ServerController;
 import com.edg.Service.ServerService;
+import org.assertj.core.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-//import org.hamcrest.Matchers;
+
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -55,7 +57,7 @@ public class ServerControllerTest {
     
      @Test
     public void getAllTasksInDB() throws Exception {
-        assertThat(this.serverServiceMock).isNotNull();
+        Assertions.assertThat(this.serverServiceMock).isNotNull();
         mockMvc.perform(MockMvcRequestBuilders.get("/gettasks"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("text/html;charset=UTF-8"))

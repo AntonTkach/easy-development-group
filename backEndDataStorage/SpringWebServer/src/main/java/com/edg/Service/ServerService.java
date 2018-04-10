@@ -83,7 +83,7 @@ public class ServerService {
         serverDaoImpl.saveTaskInDB(sqlQuery,
                 getJsonStringValue(jsonStringed, "taskName"),
                 taskBody, isCompleted,
-                getJsonIntValue(jsonStringed, "timestamp"));
+                generateTimestamp());
     }
 
     public String getAllTasks() {

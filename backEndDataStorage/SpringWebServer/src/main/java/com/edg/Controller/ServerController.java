@@ -92,8 +92,9 @@ public class ServerController {
      * @param jsonStringed - JSON in request body. Is parsed to string automatically
      */
     @RequestMapping(value = "/savetask", method = RequestMethod.POST)
-    public void saveTaskInDB(@RequestBody String jsonStringed) {
+    public ResponseEntity<Object> saveTaskInDB(@RequestBody String jsonStringed) {
         serverService.saveTaskInDB(jsonStringed);
+        return new ResponseEntity<Object>(serverService., HttpStatus.OK);
     }
 
     /**

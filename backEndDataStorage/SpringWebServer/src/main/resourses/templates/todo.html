@@ -241,8 +241,8 @@
 					url:"http://localhost:8080/savetask",
 					data:JSON.stringify({taskName:taskName}),
 					xhrFields:{withCredentials:true},
-                    contentType: "text/plain;charset=UTF-8",
-                    dataType: "text",
+                    contentType: "application/json;charset=UTF-8",
+                    dataType: "json",
 					success:function(data, status)
 					{
 						var taskID = data.taskID;

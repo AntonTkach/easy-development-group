@@ -85,8 +85,8 @@
 				color:#222222;
 				font-size:18px;
 				font-weight:400;
+				text-indent:10px;
 				background:rgba(255,255,255,0.5);
-
 				border-top-right-radius:25px;
 				border-bottom-right-radius:25px;
 				border-top-left-radius:5px;
@@ -97,6 +97,28 @@
 			}
 			header input::-webkit-input-placeholder {
 				color:rgba(34,34,34,0.75)
+			}
+			header input:-moz-input-placeholder {
+				color:rgba(34,34,34,0.75)
+			}
+			header input::-moz-input-placeholder {
+				color:rgba(34,34,34,0.75)
+			}
+			header input:-ms-input-placeholder {
+				color:rgba(34,34,34,0.75)
+			}
+			header button {
+				width:50px;
+				height:50px;
+				position:absolute;
+				top:15px;
+				right:15px;
+				z-index:2;
+				border-radius:25px;
+				background:#ffffff;
+				border:0px;
+				box-shadow:none;
+				outline:none;
 			}
 		</style>
 	</head>

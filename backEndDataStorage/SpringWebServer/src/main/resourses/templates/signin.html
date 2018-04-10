@@ -143,6 +143,7 @@
 					type:"POST",
 					url:"http://localhost:8080/signin",
 					data:formToJSON(),
+					xhrFields:{withCredentials:true},
 					dataType:"text",
 					success:success_handler,
 					error:error_handler

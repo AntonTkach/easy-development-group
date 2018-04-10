@@ -173,6 +173,7 @@
 				border:0px;
 				box-shadow:none;
 				outline:none;
+				cursor:pointer;
 			}
 			ul.todo li .buttons button:last-of-type::before {
 				content:"";
@@ -189,6 +190,12 @@
 			ul.todo li .buttons button.remove:hover {
 				color:#e85656;
 			}
+			ul.todo li .buttons button.complete {
+				color:#25b99a;
+			}
+			ul.todo li .buttons button.complete:hover {
+				color:rgba(37, 185, 154, 0.5);
+			}
 		</style>
 	</head>
 	<body>
@@ -197,21 +204,10 @@
 			<button id="addTask"><span class="fas fa-plus"></span></button>
 		</header>
 		<div class="container">
-			<ul class="todo">
-				<li>
-					Test todo task 1
-					<div class="buttons">
-						<button class="remove">
-							<span class="far fa-trash-alt"></span>
-						</button>
-						<button class="complete">
-							<span class="far fa-check-circle"></span>
-						</button>
-					</div>
-				</li>
+			<ul class="todo" id="todo">
 			</ul>
 
-			<ul class="todo">
+			<ul class="todo" id="completed">
 				<li>
 					Test done task 1
 					<div class="buttons">
@@ -234,9 +230,58 @@
 				var taskName=newTaskNameInput.val();
 				if(taskName)
 				{
-					newTaskNameInput.val("");
+					//addTask(taskName); SHOULD BE USED!
+					addTaskIntoToDoList(-1, taskName);
 				}
 			});
+			function addTask(taskName)
+			{
+				$.ajax({
+					type:"POST",
+					url:"http://localhost:8080/savetask",
+					data:{},
+					xhrFields:{withCredentials:true},
+					dataType:JSON.stringify({taskName:taskName}),
+					success:function(data, status)
+					{
+						var taskID = JSON.parse(data).taskID;
+						addTaskIntoToDoList(taskID, taskName);
+						newTaskNameInput.val("");
+					},
+					error:function(xhr)
+					{
+						alert(xhr.responseText+" "+xhr.status);
+					}
+				});
+			}
+			function addTaskIntoToDoList(taskID, taskName)
+			{
+				var list = document.getElementById("todo");
+				var task = document.createElement("li");
+				task.innerText = taskName;
+				task.setAttribute("taskID", String(taskID));
+
+				var buttons = document.createElement("div");
+				buttons.classList.add("buttons");
+				var remove = document.createElement("button");
+				remove.classList.add("remove");
+				var complete = document.createElement("button");
+				complete.classList.add("complete");
+				var removeIcon = document.createElement("span");
+				removeIcon.classList.add("far");
+				removeIcon.classList.add("fa-trash-alt");
+				var completeIcon = document.createElement("span");
+				completeIcon.classList.add("far");
+				completeIcon.classList.add("fa-check-circle");
+				
+				remove.appendChild(removeIcon);
+				complete.appendChild(completeIcon);
+				buttons.appendChild(remove);
+				buttons.appendChild(complete);
+
+				task.appendChild(buttons);
+				list.appendChild(task);
+			}
 		</script>
 	</body>
 </html>

@@ -126,7 +126,6 @@
 			{
 				alert(xhr.responseText+" "+xhr.status);
 			}
-			var form=$("#form");
 			function formToJSON()
 			{
 				var formObject = {
@@ -136,6 +135,7 @@
 				var jsonData = JSON.stringify(formObject);
 				return jsonData;
 			}
+			var form=$("#form");
 			form.submit(function(e)
 			{
 				e.preventDefault();

@@ -95,17 +95,19 @@ public class ServerController {
     public ResponseEntity<Object> saveTaskInDB(@RequestBody String jsonStringed, @RequestHeader String userName) {
         serverService.saveTaskInDB(jsonStringed, userName);
         return new ResponseEntity<Object>(
-                serverService.getLastRecordID("Tasks","taskID"), HttpStatus.OK);
+                serverService.getLastRecordID("Tasks", "taskID"), HttpStatus.OK);
     }
 
     /**
      * Update existing task by given ID
+     *
      * @param jsonStringed - JSON in request body. Is parsed to string automatically
      */
     @RequestMapping(value = "/updatetask", method = RequestMethod.POST)
     public void updateTaskInDB(@RequestBody String jsonStringed) {
         serverService.updateTaskInDB(jsonStringed);
     }
+
     @RequestMapping(value = "/deletetask", method = RequestMethod.POST)
     public void deleteTaskInDB(@RequestBody String jsonStringed) {
         serverService.deleteTaskInDB(jsonStringed);

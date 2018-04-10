@@ -79,16 +79,17 @@ public class ServerService {
         } catch (JSONException e) {
             isCompleted = false;
         }
-        String userIDJSON=getDataFromDB("SELECT userID FROM Users WHERE (userName="+userName+");");
-        String userID=getJsonStringValue(userIDJSON, "userName");
+        String userIDJSON = getDataFromDB("SELECT userID FROM Users WHERE (userName=" + userName + ");");
+        String userID = getJsonStringValue(userIDJSON, "userName");
         String sqlQuery = "INSERT INTO Tasks (taskName, taskBody, userID, isCompleted, timestamp) VALUES(?,?,?,?,?)";
         serverDaoImpl.saveTaskInDB(sqlQuery,
                 getJsonStringValue(jsonStringed, "taskName"),
                 taskBody, userID, isCompleted,
                 generateTimestamp());
     }
-    public String getLastRecordID(String tableName, String IDName){
-        String getLastIDQuery="SELECT MAX("+IDName+") AS "+IDName+" FROM "+tableName;
+
+    public String getLastRecordID(String tableName, String IDName) {
+        String getLastIDQuery = "SELECT MAX(" + IDName + ") AS " + IDName + " FROM " + tableName;
         return serverDaoImpl.getDataFromDB(getLastIDQuery);
     }
 
@@ -207,6 +208,7 @@ public class ServerService {
 
     /**
      * Get UNIX-time
+     *
      * @return Time is milliseconds since 01.01.1970 00:00
      */
     public long generateTimestamp() {

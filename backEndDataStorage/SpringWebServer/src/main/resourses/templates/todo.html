@@ -204,9 +204,7 @@
 			<button id="addTask"><span class="fas fa-plus"></span></button>
 		</header>
 		<div class="container">
-			<ul class="todo" id="todo">
-			</ul>
-
+			<ul class="todo" id="todo"></ul>
 			<ul class="todo" id="completed">
 				<li>
 					Test done task 1
@@ -246,11 +244,10 @@
 					{
 						var taskID = JSON.parse(data).taskID;
 						addTaskIntoToDoList(taskID, taskName);
-						newTaskNameInput.val("");
 					},
 					error:function(xhr)
 					{
-						alert(xhr.responseText+" "+xhr.status);
+						alert("SERVER ERROR:\n" + xhr.responseText+"\nStatus code:"+xhr.status);
 					}
 				});
 			}
@@ -263,10 +260,14 @@
 
 				var buttons = document.createElement("div");
 				buttons.classList.add("buttons");
+
 				var remove = document.createElement("button");
 				remove.classList.add("remove");
+				remove.addEventListener("click", removeTask);
+
 				var complete = document.createElement("button");
 				complete.classList.add("complete");
+
 				var removeIcon = document.createElement("span");
 				removeIcon.classList.add("far");
 				removeIcon.classList.add("fa-trash-alt");
@@ -280,7 +281,32 @@
 				buttons.appendChild(complete);
 
 				task.appendChild(buttons);
-				list.appendChild(task);
+				list.insertBefore(task, list.childNodes[0]);
+
+				newTaskNameInput.val("");
+			}
+			function removeTask()
+			{
+				var task = this.parentNode.parentNode;
+				var taskID = parseInt(task.getAttribute("taskID"));
+				$.ajax({
+					type:"POST",
+					url:"http://localhost:8080/deletetask",
+					data:{},
+					xhrFields:{withCredentials:true},
+					dataType:JSON.stringify({taskID:taskID}),
+					success:function(data, status)
+					{
+						var list = task.parentNode;
+						list.removeChild(task);
+					},
+					error:function(xhr)
+					{
+						alert("SERVER ERROR:\n" + xhr.responseText+"\nStatus code:"+xhr.status);
+					}
+				});
+				
+				
 			}
 		</script>
 	</body>

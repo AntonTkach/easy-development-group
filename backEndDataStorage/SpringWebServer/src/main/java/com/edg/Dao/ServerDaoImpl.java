@@ -64,10 +64,8 @@ public class ServerDaoImpl implements ServerDao {
             System.out.println(e.getMessage());
         }
     }
-
-    public String getAllTasks() {
-        String sql = "SELECT * FROM Tasks";
-        return getDataFromDB(sql);
+    public String getAllTasks(String sqlQuery) {
+        return getDataFromDB(sqlQuery);
     }
 
     public void saveTaskInDB(String sqlQuery, String taskName, String taskBody, String userID, boolean isCompleted, long timestamp) {

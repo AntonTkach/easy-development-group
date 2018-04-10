@@ -241,8 +241,8 @@
 					url:"http://localhost:8080/savetask",
 					data:JSON.stringify({taskName:taskName}),
 					xhrFields:{withCredentials:true},
-					contentType: "application/json; charset=utf-8",
-    				dataType: "json",
+                    contentType: "text/plain;charset=UTF-8",
+                    dataType: "text",
 					success:function(data, status)
 					{
 						var taskID = data.taskID;
@@ -307,8 +307,8 @@
 					url:"http://localhost:8080/deletetask",
 					data:JSON.stringify({taskID:taskID}),
 					xhrFields:{withCredentials:true},
-					contentType: "application/json; charset=utf-8",
-    				dataType: "json",
+                    contentType: "text/plain;charset=UTF-8",
+                    dataType: "text",
 					success:function(data, status)
 					{
 						var list = task.parentNode;
@@ -338,8 +338,8 @@
 							isCompleted:isCompleted
 						}),
 					xhrFields:{withCredentials:true},
-					contentType: "application/json; charset=utf-8",
-    				dataType: "json",
+                    contentType: "text/plain;charset=UTF-8",
+                    dataType: "text",
 					success:function(data, status)
 					{
 						var list = task.parentNode;
@@ -370,8 +370,8 @@
 							isCompleted:isCompleted
 						}),
 					xhrFields:{withCredentials:true},
-					contentType: "application/json; charset=utf-8",
-    				dataType: "json",
+                    contentType: "text/plain;charset=UTF-8",
+                    dataType: "text",
 					success:function(data, status)
 					{
 						var list = task.parentNode;

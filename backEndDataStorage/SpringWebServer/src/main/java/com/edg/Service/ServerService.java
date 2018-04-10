@@ -1,12 +1,13 @@
 package com.edg.Service;
 
 import com.edg.Dao.ServerDaoImpl;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 @Service
 public class ServerService {
@@ -196,5 +197,15 @@ public class ServerService {
     public boolean getJsonBooleanValue(String jsonStringed, String fieldName) {
         JSONObject jsonObject = new JSONObject(jsonStringed);
         return jsonObject.getBoolean(fieldName);
+    }
+
+    /**
+     * Get UNIX-time
+     * @return Time is milliseconds since 01.01.1970 00:00
+     */
+    public long generateTimestamp() {
+        Date date = new Date();
+        long result = date.getTime();
+        return result;
     }
 }

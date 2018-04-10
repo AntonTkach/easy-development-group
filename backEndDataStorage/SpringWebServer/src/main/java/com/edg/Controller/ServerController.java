@@ -132,7 +132,7 @@ public class ServerController {
         return "register";
     }
 	@GetMapping(value = "/todo")
-    public String signUp() {
+    public String todo() {
         return "todo";
     }
 }

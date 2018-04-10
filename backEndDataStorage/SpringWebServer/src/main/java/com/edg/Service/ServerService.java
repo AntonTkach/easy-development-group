@@ -102,7 +102,8 @@ public class ServerService {
         serverDaoImpl.updateTaskInDB(sqlQuery,
                 getJsonStringValue(jsonStringed, "taskName"),
                 getJsonStringValue(jsonStringed, "taskBody"),
-                getJsonBooleanValue(jsonStringed, "isCompleted"));
+                getJsonBooleanValue(jsonStringed, "isCompleted"),
+                getJsonIntValue(jsonStringed, "taskID"));
     }
 
     public void deleteTaskInDB(String jsonStringed) {

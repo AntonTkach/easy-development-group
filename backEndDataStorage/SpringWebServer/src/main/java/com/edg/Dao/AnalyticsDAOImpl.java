@@ -13,7 +13,9 @@ public class AnalyticsDAOImpl implements AnalyticsDAO {
      *
      * @return Connection object
      */
-    private Connection connect() {
+    private Connection connect() { //TODO: possible implementation -
+        // TODO: make connect method public in ServerDaoImpl and use serverDaoImpl.connect().
+        // TODO: Don't forget to @Autowire a class instance here if doing as suggested
         // SQLite connection string
         String dbName = "TODOpomodoro.db";
         String url = "jdbc:sqlite:" + dbName;
@@ -35,8 +37,7 @@ public class AnalyticsDAOImpl implements AnalyticsDAO {
         }
     }
 
-    void   analyseUpdateTaskInDB(String sqlQuery){
-        public void analyseSaveTaskInDB(String sqlQuery){
+    public void analyseUpdateTaskInDB(String sqlQuery){
         try (Connection conn = this.connect();
              PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
             preparedStatement.executeUpdate();
@@ -44,8 +45,7 @@ public class AnalyticsDAOImpl implements AnalyticsDAO {
             System.out.println(e.getMessage());
         }
     }
-    void   analyseDeleteTaskInDB(String sqlQuery){
-        public void analyseSaveTaskInDB(String sqlQuery){
+    public void analyseDeleteTaskInDB(String sqlQuery){
         try (Connection conn = this.connect();
              PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
             preparedStatement.executeUpdate();
@@ -53,8 +53,7 @@ public class AnalyticsDAOImpl implements AnalyticsDAO {
             System.out.println(e.getMessage());
         }
     }
-    void analyseSavePomodoroInDB(String sqlQuery){
-        public void analyseSaveTaskInDB(String sqlQuery){
+    public void analyseSavePomodoroInDB(String sqlQuery){
         try (Connection conn = this.connect();
              PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
             preparedStatement.executeUpdate();

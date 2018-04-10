@@ -85,6 +85,10 @@ public class ServerService {
                 taskBody, isCompleted,
                 generateTimestamp());
     }
+    public String getLastRecordID(String tableName, String IDName){
+        String getLastIDQuery="SELECT MAX("+IDName+") FROM "+tableName;
+        return serverDaoImpl.getDataFromDB(getLastIDQuery);
+    }
 
     public String getAllTasks() {
         return serverDaoImpl.getAllTasks();

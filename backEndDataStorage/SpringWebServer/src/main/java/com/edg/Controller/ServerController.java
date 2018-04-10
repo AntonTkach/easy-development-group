@@ -123,19 +123,6 @@ public class ServerController {
         serverService.savePomodoroInDB(jsonStringed);
     }
 
-
-
-    /*@RequestMapping(value = "/", method = RequestMethod.GET)
-    public String greeting() {
-
-        return "greeting";
-    }*/
-
-    /**
-     * Open a default (index) page
-     *
-     * @return A view named "index" from template resources/folder
-     */
     @GetMapping(value = "/")
     public String signIn() {
         return "signin";
@@ -143,5 +130,9 @@ public class ServerController {
     @GetMapping(value = "/register")
     public String signUp() {
         return "register";
+    }
+	@GetMapping(value = "/todo")
+    public String signUp() {
+        return "todo";
     }
 }

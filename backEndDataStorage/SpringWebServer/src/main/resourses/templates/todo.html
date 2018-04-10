@@ -8,6 +8,7 @@
 		<meta name="viewport" content="width=device-width">
 		<link rel='icon' type='image/x-icon' href='https://clothobserve.com/favicon.ico'/>
 		<link rel="apple-touch-icon-precomposed" href="https://clothobserve.com/apple-touch-icon-precomposed.png">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 		<style>
 			html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{
 				margin:0;
@@ -62,6 +63,9 @@
 		</style>
 		<style>
 			@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600");
+			body {
+				background:#edf0f1;
+			}
 			body, input, button {
 				font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
 			}
@@ -86,6 +90,7 @@
 				font-size:18px;
 				font-weight:400;
 				text-indent:10px;
+				padding:0 60px 0 0;
 				background:rgba(255,255,255,0.5);
 				border-top-right-radius:25px;
 				border-bottom-right-radius:25px;
@@ -113,19 +118,32 @@
 				position:absolute;
 				top:15px;
 				right:15px;
+				font-size:1.5em;
+				color:#008080;
 				z-index:2;
 				border-radius:25px;
 				background:#ffffff;
 				border:0px;
 				box-shadow:none;
 				outline:none;
+				cursor:pointer;
 			}
 		</style>
 	</head>
 	<body>
 		<header>
 			<input type="text" name="newTaskName" id="newTaskName" placeholder="Enter new task"/>
-			<button></button>
+			<button id="addTask"><span class="fa fa-plus"></span></button>
 		</header>
+
+		<script src="https://clothobserve.com/js/vendor/jquery-1.10.2.min.js"></script>
+		<script>
+			var addButton=$("#addTask");
+			var newTaskNameInput=$("#newTaskName");
+			addButton.click(function()
+			{
+				alert(newTaskNameInput.val());
+			});
+		</script>
 	</body>
 </html>

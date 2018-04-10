@@ -94,7 +94,8 @@ public class ServerController {
     @RequestMapping(value = "/savetask", method = RequestMethod.POST)
     public ResponseEntity<Object> saveTaskInDB(@RequestBody String jsonStringed) {
         serverService.saveTaskInDB(jsonStringed);
-        return new ResponseEntity<Object>(serverService., HttpStatus.OK);
+        return new ResponseEntity<Object>(
+                serverService.getLastRecordID("Tasks","taskID"), HttpStatus.OK);
     }
 
     /**

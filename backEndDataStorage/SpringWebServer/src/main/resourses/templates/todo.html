@@ -231,8 +231,7 @@
 				var taskName=newTaskNameInput.val();
 				if(taskName)
 				{
-					//addTask(taskName); SHOULD BE USED!
-					addTaskIntoToDoList(-1, taskName, "", true);
+					addTask(taskName);
 				}
 			});
 			function addTask(taskName)
@@ -247,6 +246,7 @@
 					{
 						var taskID = JSON.parse(data).taskID;
 						addTaskIntoToDoList(taskID, taskName, "", true);
+						newTaskNameInput.val("");
 					},
 					error:function(xhr)
 					{
@@ -273,13 +273,11 @@
 				complete.classList.add("complete");
 				if (isTargetToDo)
 				{
-					//complete.addEventListener("click", completeTask);
-					complete.addEventListener("click", completeTaskTEST);
+					complete.addEventListener("click", completeTask);
 				}
 				else
 				{
-					//complete.addEventListener("click", uncompleteTask);
-					complete.addEventListener("click", uncompleteTaskTEST);
+					complete.addEventListener("click", uncompleteTask);
 				}
 
 				var removeIcon = document.createElement("span");
@@ -298,8 +296,6 @@
 
 				task.appendChild(buttons);
 				list.insertBefore(task, list.childNodes[0]);
-
-				newTaskNameInput.val("");
 			}
 			function removeTask()
 			{

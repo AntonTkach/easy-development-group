@@ -83,9 +83,7 @@ public class ServerController {
 
     @RequestMapping(value = "/gettasks", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> getAllTasksInDB() {
-
-        String entities = serverService.getAllTasks();
-        return new ResponseEntity<Object>(entities, HttpStatus.OK);
+        return new ResponseEntity<Object>(serverService.getAllTasks(), HttpStatus.OK);
     }
 
     /**

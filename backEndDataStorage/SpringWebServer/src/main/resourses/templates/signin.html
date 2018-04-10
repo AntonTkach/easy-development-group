@@ -42,6 +42,38 @@
 				border-top: 0;
 				color: #666;
 			}
+			.form-group {
+				margin-bottom: 15px;
+			}
+			.has-feedback {
+				position: relative;
+			}
+			.form-control {
+				background-color: #ffffff;
+				background-image: none;
+				border: 1px solid #999999;
+				border-radius: 0;
+				box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+				color: #333333;
+				display: block;
+				font-size: 14px;
+				height: 34px;
+				line-height: 1.42857;
+				padding: 6px 12px;
+				transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+				width: 100%;
+			}
+			.has-feedback .form-control {
+				padding-right: 42.5px;
+			}
+			.field-icon {
+				float: right;
+				right: 10px;
+				margin-left: -25px;
+				margin-top: -25px;
+				position: relative;
+				z-index: 2;
+			}
 		</style>
 	</head>
 	<body>
@@ -52,7 +84,14 @@
 			<div class="sign-box-body text-center">
 				<legend>Sign In</legend>
 				<form role="form" method="post" id="form" accept-charset="utf-8">
-
+					<div class="form-group has-feedback">
+						<input type="text" name="email" value="" required="required" placeholder="Enter email" class="form-control" id="email" maxlength="64" size="30">
+					</div>
+					<div class="form-group has-feedback">
+						<input type="password" name="password" value="" placeholder="Enter password" required="required" class="form-control" id="password" size="30">
+						<span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+					</div>
+					<button type="submit" class="btn btn-primary btn-block">Sign In</button>
 				</form>
 			</div>
 		</div>

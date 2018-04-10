@@ -5,7 +5,7 @@ public interface ServerDao {
     void saveUserInDB(String sqlQuery, String userName, String passwordHash);
 
     String getAllTasks();
-    void saveTaskInDB(String sqlQuery, String taskName, String taskBody, boolean isCompleted, int timestamp);
+    void saveTaskInDB(String sqlQuery, String taskName, String taskBody, boolean isCompleted, long timestamp);
     void updateTaskInDB(String sqlQuery, String taskName, String taskBody, boolean isCompleted);
     void deleteTaskInDB(String sqlQuery, int taskID);
 

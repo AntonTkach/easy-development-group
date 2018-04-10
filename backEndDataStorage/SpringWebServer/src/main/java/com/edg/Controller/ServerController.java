@@ -92,7 +92,7 @@ public class ServerController {
      * @param jsonStringed - JSON in request body. Is parsed to string automatically
      */
     @RequestMapping(value = "/savetask", method = RequestMethod.POST)
-    public ResponseEntity<Object> saveTaskInDB(@RequestBody String jsonStringed, @RequestHeader String userName) {
+    public ResponseEntity<Object> saveTaskInDB(@RequestBody String jsonStringed, @CookieValue String userName) {
         serverService.saveTaskInDB(jsonStringed, userName);
         return new ResponseEntity<Object>(
                 serverService.getLastRecordID("Tasks", "taskID"), HttpStatus.OK);

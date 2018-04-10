@@ -137,17 +137,11 @@ public class ServerController {
      * @return A view named "index" from template resources/folder
      */
     @GetMapping(value = "/")
-    public String index() {
-        return "index";
+    public String signIn() {
+        return "signin";
     }
-
-    /**
-     * Open a sign up page
-     *
-     * @return A view named "SignUpPage" from template resources/folder
-     */
-    @GetMapping(value = "/signUp")
+    @GetMapping(value = "/register")
     public String signUp() {
-        return "SignUpPage";
+        return "register";
     }
 }

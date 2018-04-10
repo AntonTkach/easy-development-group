@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>PomodoroDo To-Do List</title>
+		<meta name="description" content="PomodoroDo To-Do List">
+		<meta name="viewport" content="width=device-width">
+		<link rel='icon' type='image/x-icon' href='https://clothobserve.com/favicon.ico'/>
+		<link rel="apple-touch-icon-precomposed" href="https://clothobserve.com/apple-touch-icon-precomposed.png">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"/>
+		<style>
+			html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{
+				margin:0;
+				padding:0;
+				border:0;
+				vertical-align:baseline
+			}
+			article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{
+				display:block
+			}
+			body,html{
+				width:100%;
+				height:100%
+			}
+			body{
+				-webkit-font-smoothing:antialiased;
+				-moz-font-smoothing:antialiased;
+				-moz-osx-font-smoothing:grayscale;
+				-webkit-text-size-adjust:none;
+				margin:0;
+				padding:0;
+				font-family:"Helvetica Neue",Helvetica,Arial,sans-serif
+			}
+			ol,ul{
+				list-style:none
+			}
+			hr{
+				border:0;
+				height:1px;
+				background:#ccc
+			}
+			blockquote,q{
+				quotes:none
+			}
+			blockquote:before,blockquote:after,q:before,q:after{
+				content:'';
+				content:none
+			}
+			table{
+				border-collapse:collapse;
+				border-spacing:0
+			}
+			*{
+				margin:0;
+				padding:0;
+				list-style:none;
+				box-sizing:border-box
+			}
+			html,input,select,textarea,button,a{
+				-webkit-tap-highlight-color:rgba(0,0,0,0)
+			}
+		</style>
+		<style>
+			@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600");
+			body {
+				background:#edf0f1;
+				padding:80px 0 0 0;
+			}
+			body, input, button {
+				font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+			}
+			header{
+				width:100%;
+				height:80px;
+				position:fixed;
+				padding:15px;
+				top:0;
+				left:0;
+				z-index:5;
+				background:#008080;
+				box-shadow:0px 2px 4px rgba(44, 62, 80, 0.15);
+				border-bottom-right-radius:10px;
+				border-bottom-left-radius:10px;
+			}
+			header input {
+				width:100%;
+				height:100%;
+				float:left;
+				color:#222222;
+				font-size:18px;
+				font-weight:400;
+				text-indent:10px;
+				padding:0 60px 0 0;
+				background:rgba(255,255,255,0.5);
+				border-top-right-radius:25px;
+				border-bottom-right-radius:25px;
+				border-top-left-radius:5px;
+				border-bottom-left-radius:5px;
+				border:0px;
+				box-shadow:none;
+				outline:none;
+			}
+			header input::-webkit-input-placeholder {
+				color:rgba(34,34,34,0.75)
+			}
+			header input:-moz-input-placeholder {
+				color:rgba(34,34,34,0.75)
+			}
+			header input::-moz-input-placeholder {
+				color:rgba(34,34,34,0.75)
+			}
+			header input:-ms-input-placeholder {
+				color:rgba(34,34,34,0.75)
+			}
+			header button {
+				width:50px;
+				height:50px;
+				position:absolute;
+				top:15px;
+				right:15px;
+				font-size:1.5em;
+				color:#008080;
+				z-index:2;
+				border-radius:25px;
+				background:#ffffff;
+				border:0px;
+				box-shadow:none;
+				outline:none;
+				cursor:pointer;
+			}
+			.container {
+				width:100%;
+				float:left;
+				padding:15px;
+			}
+			ul.todo {
+				width:100%;
+				float:left;
+			}
+			ul.todo li {
+				width:100%;
+				float:left;
+				height:50px;
+				font-size:16px;
+				font-weight:600;
+				color:#444444;
+				line-height:22px;
+				background:#ffffff;
+				border-radius:5px;
+				position:relative;
+				box-shadow:0px 1px 2px rgba(44, 62, 80, 0.10);
+				margin:0 0 10px 0;
+				padding:14px 100px 14px 14px;
+			}
+			ul.todo li:last-of-type {
+				margin:0;
+			}
+			ul.todo li .buttons {
+				width:100px;
+				height:50px;
+				position:absolute;
+				top:0;
+				right:0;
+			}
+			ul.todo li .buttons button {
+				width:50px;
+				height:50px;
+				float:left;
+				font-size:1.5em;
+				background:none;
+				position:relative;
+				border:0px;
+				box-shadow:none;
+				outline:none;
+				cursor:pointer;
+			}
+			ul.todo li .buttons button:last-of-type::before {
+				content:"";
+				width:2px;
+				height:30px;
+				position:absolute;
+				top:10px;
+				left:0;
+				background:#edf0f1;
+			}
+			ul.todo li .buttons button.remove {
+				color:#c0cecb;
+			}
+			ul.todo li .buttons button.remove:hover {
+				color:#e85656;
+			}
+			ul.todo li .buttons button.complete {
+				color:#25b99a;
+			}
+			ul.todo li .buttons button.complete:hover {
+				color:rgba(37, 185, 154, 0.5);
+			}
+			ul.todo#completed:not(:empty) {
+				opacity:0.75;
+				padding:60px 0 0 0;
+				position:relative;
+			}
+			ul.todo#completed:not(:empty)::before {
+				content:'';
+				width:150px;
+				height:1px;
+				background:#d8e5e0;
+				position:absolute;
+				top:30px;
+				left:50%;
+				margin:0 0 0 -75px;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<input type="text" name="newTaskName" id="newTaskName" placeholder="Enter new task"/>
+			<button id="addTask"><span class="fas fa-plus"></span></button>
+		</header>
+		<div class="container">
+			<ul class="todo" id="todo"></ul>
+			<ul class="todo" id="completed"></ul>
+		</div>
+		<script src="https://clothobserve.com/js/vendor/jquery-1.10.2.min.js"></script>
+		<script>
+			var addButton=$("#addTask");
+			var newTaskNameInput=$("#newTaskName");
+			addButton.click(function()
+			{
+				var taskName=newTaskNameInput.val();
+				if(taskName)
+				{
+					addTask(taskName);
+				}
+			});
+			function addTask(taskName)
+			{
+				$.ajax({
+					type:"POST",
+					url:"http://localhost:8080/savetask",
+					data:JSON.stringify({taskName:taskName}),
+					xhrFields:{withCredentials:true},
+					dataType:"text",
+					success:function(data, status)
+					{
+						var taskID = JSON.parse(data).taskID;
+						addTaskIntoToDoList(taskID, taskName, "", true);
+						newTaskNameInput.val("");
+					},
+					error:function(xhr)
+					{
+						alert("SERVER ERROR:\n" + xhr.responseText+"\nStatus code:"+xhr.status);
+					}
+				});
+			}
+			function addTaskIntoToDoList(taskID, taskName, taskBody, isTargetToDo)
+			{
+				var list = (isTargetToDo) ? document.getElementById("todo") : document.getElementById("completed");
+				var task = document.createElement("li");
+				task.innerText = taskName;
+				task.setAttribute("taskID", String(taskID));
+				task.setAttribute("taskBody", taskBody);
+
+				var buttons = document.createElement("div");
+				buttons.classList.add("buttons");
+
+				var remove = document.createElement("button");
+				remove.classList.add("remove");
+				remove.addEventListener("click", removeTask);
+
+				var complete = document.createElement("button");
+				complete.classList.add("complete");
+				if (isTargetToDo)
+				{
+					complete.addEventListener("click", completeTask);
+				}
+				else
+				{
+					complete.addEventListener("click", uncompleteTask);
+				}
+
+				var removeIcon = document.createElement("span");
+				removeIcon.classList.add("far");
+				removeIcon.classList.add("fa-trash-alt");
+
+				var completeIcon = document.createElement("span");
+				var iconState = (isTargetToDo) ? "far" : "fas";
+				completeIcon.classList.add(iconState);
+				completeIcon.classList.add("fa-check-circle");
+				
+				remove.appendChild(removeIcon);
+				complete.appendChild(completeIcon);
+				buttons.appendChild(remove);
+				buttons.appendChild(complete);
+
+				task.appendChild(buttons);
+				list.insertBefore(task, list.childNodes[0]);
+			}
+			function removeTask()
+			{
+				var task = this.parentNode.parentNode;
+				var taskID = parseInt(task.getAttribute("taskID"));
+				$.ajax({
+					type:"POST",
+					url:"http://localhost:8080/deletetask",
+					data:JSON.stringify({taskID:taskID}),
+					xhrFields:{withCredentials:true},
+					dataType:"text",
+					success:function(data, status)
+					{
+						var list = task.parentNode;
+						list.removeChild(task);
+					},
+					error:function(xhr)
+					{
+						alert("SERVER ERROR:\n" + xhr.responseText+"\nStatus code:"+xhr.status);
+					}
+				});
+			}
+			function completeTask()
+			{
+				var task = this.parentNode.parentNode;
+				var taskID = parseInt(task.getAttribute("taskID"));
+				var taskName = task.innerText;
+				var taskBody = task.getAttribute("taskBody");
+				var isCompleted = true;
+				$.ajax({
+					type:"POST",
+					url:"http://localhost:8080/updatetask",
+					data:JSON.stringify(
+						{
+							taskID:taskID,
+							taskName:taskName,
+							taskBody:taskBody,
+							isCompleted:isCompleted
+						}),
+					xhrFields:{withCredentials:true},
+					dataType:"text",
+					success:function(data, status)
+					{
+						var list = task.parentNode;
+						list.removeChild(task);
+						addTaskIntoToDoList(taskID, taskName, taskBody, false);
+					},
+					error:function(xhr)
+					{
+						alert("SERVER ERROR:\n" + xhr.responseText+"\nStatus code:"+xhr.status);
+					}
+				});
+			}
+			function uncompleteTask()
+			{
+				var task = this.parentNode.parentNode;
+				var taskID = parseInt(task.getAttribute("taskID"));
+				var taskName = task.innerText;
+				var taskBody = task.getAttribute("taskBody");
+				var isCompleted = false;
+				$.ajax({
+					type:"POST",
+					url:"http://localhost:8080/updatetask",
+					data:JSON.stringify(
+						{
+							taskID:taskID,
+							taskName:taskName,
+							taskBody:taskBody,
+							isCompleted:isCompleted
+						}),
+					xhrFields:{withCredentials:true},
+					dataType:"text",
+					success:function(data, status)
+					{
+						var list = task.parentNode;
+						list.removeChild(task);
+						addTaskIntoToDoList(taskID, taskName, taskBody, true);
+					},
+					error:function(xhr)
+					{
+						alert("SERVER ERROR:\n" + xhr.responseText+"\nStatus code:"+xhr.status);
+					}
+				});
+			}
+		</script>
+	</body>
+</html>

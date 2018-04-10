@@ -84,7 +84,7 @@ public class ServerDaoImpl implements ServerDao {
         }
     }
 
-    public void updateTaskInDB(String sqlQuery, String taskName, String taskBody, boolean isCompleted) {
+    public void updateTaskInDB(String sqlQuery, String taskName, String taskBody, boolean isCompleted, int taskID) {
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sqlQuery)) {
 
@@ -92,6 +92,7 @@ public class ServerDaoImpl implements ServerDao {
             pstmt.setString(1, taskName);
             pstmt.setString(2, taskBody);
             pstmt.setBoolean(3, isCompleted);
+            pstmt.setInt(4, taskID);
             // update
             pstmt.executeUpdate();
         } catch (SQLException e) {

@@ -6,7 +6,7 @@ public interface ServerDao {
 
     String getAllTasks();
     void saveTaskInDB(String sqlQuery, String taskName, String taskBody, String userID, boolean isCompleted, long timestamp);
-    void updateTaskInDB(String sqlQuery, String taskName, String taskBody, boolean isCompleted);
+    void updateTaskInDB(String sqlQuery, String taskName, String taskBody, boolean isCompleted, int taskID);
     void deleteTaskInDB(String sqlQuery, int taskID);
 
     void savePomodoroInDB(String sqlQuery, String taskID, String userID, int workTime, int restTime, boolean isWorkSkipped, boolean isRestSkipped, int timestamp);

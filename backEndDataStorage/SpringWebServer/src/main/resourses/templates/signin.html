@@ -85,7 +85,7 @@
 				<legend>Sign In</legend>
 				<form role="form" method="post" id="form" accept-charset="utf-8">
 					<div class="form-group has-feedback">
-						<input type="text" name="email" value="" required="required" placeholder="Enter email" class="form-control" id="email" maxlength="64" size="30">
+						<input type="text" name="userName" value="" required="required" placeholder="Enter username or email" class="form-control" id="userName" maxlength="64" size="30">
 					</div>
 					<div class="form-group has-feedback">
 						<input type="password" name="password" value="" placeholder="Enter password" required="required" class="form-control" id="password" size="30">
@@ -93,7 +93,39 @@
 					</div>
 					<button type="submit" class="btn btn-primary btn-block">Sign In</button>
 				</form>
+				<br>
+				<div>
+					<b>New here? </b><a href="https://localhost:8080/register" class="text-center">Register an account</a>
+				</div>
 			</div>
 		</div>
+		<script src="https://clothobserve.com/js/vendor/jquery-1.10.2.min.js"></script>
+		<script src="https://clothobserve.com/js/bootstrap.min.js"></script>
+		<script src="https://clothobserve.com/js/vendor/modernizr-2.6.2.min.js"></script>
+		<script>
+			var form=$("#form");
+			var formObject = {};
+			var elements = form.querySelectorAll("input");
+			for(var i = 0; i < elements.length; i++)
+			{
+				var element = elements[i];
+				formObject[element.name] = element.value;
+			}
+			var jsonData = JSON.stringify(formObject);
+			alert(jsonData);
+			form.submit(function(e)
+			{
+				e.preventDefault();
+				$.ajax({
+					type:"POST",
+					url:"http://localhost:8080/signin",
+					data:jsonData,
+					xhrFields:{withCredentials:true},
+					dataType:"text",
+					success:alert.call,
+					error:alert.call
+				});
+			});
+		</script>
 	</body>
 </html>

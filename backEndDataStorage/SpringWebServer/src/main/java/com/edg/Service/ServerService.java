@@ -79,8 +79,8 @@ public class ServerService {
         } catch (JSONException e) {
             isCompleted = false;
         }
-        String userIDJSON = getDataFromDB("SELECT userID FROM Users WHERE (userName=" + userName + ");");
-        String userID = getJsonStringValue(userIDJSON, "userName");
+        String userIDJSON = getDataFromDB("SELECT userID FROM Users WHERE (userName='" + userName + "');");
+        String userID = getJsonStringValue(userIDJSON, "userID");
         String sqlQuery = "INSERT INTO Tasks (taskName, taskBody, userID, isCompleted, timestamp) VALUES(?,?,?,?,?)";
         serverDaoImpl.saveTaskInDB(sqlQuery,
                 getJsonStringValue(jsonStringed, "taskName"),

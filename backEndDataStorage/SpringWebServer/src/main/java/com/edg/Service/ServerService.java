@@ -13,7 +13,7 @@ import java.util.Date;
 public class ServerService {
 
     @Autowired
-    private ServerDaoImpl serverDaoImpl; //make able to use serverDaoImpl
+    private ServerDaoImpl serverDaoImpl; //makes able to use serverDaoImpl
 
     /**
      * General method for retrieving data from database
@@ -88,16 +88,22 @@ public class ServerService {
                 generateTimestamp());
     }
 
-    public String getLastRecordID(String tableName, String IDName) {
-        String getLastIDQuery = "SELECT MAX(" + IDName + ") AS " + IDName + " FROM " + tableName;
-        return serverDaoImpl.getDataFromDB(getLastIDQuery);
-    }
-
+    /**
+     * Retrieves all tasks based on given username
+     *
+     * @param userName A username that defines tasks which will be returned
+     * @return A stringified JSONArray that consists of JSONObjects
+     */
     public String getAllTasks(String userName) {
         String sqlQuery = "SELECT * FROM Tasks WHERE (userName='" + userName + "');";
         return serverDaoImpl.getAllTasks(sqlQuery);
     }
 
+    /**
+     * Updates a specific task, based on taskID in stringified JSONObject
+     *
+     * @param jsonStringed Stringified JSONObject that has taskID, taskName, taskBody, isCompleted fields
+     */
     public void updateTaskInDB(String jsonStringed) {
         String sqlQuery = "UPDATE Tasks SET taskName = ?, taskBody = ?, isCompleted = ? WHERE taskID = ?";
         serverDaoImpl.updateTaskInDB(sqlQuery,
@@ -107,6 +113,11 @@ public class ServerService {
                 getJsonIntValue(jsonStringed, "taskID"));
     }
 
+    /**
+     * Deletes a specific task, based on taskID in stringified JSONObject
+     *
+     * @param jsonStringed Stringified JSONObject that has taskID field
+     */
     public void deleteTaskInDB(String jsonStringed) {
         String sqlQuery = "DELETE FROM Tasks WHERE taskID = ?";
         serverDaoImpl.deleteTaskInDB(sqlQuery, getJsonIntValue(jsonStringed, "taskID"));
@@ -206,6 +217,17 @@ public class ServerService {
     public boolean getJsonBooleanValue(String jsonStringed, String fieldName) {
         JSONObject jsonObject = new JSONObject(jsonStringed);
         return jsonObject.getBoolean(fieldName);
+    }
+
+    /**
+     * Return the record's ID in specified table
+     * @param tableName The name of the table in the database
+     * @param IDName The name of the column that contains IDs, e.g. userID
+     * @return Stringified JSONObject that has taskID field and value
+     */
+    public String getLastRecordID(String tableName, String IDName) {
+        String getLastIDQuery = "SELECT MAX(" + IDName + ") AS " + IDName + " FROM " + tableName;
+        return serverDaoImpl.getDataFromDB(getLastIDQuery);
     }
 
     /**

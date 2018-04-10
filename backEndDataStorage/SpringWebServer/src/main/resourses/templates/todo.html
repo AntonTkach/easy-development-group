@@ -384,26 +384,6 @@
 					}
 				});
 			}
-			function completeTaskTEST()
-			{
-				var task = this.parentNode.parentNode;
-				var taskID = parseInt(task.getAttribute("taskID"));
-				var taskName = task.innerText;
-				var taskBody = task.getAttribute("taskBody");
-				var list = task.parentNode;
-				list.removeChild(task);
-				addTaskIntoToDoList(taskID, taskName, taskBody, false);
-			}
-			function uncompleteTaskTEST()
-			{
-				var task = this.parentNode.parentNode;
-				var taskID = parseInt(task.getAttribute("taskID"));
-				var taskName = task.innerText;
-				var taskBody = task.getAttribute("taskBody");
-				var list = task.parentNode;
-				list.removeChild(task);
-				addTaskIntoToDoList(taskID, taskName, taskBody, true);
-			}
 		</script>
 	</body>
 </html>

@@ -81,6 +81,12 @@ public class ServerController {
         serverService.saveUserInDB(jsonStringed);
     }
 
+    /**
+     * Return all tasks created by a certain user
+     *
+     * @param userName Username that defines, what tasks must be returned
+     * @return Entity object with all tasks associated with given user
+     */
     @RequestMapping(value = "/gettasks", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> getAllTasksInDB(@CookieValue String userName) {
         return new ResponseEntity<Object>(serverService.getAllTasks(userName), HttpStatus.OK);
@@ -108,6 +114,11 @@ public class ServerController {
         serverService.updateTaskInDB(jsonStringed);
     }
 
+    /**
+     * Delete existing task by given ID
+     *
+     * @param jsonStringed - JSON in request body. Is parsed to string automatically
+     */
     @RequestMapping(value = "/deletetask", method = RequestMethod.POST)
     public void deleteTaskInDB(@RequestBody String jsonStringed) {
         serverService.deleteTaskInDB(jsonStringed);
@@ -123,15 +134,27 @@ public class ServerController {
         serverService.savePomodoroInDB(jsonStringed);
     }
 
+    /**
+     * Root handler for serving sign in page
+     * @return Returns signin.html as view
+     */
     @GetMapping(value = "/")
     public String signIn() {
         return "signin";
     }
+    /**
+     * Register handler for serving sign up page
+     * @return Returns register.html as view
+     */
     @GetMapping(value = "/register")
     public String signUp() {
         return "register";
     }
-	@GetMapping(value = "/todo")
+    /**
+     * Todo handler for serving dashboard page
+     * @return Returns signin.html as view
+     */
+    @GetMapping(value = "/todo")
     public String todo() {
         return "todo";
     }

@@ -70,13 +70,14 @@ public class ServerDaoImpl implements ServerDao {
         return getDataFromDB(sql);
     }
 
-    public void saveTaskInDB(String sqlQuery, String taskName, String taskBody, boolean isCompleted, long timestamp) {
+    public void saveTaskInDB(String sqlQuery, String taskName, String taskBody, String userID, boolean isCompleted, long timestamp) {
         try (Connection conn = this.connect();
              PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
             preparedStatement.setString(1, taskName);
             preparedStatement.setString(2, taskBody);
-            preparedStatement.setBoolean(3, isCompleted);
-            preparedStatement.setLong(4, timestamp);
+            preparedStatement.setString(3, userID);
+            preparedStatement.setBoolean(4, isCompleted);
+            preparedStatement.setLong(5, timestamp);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

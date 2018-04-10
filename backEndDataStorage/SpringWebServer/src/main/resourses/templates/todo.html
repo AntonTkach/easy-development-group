@@ -196,6 +196,21 @@
 			ul.todo li .buttons button.complete:hover {
 				color:rgba(37, 185, 154, 0.5);
 			}
+			ul.todo#completed:not(:empty) {
+				opacity:0.75;
+				padding:60px 0 0 0;
+				position:relative;
+			}
+			ul.todo#completed:not(:empty)::before {
+				content:'';
+				width:150px;
+				height:1px;
+				background:#d8e5e0;
+				position:absolute;
+				top:30px;
+				left:50%;
+				margin:0 0 0 -75px;
+			}
 		</style>
 	</head>
 	<body>
@@ -205,19 +220,7 @@
 		</header>
 		<div class="container">
 			<ul class="todo" id="todo"></ul>
-			<ul class="todo" id="completed">
-				<li>
-					Test done task 1
-					<div class="buttons">
-						<button class="remove">
-							<span class="far fa-trash-alt"></span>
-						</button>
-						<button class="complete">
-							<span class="fas fa-check-circle"></span>
-						</button>
-					</div>
-				</li>
-			</ul>
+			<ul class="todo" id="completed"></ul>
 		</div>
 		<script src="https://clothobserve.com/js/vendor/jquery-1.10.2.min.js"></script>
 		<script>
@@ -229,7 +232,7 @@
 				if(taskName)
 				{
 					//addTask(taskName); SHOULD BE USED!
-					addTaskIntoToDoList(-1, taskName);
+					addTaskIntoToDoList(-1, taskName, "", true);
 				}
 			});
 			function addTask(taskName)
@@ -237,13 +240,13 @@
 				$.ajax({
 					type:"POST",
 					url:"http://localhost:8080/savetask",
-					data:{},
+					data:JSON.stringify({taskName:taskName}),
 					xhrFields:{withCredentials:true},
-					dataType:JSON.stringify({taskName:taskName}),
+					dataType:"text",
 					success:function(data, status)
 					{
 						var taskID = JSON.parse(data).taskID;
-						addTaskIntoToDoList(taskID, taskName);
+						addTaskIntoToDoList(taskID, taskName, "", true);
 					},
 					error:function(xhr)
 					{
@@ -251,12 +254,13 @@
 					}
 				});
 			}
-			function addTaskIntoToDoList(taskID, taskName)
+			function addTaskIntoToDoList(taskID, taskName, taskBody, isTargetToDo)
 			{
-				var list = document.getElementById("todo");
+				var list = (isTargetToDo) ? document.getElementById("todo") : document.getElementById("completed");
 				var task = document.createElement("li");
 				task.innerText = taskName;
 				task.setAttribute("taskID", String(taskID));
+				task.setAttribute("taskBody", taskBody);
 
 				var buttons = document.createElement("div");
 				buttons.classList.add("buttons");
@@ -267,12 +271,24 @@
 
 				var complete = document.createElement("button");
 				complete.classList.add("complete");
+				if (isTargetToDo)
+				{
+					//complete.addEventListener("click", completeTask);
+					complete.addEventListener("click", completeTaskTEST);
+				}
+				else
+				{
+					//complete.addEventListener("click", uncompleteTask);
+					complete.addEventListener("click", uncompleteTaskTEST);
+				}
 
 				var removeIcon = document.createElement("span");
 				removeIcon.classList.add("far");
 				removeIcon.classList.add("fa-trash-alt");
+
 				var completeIcon = document.createElement("span");
-				completeIcon.classList.add("far");
+				var iconState = (isTargetToDo) ? "far" : "fas";
+				completeIcon.classList.add(iconState);
 				completeIcon.classList.add("fa-check-circle");
 				
 				remove.appendChild(removeIcon);
@@ -292,9 +308,9 @@
 				$.ajax({
 					type:"POST",
 					url:"http://localhost:8080/deletetask",
-					data:{},
+					data:JSON.stringify({taskID:taskID}),
 					xhrFields:{withCredentials:true},
-					dataType:JSON.stringify({taskID:taskID}),
+					dataType:"text",
 					success:function(data, status)
 					{
 						var list = task.parentNode;
@@ -305,8 +321,88 @@
 						alert("SERVER ERROR:\n" + xhr.responseText+"\nStatus code:"+xhr.status);
 					}
 				});
-				
-				
+			}
+			function completeTask()
+			{
+				var task = this.parentNode.parentNode;
+				var taskID = parseInt(task.getAttribute("taskID"));
+				var taskName = task.innerText;
+				var taskBody = task.getAttribute("taskBody");
+				var isCompleted = true;
+				$.ajax({
+					type:"POST",
+					url:"http://localhost:8080/updatetask",
+					data:JSON.stringify(
+						{
+							taskID:taskID,
+							taskName:taskName,
+							taskBody:taskBody,
+							isCompleted:isCompleted
+						}),
+					xhrFields:{withCredentials:true},
+					dataType:"text",
+					success:function(data, status)
+					{
+						var list = task.parentNode;
+						list.removeChild(task);
+						addTaskIntoToDoList(taskID, taskName, taskBody, false);
+					},
+					error:function(xhr)
+					{
+						alert("SERVER ERROR:\n" + xhr.responseText+"\nStatus code:"+xhr.status);
+					}
+				});
+			}
+			function uncompleteTask()
+			{
+				var task = this.parentNode.parentNode;
+				var taskID = parseInt(task.getAttribute("taskID"));
+				var taskName = task.innerText;
+				var taskBody = task.getAttribute("taskBody");
+				var isCompleted = false;
+				$.ajax({
+					type:"POST",
+					url:"http://localhost:8080/updatetask",
+					data:JSON.stringify(
+						{
+							taskID:taskID,
+							taskName:taskName,
+							taskBody:taskBody,
+							isCompleted:isCompleted
+						}),
+					xhrFields:{withCredentials:true},
+					dataType:"text",
+					success:function(data, status)
+					{
+						var list = task.parentNode;
+						list.removeChild(task);
+						addTaskIntoToDoList(taskID, taskName, taskBody, true);
+					},
+					error:function(xhr)
+					{
+						alert("SERVER ERROR:\n" + xhr.responseText+"\nStatus code:"+xhr.status);
+					}
+				});
+			}
+			function completeTaskTEST()
+			{
+				var task = this.parentNode.parentNode;
+				var taskID = parseInt(task.getAttribute("taskID"));
+				var taskName = task.innerText;
+				var taskBody = task.getAttribute("taskBody");
+				var list = task.parentNode;
+				list.removeChild(task);
+				addTaskIntoToDoList(taskID, taskName, taskBody, false);
+			}
+			function uncompleteTaskTEST()
+			{
+				var task = this.parentNode.parentNode;
+				var taskID = parseInt(task.getAttribute("taskID"));
+				var taskName = task.innerText;
+				var taskBody = task.getAttribute("taskBody");
+				var list = task.parentNode;
+				list.removeChild(task);
+				addTaskIntoToDoList(taskID, taskName, taskBody, true);
 			}
 		</script>
 	</body>

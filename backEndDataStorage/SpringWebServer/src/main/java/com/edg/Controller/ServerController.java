@@ -1,8 +1,10 @@
 package com.edg.Controller;
 
 import com.edg.Service.ServerService;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
@@ -77,9 +81,11 @@ public class ServerController {
         serverService.saveUserInDB(jsonStringed);
     }
 
-    @RequestMapping(value = "/gettasks", method = RequestMethod.GET)
-    public String getAllTasksInDB() {
-        return serverService.getAllTasks();
+    @RequestMapping(value = "/gettasks", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getAllTasksInDB() {
+
+        String entities = serverService.getAllTasks();
+        return new ResponseEntity<Object>(entities, HttpStatus.OK);
     }
 
     /**

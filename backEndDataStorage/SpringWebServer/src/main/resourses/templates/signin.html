@@ -144,7 +144,8 @@
 					url:"http://localhost:8080/signin",
 					data:formToJSON(),
 					xhrFields:{withCredentials:true},
-					dataType:"text",
+					contentType: "application/json; charset=utf-8",
+					dataType: "json",
 					success:success_handler,
 					error:error_handler
 				});

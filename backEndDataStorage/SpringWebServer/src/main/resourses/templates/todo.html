@@ -241,10 +241,11 @@
 					url:"http://localhost:8080/savetask",
 					data:JSON.stringify({taskName:taskName}),
 					xhrFields:{withCredentials:true},
-					dataType:"text",
+					contentType: "application/json; charset=utf-8",
+    				dataType: "json",
 					success:function(data, status)
 					{
-						var taskID = JSON.parse(data).taskID;
+						var taskID = data.taskID;
 						addTaskIntoToDoList(taskID, taskName, "", true);
 						newTaskNameInput.val("");
 					},
@@ -306,7 +307,8 @@
 					url:"http://localhost:8080/deletetask",
 					data:JSON.stringify({taskID:taskID}),
 					xhrFields:{withCredentials:true},
-					dataType:"text",
+					contentType: "application/json; charset=utf-8",
+    				dataType: "json",
 					success:function(data, status)
 					{
 						var list = task.parentNode;
@@ -336,7 +338,8 @@
 							isCompleted:isCompleted
 						}),
 					xhrFields:{withCredentials:true},
-					dataType:"text",
+					contentType: "application/json; charset=utf-8",
+    				dataType: "json",
 					success:function(data, status)
 					{
 						var list = task.parentNode;
@@ -367,7 +370,8 @@
 							isCompleted:isCompleted
 						}),
 					xhrFields:{withCredentials:true},
-					dataType:"text",
+					contentType: "application/json; charset=utf-8",
+    				dataType: "json",
 					success:function(data, status)
 					{
 						var list = task.parentNode;

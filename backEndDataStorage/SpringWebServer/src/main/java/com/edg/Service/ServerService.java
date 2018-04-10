@@ -66,7 +66,7 @@ public class ServerService {
      *
      * @param jsonStringed JSON in string format
      */
-    public void saveTaskInDB(String jsonStringed) {
+    public void saveTaskInDB(String jsonStringed, String userName) {
         String taskBody;
         boolean isCompleted;
         try {
@@ -79,10 +79,12 @@ public class ServerService {
         } catch (JSONException e) {
             isCompleted = false;
         }
-        String sqlQuery = "INSERT INTO Tasks (taskName, taskBody, isCompleted, timestamp) VALUES(?,?,?,?)";
+        String userIDJSON=getDataFromDB("SELECT userID FROM Users WHERE (userName="+userName+");");
+        String userID=getJsonStringValue(userIDJSON, "userName");
+        String sqlQuery = "INSERT INTO Tasks (taskName, taskBody, userID, isCompleted, timestamp) VALUES(?,?,?,?,?)";
         serverDaoImpl.saveTaskInDB(sqlQuery,
                 getJsonStringValue(jsonStringed, "taskName"),
-                taskBody, isCompleted,
+                taskBody, userID, isCompleted,
                 generateTimestamp());
     }
     public String getLastRecordID(String tableName, String IDName){

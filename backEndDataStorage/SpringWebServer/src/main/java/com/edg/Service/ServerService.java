@@ -86,7 +86,7 @@ public class ServerService {
                 generateTimestamp());
     }
     public String getLastRecordID(String tableName, String IDName){
-        String getLastIDQuery="SELECT MAX("+IDName+") FROM "+tableName;
+        String getLastIDQuery="SELECT MAX("+IDName+") AS "+IDName+" FROM "+tableName;
         return serverDaoImpl.getDataFromDB(getLastIDQuery);
     }
 

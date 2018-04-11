@@ -72,5 +72,6 @@ public class ServerControllerTest {
                     .andExpect(view().name("index"))
                     .andDo(print());
         }
-    
+    @Test{
+}
 }

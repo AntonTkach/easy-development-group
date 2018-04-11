@@ -136,7 +136,11 @@ public class ServerController {
      * @return Returns signin.html as view
      */
     @GetMapping(value = "/todo")
-    public String todo() {
-        return "todo";
+    public String todo(@CookieValue(required = false) String userName) {
+        if (userName != null){
+            return "todo";
+        }
+
+        return "redirect:/";
     }
 }

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Date;
 
 @Service
@@ -163,7 +165,7 @@ public class ServerService {
                 getJsonIntValue(jsonStringed, "taskID"),
                 getUserIDByUsername(userName),
                 workTime, restTime, isWorkSkipped, isRestSkipped,
-                getJsonIntValue(jsonStringed, "timestamp"));
+                getJsonBigDecValue(jsonStringed, "timestamp"));
     }
 
     /*public String getStringFromJsonArray(String jsonString) {
@@ -218,6 +220,11 @@ public class ServerService {
     public boolean getJsonBooleanValue(String jsonStringed, String fieldName) {
         JSONObject jsonObject = new JSONObject(jsonStringed);
         return jsonObject.getBoolean(fieldName);
+    }
+
+    public BigDecimal getJsonBigDecValue(String jsonStringed, String fieldName) {
+        JSONObject jsonObject = new JSONObject(jsonStringed);
+        return jsonObject.getBigDecimal(fieldName);
     }
 
     /**

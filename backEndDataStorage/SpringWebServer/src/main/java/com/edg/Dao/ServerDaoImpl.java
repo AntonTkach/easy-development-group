@@ -4,6 +4,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.*;
 
 @Repository
@@ -113,7 +115,7 @@ public class ServerDaoImpl implements ServerDao {
     }
 
     public void savePomodoroInDB(String sqlQuery, int taskID, int userID, int workTime, int restTime,
-                                 boolean isWorkSkipped, boolean isRestSkipped, int timestamp) {
+                                 boolean isWorkSkipped, boolean isRestSkipped, BigDecimal timestamp) {
         try (Connection conn = this.connect();
              PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
             preparedStatement.setInt(1, taskID);
@@ -122,7 +124,7 @@ public class ServerDaoImpl implements ServerDao {
             preparedStatement.setInt(4, restTime);
             preparedStatement.setBoolean(5, isWorkSkipped);
             preparedStatement.setBoolean(6, isRestSkipped);
-            preparedStatement.setInt(7, timestamp);
+            preparedStatement.setBigDecimal(7, timestamp);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

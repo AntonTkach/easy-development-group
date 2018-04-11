@@ -507,6 +507,7 @@
 					}
 				});
 			}
+			var countdownID;
 			function startPomodoro() {
                 var task = this.parentNode.parentNode;
                 var taskName = task.innerText;
@@ -527,38 +528,7 @@
                 var overlayText = document.getElementById("overlayText");
                 overlay.style.display = "block";
                 overlayText.innerHTML = "<h4><u>Working on task</u></h4><br>" + taskName;
-                var countdownID = setInterval(function ()
-				{
-                    var mins = Math.floor(secondsLeft / 60);
-                    var secs = secondsLeft - mins * 60;
-
-                    minutes.innerText = (mins < 10 ? '0' : '') + mins;
-                    seconds.innerText = (secs < 10 ? '0' : '') + secs;
-
-                    if (secondsLeft == 0)
-                    {
-                        if (mode == "work")
-                        {
-                            mode = "rest";
-                            overlayText.innerHTML = "<h4><u>Resting after task :)</u></h4><br>" + taskName;
-                            secondsLeft = 300;
-                        }
-                        else if (mode == "rest") {
-                            minutes.innerText = "25";
-                            seconds.innerText = "00";
-
-                            overlay.style.display = "none";
-
-                            savePomodoro(pomodoroObject);
-
-                            clearInterval(countdownID);
-                        }
-                    }
-                    else {
-                        secondsLeft--;
-                    }
-                }, 1000);
-                overlay.addEventListener("click", function ()
+                var overlayClick = function ()
                 {
                     if(mode == "work")
                     {
@@ -581,10 +551,42 @@
                         pomodoroObject.restTime = 300 - secondsLeft;
 
                         savePomodoro(pomodoroObject);
-
+                        overlay.removeEventListener("click", overlayClick);
                         clearInterval(countdownID);
                     }
-                });
+                };
+                overlay.addEventListener("click", overlayClick);
+                countdownID = setInterval(function ()
+				{
+                    var mins = Math.floor(secondsLeft / 60);
+                    var secs = secondsLeft - mins * 60;
+
+                    minutes.innerText = (mins < 10 ? '0' : '') + mins;
+                    seconds.innerText = (secs < 10 ? '0' : '') + secs;
+
+                    if (secondsLeft == 0)
+                    {
+                        if (mode == "work")
+                        {
+                            mode = "rest";
+                            overlayText.innerHTML = "<h4><u>Resting after task :)</u></h4><br>" + taskName;
+                            secondsLeft = 300;
+                        }
+                        else if (mode == "rest") {
+                            minutes.innerText = "25";
+                            seconds.innerText = "00";
+
+                            overlay.style.display = "none";
+
+                            savePomodoro(pomodoroObject);
+                            overlay.removeEventListener("click", overlayClick);
+                            clearInterval(countdownID);
+                        }
+                    }
+                    else {
+                        secondsLeft--;
+                    }
+                }, 1000);
             }
 
             function savePomodoro(pomodoroObject)

@@ -1,5 +1,7 @@
 package com.edg.Dao;
 
+import java.math.BigDecimal;
+
 public interface ServerDao {
     String getDataFromDB(String sqlQuery);
     void saveUserInDB(String sqlQuery, String userName, String passwordHash);
@@ -9,6 +11,7 @@ public interface ServerDao {
     void updateTaskInDB(String sqlQuery, String taskName, String taskBody, boolean isCompleted, int taskID);
     void deleteTaskInDB(String sqlQuery, int taskID);
 
-    void savePomodoroInDB(String sqlQuery, int taskID, int userID, int workTime, int restTime, boolean isWorkSkipped, boolean isRestSkipped, int timestamp);
+    void savePomodoroInDB(String sqlQuery, int taskID, int userID, int workTime,
+                          int restTime, boolean isWorkSkipped, boolean isRestSkipped, BigDecimal timestamp);
 
 }

@@ -49,34 +49,12 @@ public class ServerController {
     }
 
     /**
-     * Draft for GET handling
-     *
-     * @param headerGet
-     */
-    /*@RequestMapping(value = "/", method = RequestMethod.GET)
-    public void getData(@RequestHeader String headerGet) {
-        System.out.println(headerGet);
-//        return serverService.getDataFromDB(sqlQuery);
-    }
-*/
-
-    /**
-     * Draft for POST handling
-     *
-     * @param headerPost
-     */
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    public void handlePost(@RequestHeader String headerPost) {
-        System.out.println(headerPost);
-//        return serverService.getDataFromDB(sqlQuery);
-    }
-
-    /**
      * Register user with info received in JSON from client
      *
      * @param jsonStringed - JSON in request body. Is parsed to string automatically
      */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
     public void saveUserInDB(@RequestBody String jsonStringed) {
         serverService.saveUserInDB(jsonStringed);
     }
@@ -110,6 +88,7 @@ public class ServerController {
      * @param jsonStringed - JSON in request body. Is parsed to string automatically
      */
     @RequestMapping(value = "/updatetask", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
     public void updateTaskInDB(@RequestBody String jsonStringed) {
         serverService.updateTaskInDB(jsonStringed);
     }
@@ -120,6 +99,7 @@ public class ServerController {
      * @param jsonStringed - JSON in request body. Is parsed to string automatically
      */
     @RequestMapping(value = "/deletetask", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
     public void deleteTaskInDB(@RequestBody String jsonStringed) {
         serverService.deleteTaskInDB(jsonStringed);
     }
@@ -130,6 +110,7 @@ public class ServerController {
      * @param jsonStringed - JSON in request body. Is parsed to string automatically
      */
     @RequestMapping(value = "/savepomodoro", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
     public void savePomodoroInDB(@RequestBody String jsonStringed) {
         serverService.savePomodoroInDB(jsonStringed);
     }

@@ -74,7 +74,7 @@ public class ServerControllerTest {
         }
         
     @Test
-    public void testSignUp() throws Exception{
+    public void testSignUp()  throws Exception{
                this.mockMvc.perform(get("/"))
                     .andExpect(status().isOk())
                     .andExpect(view().name("signUp"))

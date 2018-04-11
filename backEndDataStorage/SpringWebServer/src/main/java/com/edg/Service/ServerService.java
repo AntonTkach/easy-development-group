@@ -72,7 +72,7 @@ public class ServerService {
         try {
             taskBody = getJsonStringValue(jsonStringed, "taskBody");
         } catch (JSONException e) {
-            taskBody = null;
+            taskBody = "";
         }
         try {
             isCompleted = getJsonBooleanValue(jsonStringed, "isCompleted");

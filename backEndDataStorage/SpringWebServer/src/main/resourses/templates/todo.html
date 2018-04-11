@@ -229,10 +229,14 @@
                     type:"GET",
                     url:"http://localhost:8080/gettasks",
                     xhrFields:{withCredentials:true},
-                    contentType: "text/plain;charset=UTF-8",
                     success:function(data, status)
                     {
-						alert(data);
+                        if(data.length == 0) return;
+
+						for (var i = 0; i < data.length; i++)
+						{
+                            addTaskIntoToDoList(data[i].taskID, data[i].taskName, data[i].taskBody, !data[i].isCompleted);
+						}
                     },
                     error:function(xhr)
                     {

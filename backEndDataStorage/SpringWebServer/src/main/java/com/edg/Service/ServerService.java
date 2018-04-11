@@ -97,7 +97,7 @@ public class ServerService {
     public String getAllTasks(String userName) {
         String userIDJSON = getDataFromDB("SELECT userID FROM Users WHERE (userName='" + userName + "');");
         String userID = getJsonStringValue(userIDJSON, "userID");
-        String sqlQuery = "SELECT * FROM Tasks WHERE (userName='" + userID + "');";
+        String sqlQuery = "SELECT * FROM Tasks WHERE (userID='" + userID + "');";
         return serverDaoImpl.getAllTasks(sqlQuery);
     }
 

@@ -133,12 +133,20 @@ public class ServerController {
     }
     /**
      * Todo handler for serving dashboard page
-     * @return Returns signin.html as view
+     * @return Returns todo.html as view
      */
     @GetMapping(value = "/todo")
     public String todo(@CookieValue(required = false) String userName) {
         if (userName != null){
             return "todo";
+        }
+
+        return "redirect:/";
+    }
+    @GetMapping(value = "/statistics")
+    public String statistics(@CookieValue(required = false) String userName) {
+        if (userName != null){
+            return "statistics";
         }
 
         return "redirect:/";

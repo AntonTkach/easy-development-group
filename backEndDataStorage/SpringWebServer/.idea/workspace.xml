@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6045204f-d56b-45ce-8a23-4b9e253ad833" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpringWebServer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SpringWebServer.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TODOpomodoro.db" beforeDir="false" afterPath="$PROJECT_DIR$/TODOpomodoro.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edg/Controller/ServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edg/Controller/ServerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resourses/templates/todo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resourses/templates/todo.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -18,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="ServerController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ServerController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/edg/Controller/ServerController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="88" column="7" lean-forward="true" selection-start-line="88" selection-start-column="7" selection-end-line="88" selection-end-column="7" />
+            <state relative-caret-position="255">
+              <caret line="69" column="62" selection-start-line="69" selection-start-column="62" selection-end-line="69" selection-end-column="62" />
               <folding>
                 <element signature="e#599#610#0" />
                 <element signature="docComment;method#checkPassword#0;class#ServerController#0" />
@@ -46,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="todo.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="todo.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/todo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="306" column="59" selection-start-line="306" selection-start-column="59" selection-end-line="306" selection-end-column="59" />
+            <state relative-caret-position="175">
+              <caret line="234" column="36" selection-start-line="234" selection-start-column="36" selection-end-line="234" selection-end-column="36" />
               <folding>
                 <element signature="n#head#0;n#html#0;n#!!top" />
                 <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
@@ -88,8 +85,6 @@
                 <element signature="e#4760#4801#0" />
                 <element signature="e#4835#4906#0" />
                 <element signature="e#4948#5102#0" />
-                <element signature="n#header#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -98,8 +93,8 @@
       <file leaf-file-name="ServerService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/edg/Service/ServerService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="122" column="29" lean-forward="true" selection-start-line="122" selection-start-column="29" selection-end-line="122" selection-end-column="29" />
+            <state relative-caret-position="250">
+              <caret line="96" column="47" lean-forward="true" selection-start-line="96" selection-start-column="47" selection-end-line="96" selection-end-column="47" />
               <folding>
                 <element signature="docComment;method#getDataFromDB#0;class#ServerService#0" />
                 <element signature="docComment;method#getUserPass#0;class#ServerService#0" />
@@ -109,7 +104,6 @@
                 <element signature="docComment;method#saveTaskInDB#0;class#ServerService#0" />
                 <element signature="method#saveTaskInDB#0;class#ServerService#0" />
                 <element signature="docComment;method#getAllTasks#0;class#ServerService#0" />
-                <element signature="method#getAllTasks#0;class#ServerService#0" />
                 <element signature="docComment;method#savePomodoroInDB#0;class#ServerService#0" />
                 <element signature="method#savePomodoroInDB#0;class#ServerService#0" />
                 <element signature="docComment;method#encodeString#0;class#ServerService#0" />
@@ -174,6 +168,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/edg/Service/ServerService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edg/Controller/ServerController.java" />
+        <option value="$PROJECT_DIR$/src/main/resourses/templates/todo.html" />
       </list>
     </option>
   </component>
@@ -451,12 +446,12 @@
       <workItem from="1521987269295" duration="954000" />
       <workItem from="1521996464263" duration="2371000" />
       <workItem from="1522583926937" duration="5147000" />
-      <workItem from="1523410065540" duration="1417000" />
+      <workItem from="1523410065540" duration="1979000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42702000" />
+    <option name="totallyTimeSpent" value="43264000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="720" extended-state="6" />
@@ -480,10 +475,10 @@
       <window_info anchor="bottom" id="Java Enterprise" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32289952" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32289952" />
       <window_info anchor="bottom" id="Spring" order="7" weight="0.32925835" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2306003" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2306003" />
       <window_info anchor="right" id="Bean Validation" order="3" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="3" />
@@ -563,7 +558,6 @@
             <element signature="docComment;method#saveTaskInDB#0;class#ServerService#0" />
             <element signature="method#saveTaskInDB#0;class#ServerService#0" />
             <element signature="docComment;method#getAllTasks#0;class#ServerService#0" />
-            <element signature="method#getAllTasks#0;class#ServerService#0" />
             <element signature="docComment;method#savePomodoroInDB#0;class#ServerService#0" />
             <element signature="method#savePomodoroInDB#0;class#ServerService#0" />
             <element signature="docComment;method#encodeString#0;class#ServerService#0" />
@@ -629,7 +623,6 @@
             <element signature="docComment;method#saveTaskInDB#0;class#ServerService#0" />
             <element signature="method#saveTaskInDB#0;class#ServerService#0" />
             <element signature="docComment;method#getAllTasks#0;class#ServerService#0" />
-            <element signature="method#getAllTasks#0;class#ServerService#0" />
             <element signature="docComment;method#savePomodoroInDB#0;class#ServerService#0" />
             <element signature="method#savePomodoroInDB#0;class#ServerService#0" />
             <element signature="docComment;method#encodeString#0;class#ServerService#0" />
@@ -699,7 +692,6 @@
             <element signature="docComment;method#saveTaskInDB#0;class#ServerService#0" />
             <element signature="method#saveTaskInDB#0;class#ServerService#0" />
             <element signature="docComment;method#getAllTasks#0;class#ServerService#0" />
-            <element signature="method#getAllTasks#0;class#ServerService#0" />
             <element signature="docComment;method#savePomodoroInDB#0;class#ServerService#0" />
             <element signature="method#savePomodoroInDB#0;class#ServerService#0" />
             <element signature="docComment;method#encodeString#0;class#ServerService#0" />
@@ -743,7 +735,6 @@
             <element signature="docComment;method#saveTaskInDB#0;class#ServerService#0" />
             <element signature="method#saveTaskInDB#0;class#ServerService#0" />
             <element signature="docComment;method#getAllTasks#0;class#ServerService#0" />
-            <element signature="method#getAllTasks#0;class#ServerService#0" />
             <element signature="docComment;method#savePomodoroInDB#0;class#ServerService#0" />
             <element signature="method#savePomodoroInDB#0;class#ServerService#0" />
             <element signature="docComment;method#encodeString#0;class#ServerService#0" />
@@ -797,7 +788,6 @@
             <element signature="docComment;method#saveTaskInDB#0;class#ServerService#0" />
             <element signature="method#saveTaskInDB#0;class#ServerService#0" />
             <element signature="docComment;method#getAllTasks#0;class#ServerService#0" />
-            <element signature="method#getAllTasks#0;class#ServerService#0" />
             <element signature="docComment;method#savePomodoroInDB#0;class#ServerService#0" />
             <element signature="method#savePomodoroInDB#0;class#ServerService#0" />
             <element signature="docComment;method#encodeString#0;class#ServerService#0" />
@@ -859,7 +849,6 @@
             <element signature="docComment;method#saveTaskInDB#0;class#ServerService#0" />
             <element signature="method#saveTaskInDB#0;class#ServerService#0" />
             <element signature="docComment;method#getAllTasks#0;class#ServerService#0" />
-            <element signature="method#getAllTasks#0;class#ServerService#0" />
             <element signature="docComment;method#savePomodoroInDB#0;class#ServerService#0" />
             <element signature="method#savePomodoroInDB#0;class#ServerService#0" />
             <element signature="docComment;method#encodeString#0;class#ServerService#0" />
@@ -921,7 +910,6 @@
             <element signature="docComment;method#saveTaskInDB#0;class#ServerService#0" />
             <element signature="method#saveTaskInDB#0;class#ServerService#0" />
             <element signature="docComment;method#getAllTasks#0;class#ServerService#0" />
-            <element signature="method#getAllTasks#0;class#ServerService#0" />
             <element signature="docComment;method#savePomodoroInDB#0;class#ServerService#0" />
             <element signature="method#savePomodoroInDB#0;class#ServerService#0" />
             <element signature="docComment;method#encodeString#0;class#ServerService#0" />
@@ -981,10 +969,75 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edg/Controller/ServerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="69" column="62" selection-start-line="69" selection-start-column="62" selection-end-line="69" selection-end-column="62" />
+          <folding>
+            <element signature="e#599#610#0" />
+            <element signature="docComment;method#checkPassword#0;class#ServerController#0" />
+            <element signature="e#2717#2718#0" expanded="true" />
+            <element signature="e#2773#2774#0" expanded="true" />
+            <element signature="docComment;method#getAllTasksInDB#0;class#ServerController#0" />
+            <element signature="docComment;method#saveTaskInDB#0;class#ServerController#0" />
+            <element signature="docComment;method#updateTaskInDB#0;class#ServerController#0" />
+            <element signature="e#4118#4119#0" expanded="true" />
+            <element signature="e#4176#4177#0" expanded="true" />
+            <element signature="e#4464#4465#0" expanded="true" />
+            <element signature="e#4522#4523#0" expanded="true" />
+            <element signature="docComment;method#savePomodoroInDB#0;class#ServerController#0" />
+            <element signature="e#4836#4837#0" expanded="true" />
+            <element signature="e#4896#4897#0" expanded="true" />
+            <element signature="docComment;method#signIn#0;class#ServerController#0" />
+            <element signature="docComment;method#signUp#0;class#ServerController#0" />
+            <element signature="docComment;method#todo#0;class#ServerController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edg/Service/ServerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="96" column="47" lean-forward="true" selection-start-line="96" selection-start-column="47" selection-end-line="96" selection-end-column="47" />
+          <folding>
+            <element signature="docComment;method#getDataFromDB#0;class#ServerService#0" />
+            <element signature="docComment;method#getUserPass#0;class#ServerService#0" />
+            <element signature="method#getUserPass#0;class#ServerService#0" />
+            <element signature="docComment;method#saveUserInDB#0;class#ServerService#0" />
+            <element signature="method#saveUserInDB#0;class#ServerService#0" />
+            <element signature="docComment;method#saveTaskInDB#0;class#ServerService#0" />
+            <element signature="method#saveTaskInDB#0;class#ServerService#0" />
+            <element signature="docComment;method#getAllTasks#0;class#ServerService#0" />
+            <element signature="docComment;method#savePomodoroInDB#0;class#ServerService#0" />
+            <element signature="method#savePomodoroInDB#0;class#ServerService#0" />
+            <element signature="docComment;method#encodeString#0;class#ServerService#0" />
+            <element signature="method#encodeString#0;class#ServerService#0" />
+            <element signature="docComment;method#getJsonStringValue#0;class#ServerService#0" />
+            <element signature="method#getJsonStringValue#0;class#ServerService#0" />
+            <element signature="docComment;method#getJsonIntValue#0;class#ServerService#0" />
+            <element signature="method#getJsonIntValue#0;class#ServerService#0" />
+            <element signature="docComment;method#getJsonBooleanValue#0;class#ServerService#0" />
+            <element signature="method#getJsonBooleanValue#0;class#ServerService#0" />
+            <element signature="docComment;method#generateTimestamp#0;class#ServerService#0" />
+            <element signature="method#generateTimestamp#0;class#ServerService#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edg/Dao/ServerDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-143">
+          <caret line="84" column="16" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/todo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="306" column="59" selection-start-line="306" selection-start-column="59" selection-end-line="306" selection-end-column="59" />
+        <state relative-caret-position="175">
+          <caret line="234" column="36" selection-start-line="234" selection-start-column="36" selection-end-line="234" selection-end-column="36" />
           <folding>
             <element signature="n#head#0;n#html#0;n#!!top" />
             <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
@@ -1022,74 +1075,6 @@
             <element signature="e#4760#4801#0" />
             <element signature="e#4835#4906#0" />
             <element signature="e#4948#5102#0" />
-            <element signature="n#header#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edg/Dao/ServerDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-143">
-          <caret line="84" column="16" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edg/Service/ServerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="122" column="29" lean-forward="true" selection-start-line="122" selection-start-column="29" selection-end-line="122" selection-end-column="29" />
-          <folding>
-            <element signature="docComment;method#getDataFromDB#0;class#ServerService#0" />
-            <element signature="docComment;method#getUserPass#0;class#ServerService#0" />
-            <element signature="method#getUserPass#0;class#ServerService#0" />
-            <element signature="docComment;method#saveUserInDB#0;class#ServerService#0" />
-            <element signature="method#saveUserInDB#0;class#ServerService#0" />
-            <element signature="docComment;method#saveTaskInDB#0;class#ServerService#0" />
-            <element signature="method#saveTaskInDB#0;class#ServerService#0" />
-            <element signature="docComment;method#getAllTasks#0;class#ServerService#0" />
-            <element signature="method#getAllTasks#0;class#ServerService#0" />
-            <element signature="docComment;method#savePomodoroInDB#0;class#ServerService#0" />
-            <element signature="method#savePomodoroInDB#0;class#ServerService#0" />
-            <element signature="docComment;method#encodeString#0;class#ServerService#0" />
-            <element signature="method#encodeString#0;class#ServerService#0" />
-            <element signature="docComment;method#getJsonStringValue#0;class#ServerService#0" />
-            <element signature="method#getJsonStringValue#0;class#ServerService#0" />
-            <element signature="docComment;method#getJsonIntValue#0;class#ServerService#0" />
-            <element signature="method#getJsonIntValue#0;class#ServerService#0" />
-            <element signature="docComment;method#getJsonBooleanValue#0;class#ServerService#0" />
-            <element signature="method#getJsonBooleanValue#0;class#ServerService#0" />
-            <element signature="docComment;method#generateTimestamp#0;class#ServerService#0" />
-            <element signature="method#generateTimestamp#0;class#ServerService#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edg/Controller/ServerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="88" column="7" lean-forward="true" selection-start-line="88" selection-start-column="7" selection-end-line="88" selection-end-column="7" />
-          <folding>
-            <element signature="e#599#610#0" />
-            <element signature="docComment;method#checkPassword#0;class#ServerController#0" />
-            <element signature="e#2717#2718#0" expanded="true" />
-            <element signature="e#2773#2774#0" expanded="true" />
-            <element signature="docComment;method#getAllTasksInDB#0;class#ServerController#0" />
-            <element signature="docComment;method#saveTaskInDB#0;class#ServerController#0" />
-            <element signature="docComment;method#updateTaskInDB#0;class#ServerController#0" />
-            <element signature="e#4118#4119#0" expanded="true" />
-            <element signature="e#4176#4177#0" expanded="true" />
-            <element signature="e#4464#4465#0" expanded="true" />
-            <element signature="e#4522#4523#0" expanded="true" />
-            <element signature="docComment;method#savePomodoroInDB#0;class#ServerController#0" />
-            <element signature="e#4836#4837#0" expanded="true" />
-            <element signature="e#4896#4897#0" expanded="true" />
-            <element signature="docComment;method#signIn#0;class#ServerController#0" />
-            <element signature="docComment;method#signUp#0;class#ServerController#0" />
-            <element signature="docComment;method#todo#0;class#ServerController#0" />
           </folding>
         </state>
       </provider>

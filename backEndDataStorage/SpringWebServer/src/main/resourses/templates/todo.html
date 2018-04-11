@@ -224,6 +224,22 @@
 		</div>
 		<script src="https://clothobserve.com/js/vendor/jquery-1.10.2.min.js"></script>
 		<script>
+            $(function() {
+                $.ajax({
+                    type:"GET",
+                    url:"http://localhost:8080/gettasks",
+                    xhrFields:{withCredentials:true},
+                    contentType: "text/plain;charset=UTF-8",
+                    success:function(data, status)
+                    {
+						alert(data);
+                    },
+                    error:function(xhr)
+                    {
+                        alert("SERVER ERROR:\n" + xhr.responseText+"\nStatus code:"+xhr.status);
+                    }
+                });
+            });
 			var addButton=$("#addTask");
 			var newTaskNameInput=$("#newTaskName");
 			addButton.click(function()

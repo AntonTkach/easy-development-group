@@ -510,6 +510,15 @@
 			function startPomodoro() {
                 var task = this.parentNode.parentNode;
                 var taskName = task.innerText;
+                var taskID = parseInt(task.getAttribute("taskID"));
+                var pomodoroObject = {
+                    taskID:taskID,
+					workTime:1500,
+					restTime:300,
+					isWorkSkipped:false,
+					isRestSkipped:false,
+					timestamp:new Date().getTime()
+				}
                 var mode = "work";
                 var secondsLeft = 1499;
                 var minutes = document.getElementById("minutes");
@@ -540,6 +549,8 @@
 
                             overlay.style.display = "none";
 
+                            savePomodoro(pomodoroObject);
+
                             clearInterval(countdownID);
                         }
                     }
@@ -551,6 +562,8 @@
                 {
                     if(mode == "work")
                     {
+                        pomodoroObject.isWorkSkipped = true;
+                        pomodoroObject.workTime = 1500 - secondsLeft;
                         mode = "rest";
                         minutes.innerText = "05";
                         seconds.innerText = "00";
@@ -564,10 +577,33 @@
 
                         overlay.style.display = "none";
 
+                        pomodoroObject.isRestSkipped = true;
+                        pomodoroObject.restTime = 300 - secondsLeft;
+
+                        savePomodoro(pomodoroObject);
+
                         clearInterval(countdownID);
                     }
                 });
             }
+
+            function savePomodoro(pomodoroObject)
+			{
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:8080/savepomodoro",
+                    data: JSON.stringify(pomodoroObject),
+                    xhrFields: {withCredentials: true},
+                    contentType: "text/plain;charset=UTF-8",
+                    dataType: "text",
+                    success: function (data, status) {
+                        alert("Pomodoro successfully eaten! :)")
+                    },
+                    error: function (xhr) {
+                        alert("SERVER ERROR:\n" + xhr.responseText + "\nStatus code:" + xhr.status);
+                    }
+                });
+			}
 			function uncompleteTask()
 			{
 				var task = this.parentNode.parentNode;

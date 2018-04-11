@@ -41,4 +41,12 @@ public class ServerServiceTest {
                     .andExpect(view().name("server"))
                     .andDo(print());
         }
+        @Test
+        public void getAllTasksTest() throws Exception{
+               this.mockMvc.perform(get("/"))
+                    .andExpect(status().isOk())
+                    .andExpect(view().name("task"))
+                    .andDo(print());
+        }
+        
 }

@@ -95,7 +95,9 @@ public class ServerService {
      * @return A stringified JSONArray that consists of JSONObjects
      */
     public String getAllTasks(String userName) {
-        String sqlQuery = "SELECT * FROM Tasks WHERE (userName='" + userName + "');";
+        String userIDJSON = getDataFromDB("SELECT userID FROM Users WHERE (userName='" + userName + "');");
+        String userID = getJsonStringValue(userIDJSON, "userID");
+        String sqlQuery = "SELECT * FROM Tasks WHERE (userName='" + userID + "');";
         return serverDaoImpl.getAllTasks(sqlQuery);
     }
 

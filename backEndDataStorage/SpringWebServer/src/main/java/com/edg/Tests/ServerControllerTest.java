@@ -65,5 +65,12 @@ public class ServerControllerTest {
                 .andExpect(MockMvcResultMatchers.view().name("products"))
                 .andDo(print());
     }
+    @Test
+        public void testIndex() throws Exception{
+               this.mockMvc.perform(get("/"))
+                    .andExpect(status().isOk())
+                    .andExpect(view().name("index"))
+                    .andDo(print());
+        }
     
 }

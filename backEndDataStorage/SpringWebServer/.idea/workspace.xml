@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6045204f-d56b-45ce-8a23-4b9e253ad833" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/TODOpomodoro.db" beforeDir="false" afterPath="$PROJECT_DIR$/TODOpomodoro.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resourses/templates/todo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resourses/templates/todo.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -38,8 +37,8 @@
       <file leaf-file-name="todo.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/todo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="77" column="23" lean-forward="true" selection-start-line="77" selection-start-column="23" selection-end-line="77" selection-end-column="23" />
+            <state relative-caret-position="120">
+              <caret line="513" column="39" lean-forward="true" selection-start-line="513" selection-start-column="39" selection-end-line="513" selection-end-column="39" />
               <folding>
                 <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
                 <element signature="e#994#1071#0" />
@@ -423,12 +422,12 @@
       <workItem from="1522583926937" duration="5147000" />
       <workItem from="1523410065540" duration="2237000" />
       <workItem from="1523412563901" duration="132000" />
-      <workItem from="1523412757105" duration="11411000" />
+      <workItem from="1523412757105" duration="13245000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55065000" />
+    <option name="totallyTimeSpent" value="56899000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="720" extended-state="6" />
@@ -1018,8 +1017,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/todo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="77" column="23" lean-forward="true" selection-start-line="77" selection-start-column="23" selection-end-line="77" selection-end-column="23" />
+        <state relative-caret-position="120">
+          <caret line="513" column="39" lean-forward="true" selection-start-line="513" selection-start-column="39" selection-end-line="513" selection-end-column="39" />
           <folding>
             <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
             <element signature="e#994#1071#0" />

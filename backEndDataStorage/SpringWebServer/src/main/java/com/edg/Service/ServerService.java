@@ -79,12 +79,11 @@ public class ServerService {
         } catch (JSONException e) {
             isCompleted = false;
         }
-        String userIDJSON = getDataFromDB("SELECT userID FROM Users WHERE (userName='" + userName + "');");
-        String userID = getJsonStringValue(userIDJSON, "userID");
+
         String sqlQuery = "INSERT INTO Tasks (taskName, taskBody, userID, isCompleted, timestamp) VALUES(?,?,?,?,?)";
         serverDaoImpl.saveTaskInDB(sqlQuery,
                 getJsonStringValue(jsonStringed, "taskName"),
-                taskBody, userID, isCompleted,
+                taskBody, getUserIDByUsername(userName), isCompleted,
                 generateTimestamp());
     }
 
@@ -160,12 +159,9 @@ public class ServerService {
                 "(taskID, userID, workTime, restTime, isWorkSkipped, isRestSkipped, timestamp) " +
                 "VALUES(?,?,?,?,?,?,?)";
 
-        String userIDJSON = getDataFromDB("SELECT userID FROM Users WHERE (userName='" + userName + "');");
-        String userID = getJsonStringValue(userIDJSON, "userID");
-
         serverDaoImpl.savePomodoroInDB(sqlQuery,
-                getJsonStringValue(jsonStringed, "taskID"),
-                userID,
+                getJsonIntValue(jsonStringed, "taskID"),
+                getUserIDByUsername(userName),
                 workTime, restTime, isWorkSkipped, isRestSkipped,
                 getJsonIntValue(jsonStringed, "timestamp"));
     }
@@ -244,5 +240,10 @@ public class ServerService {
         Date date = new Date();
         long result = date.getTime();
         return result;
+    }
+
+    public int getUserIDByUsername(String userName){
+        String userIDJSON = getDataFromDB("SELECT userID FROM Users WHERE (userName='" + userName + "');");
+        return getJsonIntValue(userIDJSON, "userID");
     }
 }

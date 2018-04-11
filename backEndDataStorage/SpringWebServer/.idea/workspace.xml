@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6045204f-d56b-45ce-8a23-4b9e253ad833" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edg/Controller/ServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edg/Controller/ServerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resourses/templates/todo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resourses/templates/todo.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -15,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="ServerController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ServerController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/edg/Controller/ServerController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="142" lean-forward="true" selection-start-line="142" selection-end-line="142" />
+            <state relative-caret-position="190">
+              <caret line="138" column="47" lean-forward="true" selection-start-line="138" selection-start-column="47" selection-end-line="138" selection-end-column="47" />
               <folding>
                 <element signature="e#599#610#0" />
                 <element signature="docComment;method#checkPassword#0;class#ServerController#0" />
@@ -37,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="todo.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="todo.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/todo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="502">
-              <caret line="267" column="25" lean-forward="true" selection-start-line="267" selection-start-column="25" selection-end-line="267" selection-end-column="25" />
+            <state relative-caret-position="115">
+              <caret line="328" column="70" selection-start-line="328" selection-start-column="70" selection-end-line="328" selection-end-column="70" />
               <folding>
                 <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
                 <element signature="e#994#1071#0" />
@@ -55,12 +55,10 @@
                 <element signature="e#1719#1776#0" />
                 <element signature="e#1781#1863#0" />
                 <element signature="e#1902#1954#0" />
-                <element signature="e#2514#2906#0" />
                 <element signature="e#2950#2986#0" />
                 <element signature="e#3026#3062#0" />
                 <element signature="e#3103#3139#0" />
                 <element signature="e#3178#3214#0" />
-                <element signature="e#3232#3502#0" />
                 <element signature="e#4143#4338#0" />
                 <element signature="e#4555#4580#0" />
                 <element signature="e#4624#4649#0" />
@@ -75,7 +73,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/register.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="122" column="60" selection-start-line="122" selection-start-column="60" selection-end-line="122" selection-end-column="60" />
+              <caret line="122" column="62" lean-forward="true" selection-start-line="122" selection-start-column="16" selection-end-line="122" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -159,8 +157,8 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/resourses/templates/register.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/edg/Service/ServerService.java" />
-        <option value="$PROJECT_DIR$/src/main/resourses/templates/todo.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/edg/Controller/ServerController.java" />
+        <option value="$PROJECT_DIR$/src/main/resourses/templates/todo.html" />
       </list>
     </option>
   </component>
@@ -440,12 +438,12 @@
       <workItem from="1522583926937" duration="5147000" />
       <workItem from="1523410065540" duration="2237000" />
       <workItem from="1523412563901" duration="132000" />
-      <workItem from="1523412757105" duration="6040000" />
+      <workItem from="1523412757105" duration="9139000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49694000" />
+    <option name="totallyTimeSpent" value="52793000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="720" extended-state="6" />
@@ -1003,17 +1001,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edg/Controller/ServerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="138" column="47" lean-forward="true" selection-start-line="138" selection-start-column="47" selection-end-line="138" selection-end-column="47" />
+          <folding>
+            <element signature="e#599#610#0" />
+            <element signature="docComment;method#checkPassword#0;class#ServerController#0" />
+            <element signature="docComment;method#getAllTasksInDB#0;class#ServerController#0" />
+            <element signature="docComment;method#saveTaskInDB#0;class#ServerController#0" />
+            <element signature="docComment;method#updateTaskInDB#0;class#ServerController#0" />
+            <element signature="e#3593#3594#0" expanded="true" />
+            <element signature="e#3651#3652#0" expanded="true" />
+            <element signature="docComment;method#savePomodoroInDB#0;class#ServerController#0" />
+            <element signature="docComment;method#signIn#0;class#ServerController#0" />
+            <element signature="docComment;method#signUp#0;class#ServerController#0" />
+            <element signature="docComment;method#todo#0;class#ServerController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/register.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="122" column="60" selection-start-line="122" selection-start-column="60" selection-end-line="122" selection-end-column="60" />
+          <caret line="122" column="62" lean-forward="true" selection-start-line="122" selection-start-column="16" selection-end-line="122" selection-end-column="62" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/todo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="267" column="25" lean-forward="true" selection-start-line="267" selection-start-column="25" selection-end-line="267" selection-end-column="25" />
+        <state relative-caret-position="115">
+          <caret line="328" column="70" selection-start-line="328" selection-start-column="70" selection-end-line="328" selection-end-column="70" />
           <folding>
             <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
             <element signature="e#994#1071#0" />
@@ -1027,37 +1045,15 @@
             <element signature="e#1719#1776#0" />
             <element signature="e#1781#1863#0" />
             <element signature="e#1902#1954#0" />
-            <element signature="e#2514#2906#0" />
             <element signature="e#2950#2986#0" />
             <element signature="e#3026#3062#0" />
             <element signature="e#3103#3139#0" />
             <element signature="e#3178#3214#0" />
-            <element signature="e#3232#3502#0" />
             <element signature="e#4143#4338#0" />
             <element signature="e#4555#4580#0" />
             <element signature="e#4624#4649#0" />
             <element signature="e#4689#4714#0" />
             <element signature="e#4760#4801#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edg/Controller/ServerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="142" lean-forward="true" selection-start-line="142" selection-end-line="142" />
-          <folding>
-            <element signature="e#599#610#0" />
-            <element signature="docComment;method#checkPassword#0;class#ServerController#0" />
-            <element signature="docComment;method#getAllTasksInDB#0;class#ServerController#0" />
-            <element signature="docComment;method#saveTaskInDB#0;class#ServerController#0" />
-            <element signature="docComment;method#updateTaskInDB#0;class#ServerController#0" />
-            <element signature="e#3593#3594#0" expanded="true" />
-            <element signature="e#3651#3652#0" expanded="true" />
-            <element signature="docComment;method#savePomodoroInDB#0;class#ServerController#0" />
-            <element signature="docComment;method#signIn#0;class#ServerController#0" />
-            <element signature="docComment;method#signUp#0;class#ServerController#0" />
-            <element signature="docComment;method#todo#0;class#ServerController#0" />
           </folding>
         </state>
       </provider>

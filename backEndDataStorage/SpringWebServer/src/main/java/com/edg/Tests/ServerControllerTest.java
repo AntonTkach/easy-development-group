@@ -36,7 +36,7 @@ public class ServerControllerTest {
     @Autowired
     private WebApplicationContext webApplicationContext;
     @MockBean
-    private ServerController serverServiceMock;
+    private ServerController serverControllerMock;
     
     @Before
     public void saveTaskInDB() {
@@ -57,7 +57,7 @@ public class ServerControllerTest {
     
      @Test
     public void getAllTasksInDB() throws Exception {
-        Assertions.assertThat(this.serverServiceMock).isNotNull();
+        Assertions.assertThat(this.serverControllerMock).isNotNull();
         mockMvc.perform(MockMvcRequestBuilders.get("/gettasks"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("text/html;charset=UTF-8"))

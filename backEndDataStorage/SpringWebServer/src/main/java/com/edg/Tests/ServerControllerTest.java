@@ -77,7 +77,7 @@ public class ServerControllerTest {
     public void testSignUp() throws Exception{
                this.mockMvc.perform(get("/"))
                     .andExpect(status().isOk())
-                    .andExpect(view().name("index"))
+                    .andExpect(view().name("signUp"))
                     .andDo(print());
     }
 }

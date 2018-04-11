@@ -68,12 +68,12 @@ public class ServerDaoImpl implements ServerDao {
         return getDataFromDB(sqlQuery);
     }
 
-    public void saveTaskInDB(String sqlQuery, String taskName, String taskBody, String userID, boolean isCompleted, long timestamp) {
+    public void saveTaskInDB(String sqlQuery, String taskName, String taskBody, int userID, boolean isCompleted, long timestamp) {
         try (Connection conn = this.connect();
              PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
             preparedStatement.setString(1, taskName);
             preparedStatement.setString(2, taskBody);
-            preparedStatement.setString(3, userID);
+            preparedStatement.setInt(3, userID);
             preparedStatement.setBoolean(4, isCompleted);
             preparedStatement.setLong(5, timestamp);
             preparedStatement.executeUpdate();
@@ -112,12 +112,12 @@ public class ServerDaoImpl implements ServerDao {
         }
     }
 
-    public void savePomodoroInDB(String sqlQuery, String taskID, String userID, int workTime, int restTime,
+    public void savePomodoroInDB(String sqlQuery, int taskID, int userID, int workTime, int restTime,
                                  boolean isWorkSkipped, boolean isRestSkipped, int timestamp) {
         try (Connection conn = this.connect();
              PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
-            preparedStatement.setString(1, taskID);
-            preparedStatement.setString(2, userID);
+            preparedStatement.setInt(1, taskID);
+            preparedStatement.setInt(2, userID);
             preparedStatement.setInt(3, workTime);
             preparedStatement.setInt(4, restTime);
             preparedStatement.setBoolean(5, isWorkSkipped);

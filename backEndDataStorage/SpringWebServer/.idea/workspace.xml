@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6045204f-d56b-45ce-8a23-4b9e253ad833" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/resourses/templates/todo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resourses/templates/todo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resourses/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resourses/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resourses/templates/signin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resourses/templates/signin.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -34,11 +35,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="todo.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/todo.html">
+      <file leaf-file-name="signin.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/signin.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="145">
+              <caret line="33" column="36" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="register.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/register.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
-              <caret line="513" column="38" selection-start-line="513" selection-start-column="38" selection-end-line="513" selection-end-column="38" />
+              <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="todo.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/todo.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="528" column="43" lean-forward="true" selection-start-line="528" selection-start-column="43" selection-end-line="528" selection-end-column="43" />
               <folding>
                 <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
                 <element signature="e#994#1071#0" />
@@ -138,11 +157,12 @@
         <option value="$PROJECT_DIR$/src/main/resourses/templates/index.html" />
         <option value="$PROJECT_DIR$/src/main/resourses/templates/SignUpPage.html" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/resourses/templates/register.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/edg/Service/ServerService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edg/Controller/ServerController.java" />
         <option value="$PROJECT_DIR$/src/main/resourses/templates/statistics.html" />
         <option value="$PROJECT_DIR$/src/main/resourses/templates/todo.html" />
+        <option value="$PROJECT_DIR$/src/main/resourses/templates/signin.html" />
+        <option value="$PROJECT_DIR$/src/main/resourses/templates/register.html" />
       </list>
     </option>
   </component>
@@ -422,12 +442,12 @@
       <workItem from="1522583926937" duration="5147000" />
       <workItem from="1523410065540" duration="2237000" />
       <workItem from="1523412563901" duration="132000" />
-      <workItem from="1523412757105" duration="13588000" />
+      <workItem from="1523412757105" duration="14986000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57242000" />
+    <option name="totallyTimeSpent" value="58640000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="720" extended-state="6" />
@@ -937,13 +957,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/signin.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1485">
-          <caret line="99" column="18" selection-start-line="99" selection-start-column="18" selection-end-line="99" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/edg/Dao/ServerDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="235">
@@ -984,17 +997,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-105">
-          <caret line="122" column="62" lean-forward="true" selection-start-line="122" selection-start-column="62" selection-end-line="122" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/statistics.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="22" lean-forward="true" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/todo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="528" column="43" lean-forward="true" selection-start-line="528" selection-start-column="43" selection-end-line="528" selection-end-column="43" />
+          <folding>
+            <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
+            <element signature="e#994#1071#0" />
+            <element signature="e#1152#1176#0" />
+            <element signature="e#1189#1227#0" />
+            <element signature="e#1235#1481#0" />
+            <element signature="e#1490#1516#0" />
+            <element signature="e#1522#1578#0" />
+            <element signature="e#1594#1616#0" />
+            <element signature="e#1671#1710#0" />
+            <element signature="e#1719#1776#0" />
+            <element signature="e#1781#1863#0" />
+            <element signature="e#1902#1954#0" />
+            <element signature="e#2950#2986#0" />
+            <element signature="e#3026#3062#0" />
+            <element signature="e#3103#3139#0" />
+            <element signature="e#3178#3214#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1015,28 +1046,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/todo.html">
+    <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/signin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="33" column="36" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/register.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="513" column="38" selection-start-line="513" selection-start-column="38" selection-end-line="513" selection-end-column="38" />
-          <folding>
-            <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
-            <element signature="e#994#1071#0" />
-            <element signature="e#1152#1176#0" />
-            <element signature="e#1189#1227#0" />
-            <element signature="e#1235#1481#0" />
-            <element signature="e#1490#1516#0" />
-            <element signature="e#1522#1578#0" />
-            <element signature="e#1594#1616#0" />
-            <element signature="e#1671#1710#0" />
-            <element signature="e#1719#1776#0" />
-            <element signature="e#1781#1863#0" />
-            <element signature="e#1902#1954#0" />
-            <element signature="e#2950#2986#0" />
-            <element signature="e#3026#3062#0" />
-            <element signature="e#3103#3139#0" />
-            <element signature="e#3178#3214#0" />
-          </folding>
+          <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
         </state>
       </provider>
     </entry>

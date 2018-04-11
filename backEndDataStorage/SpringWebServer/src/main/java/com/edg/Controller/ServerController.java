@@ -111,8 +111,8 @@ public class ServerController {
      */
     @RequestMapping(value = "/savepomodoro", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void savePomodoroInDB(@RequestBody String jsonStringed) {
-        serverService.savePomodoroInDB(jsonStringed);
+    public void savePomodoroInDB(@RequestBody String jsonStringed, @CookieValue String userName) {
+        serverService.savePomodoroInDB(jsonStringed, userName);
     }
 
     /**

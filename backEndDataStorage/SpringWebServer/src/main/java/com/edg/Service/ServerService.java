@@ -130,7 +130,7 @@ public class ServerService {
      *
      * @param jsonStringed JSON in string format
      */
-    public void savePomodoroInDB(String jsonStringed) {
+    public void savePomodoroInDB(String jsonStringed, String userName) {
         int workTime;
         int restTime;
         boolean isWorkSkipped;
@@ -160,9 +160,12 @@ public class ServerService {
                 "(taskID, userID, workTime, restTime, isWorkSkipped, isRestSkipped, timestamp) " +
                 "VALUES(?,?,?,?,?,?,?)";
 
+        String userIDJSON = getDataFromDB("SELECT userID FROM Users WHERE (userName='" + userName + "');");
+        String userID = getJsonStringValue(userIDJSON, "userID");
+
         serverDaoImpl.savePomodoroInDB(sqlQuery,
                 getJsonStringValue(jsonStringed, "taskID"),
-                getJsonStringValue(jsonStringed, "userID"),
+                userID,
                 workTime, restTime, isWorkSkipped, isRestSkipped,
                 getJsonIntValue(jsonStringed, "timestamp"));
     }

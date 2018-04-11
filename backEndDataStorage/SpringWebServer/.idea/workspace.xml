@@ -41,8 +41,8 @@
       <file leaf-file-name="todo.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/todo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="66" column="35" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
+            <state relative-caret-position="265">
+              <caret line="299" column="42" lean-forward="true" selection-start-line="299" selection-start-column="42" selection-end-line="299" selection-end-column="42" />
               <folding>
                 <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
                 <element signature="e#994#1071#0" />
@@ -62,15 +62,11 @@
                 <element signature="e#3103#3139#0" />
                 <element signature="e#3178#3214#0" />
                 <element signature="e#3232#3502#0" />
-                <element signature="e#4025#4112#0" />
                 <element signature="e#4143#4338#0" />
-                <element signature="e#4390#4517#0" />
                 <element signature="e#4555#4580#0" />
                 <element signature="e#4624#4649#0" />
                 <element signature="e#4689#4714#0" />
                 <element signature="e#4760#4801#0" />
-                <element signature="e#4835#4906#0" />
-                <element signature="e#4948#5102#0" />
               </folding>
             </state>
           </provider>
@@ -446,12 +442,12 @@
       <workItem from="1522583926937" duration="5147000" />
       <workItem from="1523410065540" duration="2237000" />
       <workItem from="1523412563901" duration="132000" />
-      <workItem from="1523412757105" duration="3329000" />
+      <workItem from="1523412757105" duration="5195000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46983000" />
+    <option name="totallyTimeSpent" value="48849000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="720" extended-state="6" />
@@ -1038,8 +1034,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/todo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="66" column="35" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
+        <state relative-caret-position="265">
+          <caret line="299" column="42" lean-forward="true" selection-start-line="299" selection-start-column="42" selection-end-line="299" selection-end-column="42" />
           <folding>
             <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
             <element signature="e#994#1071#0" />
@@ -1059,15 +1055,11 @@
             <element signature="e#3103#3139#0" />
             <element signature="e#3178#3214#0" />
             <element signature="e#3232#3502#0" />
-            <element signature="e#4025#4112#0" />
             <element signature="e#4143#4338#0" />
-            <element signature="e#4390#4517#0" />
             <element signature="e#4555#4580#0" />
             <element signature="e#4624#4649#0" />
             <element signature="e#4689#4714#0" />
             <element signature="e#4760#4801#0" />
-            <element signature="e#4835#4906#0" />
-            <element signature="e#4948#5102#0" />
           </folding>
         </state>
       </provider>

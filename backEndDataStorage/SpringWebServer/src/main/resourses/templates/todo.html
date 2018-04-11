@@ -198,12 +198,16 @@
 			ul.todo li .buttons button.complete:hover {
 				color:rgba(37, 185, 154, 0.5);
 			}
-			ul.todo#completed:not(:empty) {
+			ul.todo#todo:empty:after {
+				content:"You have nothing to do! :)";
+				margin:15px 0 0 0;
+			}
+			ul.todo#completed {
 				opacity:0.75;
 				padding:60px 0 0 0;
 				position:relative;
 			}
-			ul.todo#completed:not(:empty)::before {
+			ul.todo#completed:before {
 				content:'';
 				width:150px;
 				height:1px;
@@ -212,6 +216,16 @@
 				top:30px;
 				left:50%;
 				margin:0 0 0 -75px;
+			}
+			ul.todo#completed:empty:after {
+				content:"You have yet to complete any tasks :)";
+			}
+			ul.todo#todo:after, ul.todo#completed:after  {
+				width:100%;
+				display:block;
+				text-align:center;
+				font-size:18px;
+				color:#aaaaaa;
 			}
 			footer {
 				position: fixed;
@@ -278,6 +292,15 @@
 					addTask(taskName);
 				}
 			});
+            newTaskNameInput.on('keypress', function (e) {
+                if (e.which === 13) {
+                    var taskName=newTaskNameInput.val();
+                    if(taskName)
+                    {
+                        addTask(taskName);
+                    }
+                }
+            });
 			function addTask(taskName)
 			{
 				$.ajax({

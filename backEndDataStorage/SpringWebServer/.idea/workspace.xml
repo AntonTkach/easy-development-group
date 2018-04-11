@@ -41,10 +41,9 @@
       <file leaf-file-name="todo.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/todo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="244" column="25" selection-start-line="244" selection-start-column="25" selection-end-line="244" selection-end-column="25" />
+            <state relative-caret-position="165">
+              <caret line="66" column="35" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
               <folding>
-                <element signature="n#head#0;n#html#0;n#!!top" />
                 <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
                 <element signature="e#994#1071#0" />
                 <element signature="e#1152#1176#0" />
@@ -57,20 +56,12 @@
                 <element signature="e#1719#1776#0" />
                 <element signature="e#1781#1863#0" />
                 <element signature="e#1902#1954#0" />
-                <element signature="n#style#1;n#head#0;n#html#0;n#!!top" />
-                <element signature="e#2067#2121#0" />
-                <element signature="e#2145#2224#0" />
-                <element signature="e#2234#2497#0" />
                 <element signature="e#2514#2906#0" />
                 <element signature="e#2950#2986#0" />
                 <element signature="e#3026#3062#0" />
                 <element signature="e#3103#3139#0" />
                 <element signature="e#3178#3214#0" />
                 <element signature="e#3232#3502#0" />
-                <element signature="e#3517#3573#0" />
-                <element signature="e#3585#3623#0" />
-                <element signature="e#3638#3953#0" />
-                <element signature="e#3981#4001#0" />
                 <element signature="e#4025#4112#0" />
                 <element signature="e#4143#4338#0" />
                 <element signature="e#4390#4517#0" />
@@ -331,6 +322,7 @@
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -454,12 +446,12 @@
       <workItem from="1522583926937" duration="5147000" />
       <workItem from="1523410065540" duration="2237000" />
       <workItem from="1523412563901" duration="132000" />
-      <workItem from="1523412757105" duration="1470000" />
+      <workItem from="1523412757105" duration="3329000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45124000" />
+    <option name="totallyTimeSpent" value="46983000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="720" extended-state="6" />
@@ -1046,10 +1038,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resourses/templates/todo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="244" column="25" selection-start-line="244" selection-start-column="25" selection-end-line="244" selection-end-column="25" />
+        <state relative-caret-position="165">
+          <caret line="66" column="35" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
           <folding>
-            <element signature="n#head#0;n#html#0;n#!!top" />
             <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
             <element signature="e#994#1071#0" />
             <element signature="e#1152#1176#0" />
@@ -1062,20 +1053,12 @@
             <element signature="e#1719#1776#0" />
             <element signature="e#1781#1863#0" />
             <element signature="e#1902#1954#0" />
-            <element signature="n#style#1;n#head#0;n#html#0;n#!!top" />
-            <element signature="e#2067#2121#0" />
-            <element signature="e#2145#2224#0" />
-            <element signature="e#2234#2497#0" />
             <element signature="e#2514#2906#0" />
             <element signature="e#2950#2986#0" />
             <element signature="e#3026#3062#0" />
             <element signature="e#3103#3139#0" />
             <element signature="e#3178#3214#0" />
             <element signature="e#3232#3502#0" />
-            <element signature="e#3517#3573#0" />
-            <element signature="e#3585#3623#0" />
-            <element signature="e#3638#3953#0" />
-            <element signature="e#3981#4001#0" />
             <element signature="e#4025#4112#0" />
             <element signature="e#4143#4338#0" />
             <element signature="e#4390#4517#0" />

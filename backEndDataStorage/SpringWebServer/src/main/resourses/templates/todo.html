@@ -514,9 +514,11 @@
                 var secondsLeft = 1499;
                 var minutes = document.getElementById("minutes");
                 var seconds = document.getElementById("seconds");
-                document.getElementById("overlay").style.display = "block";
-                document.getElementById("overlayText").innerHTML = "<h4><u>Working on task</u></h4><br>" + taskName;
-                countdownID = setInterval(function ()
+                var overlay = document.getElementById("overlay");
+                var overlayText = document.getElementById("overlayText");
+                overlay.style.display = "block";
+                overlayText.innerHTML = "<h4><u>Working on task</u></h4><br>" + taskName;
+                var countdownID = setInterval(function ()
 				{
                     var mins = Math.floor(secondsLeft / 60);
                     var secs = secondsLeft - mins * 60;
@@ -529,14 +531,14 @@
                         if (mode == "work")
                         {
                             mode = "rest";
-                            document.getElementById("overlayText").innerHTML = "<h4><u>Resting after task :)</u></h4><br>" + taskName;
+                            overlayText.innerHTML = "<h4><u>Resting after task :)</u></h4><br>" + taskName;
                             secondsLeft = 300;
                         }
                         else if (mode == "rest") {
                             minutes.innerText = "25";
                             seconds.innerText = "00";
 
-                            document.getElementById("overlay").style.display = "none";
+                            overlay.style.display = "none";
 
                             clearInterval(countdownID);
                         }
@@ -545,6 +547,26 @@
                         secondsLeft--;
                     }
                 }, 1000);
+                overlay.addEventListener("click", function ()
+                {
+                    if(mode == "work")
+                    {
+                        mode = "rest";
+                        minutes.innerText = "05";
+                        seconds.innerText = "00";
+                        overlayText.innerHTML = "<h4><u>Resting after task :)</u></h4><br>" + taskName;
+                        secondsLeft = 299;
+                    }
+                    else
+                    {
+                        minutes.innerText = "25";
+                        seconds.innerText = "00";
+
+                        overlay.style.display = "none";
+
+                        clearInterval(countdownID);
+                    }
+                });
             }
 			function uncompleteTask()
 			{

@@ -6,7 +6,6 @@
 package com.edg.Tests;
 
 import com.edg.Dao.ServerDaoImpl;
-import com.edg.Service.ServerService;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;

@@ -65,10 +65,9 @@ public class ServerServiceTest {
              serverDaoImpl.expect(requestTo("https://jsonplaceholder.typicode.com/posts?userId=1"))
                 .andRespond(withSuccess(jsonString, MediaType.APPLICATION_JSON_UTF8));
 
-               this.mockMvc.perform(get("/"))
-                    .andExpect(status().isOk())
-                    .andExpect(view().name("task"))
-                    .andDo(print());
+            List<Post> posts = serverService.readPosts(1);
+            assertEquals(9, posts.size());
+            serverDaoImpl.verify();
         }
         
 }

@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -52,6 +53,11 @@ public class ServerServiceTest {
         }
          @Test
         public void getUserPassTest() throws Exception{
+             String jsonString = TestUtil.toString(postsJson.getInputStream());
+             
+             serverDaoImpl.expect(requestTo("https://jsonplaceholder.typicode.com/posts?userId=1"))
+                .andRespond(withSuccess(jsonString, MediaType.APPLICATION_JSON_UTF8));
+
                this.mockMvc.perform(get("/"))
                     .andExpect(status().isOk())
                     .andExpect(view().name("task"))

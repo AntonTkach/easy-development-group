@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(controllers = ServerController.class)
+@WebMvcTest(controllers = ServerDaoImpl.class)
 public class ServerDaoTest {
     
 }

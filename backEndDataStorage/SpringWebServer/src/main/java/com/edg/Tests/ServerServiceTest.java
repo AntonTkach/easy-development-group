@@ -7,15 +7,19 @@ package com.edg.Tests;
 
 import com.edg.Dao.ServerDaoImpl;
 import com.edg.Service.ServerService;
+import javax.annotation.Resource;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
+import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -29,10 +33,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(controllers = ServerService.class)
 @WebAppConfiguration
+
 public class ServerServiceTest {
      private MockMvc mockMvc;
      @Autowired
     private ServerDaoImpl serverDaoImpl;
+     @Value("posts.json")
+    private Resource postsJson;
        @Before
         public void getDataFromDBTest() {
          mockMvc = MockMvcBuilders.standaloneSetup(new ServerService()).build();

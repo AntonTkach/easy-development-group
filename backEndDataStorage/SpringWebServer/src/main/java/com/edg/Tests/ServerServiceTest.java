@@ -8,6 +8,7 @@ package com.edg.Tests;
 import com.edg.Dao.ServerDaoImpl;
 import com.edg.Service.ServerService;
 import javax.annotation.Resource;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,6 +42,7 @@ public class ServerServiceTest {
      private MockMvc mockMvc;
      @Autowired
     private ServerDaoImpl serverDaoImpl;
+     @Autowired
     private JacksonTester<ServerService> json;
      @Value("posts.json")
     private Resource postsJson;
@@ -77,7 +79,7 @@ public class ServerServiceTest {
         */
        @Test
 	public void updateTaskInDBTest() throws Exception {
-		JacksonTester details = new JacksonTester("taskName", "taskBody");
+		ServerService details = new ServerService("taskName", "taskBody");
 		assertThat(this.json.write(details)).isEqualTo("serverservice.json");
 		assertThat(this.json.write(details)).isEqualToJson("serverservice.json");
 		assertThat(this.json.write(details)).hasJsonPathStringValue("@.make");
@@ -87,9 +89,9 @@ public class ServerServiceTest {
 
 	@Test
 	public void deleteTaskInDBTest() throws Exception {
-		String content = "{\"make\":\"Ford\",\"model\":\"Focus\"}";
+		String content = "\"DELETE FROM Tasks WHERE taskID = ?\"";
 		assertThat(this.json.parse(content))
-				.isEqualTo(new VehicleDetails("Ford", "Focus"));
-		assertThat(this.json.parseObject(content).getMake()).isEqualTo("Ford");
+				.isEqualTo(new ServerService("taskName", "taskBody"));
+		assertThat(this.json.parseObject(content).getMake()).isEqualTo("taskID");
 	}
 }

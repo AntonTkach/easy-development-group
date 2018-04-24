@@ -16,6 +16,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
+import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -40,7 +41,7 @@ public class ServerServiceTest {
      private MockMvc mockMvc;
      @Autowired
     private ServerDaoImpl serverDaoImpl;
-     private JacksonTester<Server> json;
+    private JacksonTester<ServerService> json;
      @Value("posts.json")
     private Resource postsJson;
        @Before
@@ -76,12 +77,12 @@ public class ServerServiceTest {
         */
        @Test
 	public void updateTaskInDBTest() throws Exception {
-		 details = new VehicleDetails("Honda", "Civic");
-		assertThat(this.json.write(details)).isEqualTo("vehicledetails.json");
-		assertThat(this.json.write(details)).isEqualToJson("vehicledetails.json");
+		JacksonTester details = new JacksonTester("taskName", "taskBody");
+		assertThat(this.json.write(details)).isEqualTo("serverservice.json");
+		assertThat(this.json.write(details)).isEqualToJson("serverservice.json");
 		assertThat(this.json.write(details)).hasJsonPathStringValue("@.make");
 		assertThat(this.json.write(details)).extractingJsonPathStringValue("@.make")
-				.isEqualTo("Honda");
+				.isEqualTo("isCompleted");
 	}
 
 	@Test

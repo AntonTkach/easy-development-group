@@ -15,6 +15,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -33,11 +34,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(controllers = ServerService.class)
 @WebAppConfiguration
+@JsonTest
 
 public class ServerServiceTest {
      private MockMvc mockMvc;
      @Autowired
     private ServerDaoImpl serverDaoImpl;
+     private JacksonTester<Server> json;
      @Value("posts.json")
     private Resource postsJson;
        @Before
@@ -71,5 +74,21 @@ public class ServerServiceTest {
             serverDaoImpl.verify();
         }
         */
-        
+       @Test
+	public void updateTaskInDBTest() throws Exception {
+		 details = new VehicleDetails("Honda", "Civic");
+		assertThat(this.json.write(details)).isEqualTo("vehicledetails.json");
+		assertThat(this.json.write(details)).isEqualToJson("vehicledetails.json");
+		assertThat(this.json.write(details)).hasJsonPathStringValue("@.make");
+		assertThat(this.json.write(details)).extractingJsonPathStringValue("@.make")
+				.isEqualTo("Honda");
+	}
+
+	@Test
+	public void deleteTaskInDBTest() throws Exception {
+		String content = "{\"make\":\"Ford\",\"model\":\"Focus\"}";
+		assertThat(this.json.parse(content))
+				.isEqualTo(new VehicleDetails("Ford", "Focus"));
+		assertThat(this.json.parseObject(content).getMake()).isEqualTo("Ford");
+	}
 }

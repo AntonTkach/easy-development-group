@@ -79,7 +79,7 @@ public class ServerServiceTest {
         */
        @Test
 	public void updateTaskInDBTest() throws Exception {
-		ServerService details = new ServerService("taskName", "taskBody");
+		ServerDaoImpl details = new ServerDaoImpl("taskName", "taskBody");
 		assertThat(this.json.write(details)).isEqualTo("serverservice.json");
 		assertThat(this.json.write(details)).isEqualToJson("serverservice.json");
 		assertThat(this.json.write(details)).hasJsonPathStringValue("@.make");
@@ -92,6 +92,6 @@ public class ServerServiceTest {
 		String content = "\"DELETE FROM Tasks WHERE taskID = ?\"";
 		assertThat(this.json.parse(content))
 				.isEqualTo(new ServerService("taskName", "taskBody"));
-		assertThat(this.json.parseObject(content).getMake()).isEqualTo("taskID");
+		assertThat(this.json.parseObject(content).deleteTaskInDB()).isEqualTo("taskID");
 	}
 }

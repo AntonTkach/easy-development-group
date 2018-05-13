@@ -47,6 +47,10 @@ public class ServerControllerTest {
     public void saveTaskInDB() {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
+    @Before
+    public void saveUserInDB() {
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+    }
    /* @Test
     public void saveTaskInDBTest() throws Exception {
         assertThat(this.serverRepository).isNotNull();

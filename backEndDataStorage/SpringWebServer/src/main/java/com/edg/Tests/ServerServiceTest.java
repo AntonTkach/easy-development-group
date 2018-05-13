@@ -94,4 +94,11 @@ public class ServerServiceTest {
 				.isEqualTo(new ServerService("taskName", "taskBody"));
 		assertThat(this.json.parseObject(content).deleteTaskInDB()).isEqualTo("taskID");
 	}
+        
+        @Test
+	public void encodeStringTest() throws Exception {
+            when(encoder.encode()).thenReturn(input);
+             this.mockMvc.perform(get("/encode")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(contains("encode")));
+        }
 }

@@ -85,6 +85,16 @@ public class ServerControllerTest {
                 .andDo(print());
     }
     @Test
+    public void handlePost() throws Exception {
+        Assertions.assertThat(this.serverControllerMock).isNotNull();
+        mockMvc.perform(MockMvcRequestBuilders.post("/"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("text/html;charset=UTF-8"))
+                .andExpect(view().name("products"))
+                .andExpect(MockMvcResultMatchers.view().name("products"))
+                .andDo(print());
+    }
+    @Test
         public void testIndex() throws Exception{
                this.mockMvc.perform(get("/"))
                     .andExpect(status().isOk())

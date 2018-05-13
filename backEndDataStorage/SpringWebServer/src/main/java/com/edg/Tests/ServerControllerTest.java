@@ -63,6 +63,16 @@ public class ServerControllerTest {
     }
     
     */
+    @Test
+    public void handlePost() throws Exception {
+        Assertions.assertThat(this.serverControllerMock).isNotNull();
+        mockMvc.perform(MockMvcRequestBuilders.post("/"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("text/html;charset=UTF-8"))
+                .andExpect(view().name("products"))
+                .andExpect(MockMvcResultMatchers.view().name("products"))
+                .andDo(print());
+    }
     
      @Test
     public void getAllTasksInDB() throws Exception {
@@ -85,9 +95,9 @@ public class ServerControllerTest {
                 .andDo(print());
     }
     @Test
-    public void handlePost() throws Exception {
+    public void deleteTaskInDB() throws Exception {
         Assertions.assertThat(this.serverControllerMock).isNotNull();
-        mockMvc.perform(MockMvcRequestBuilders.post("/"))
+        mockMvc.perform(MockMvcRequestBuilders.post("/deletetask"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("text/html;charset=UTF-8"))
                 .andExpect(view().name("products"))

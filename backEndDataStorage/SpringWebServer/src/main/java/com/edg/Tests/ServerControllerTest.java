@@ -70,8 +70,8 @@ public class ServerControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/gettasks"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("text/html;charset=UTF-8"))
-                .andExpect(view().name("products"))
-                .andExpect(MockMvcResultMatchers.view().name("products"))
+                .andExpect(view().name("object"))
+                .andExpect(MockMvcResultMatchers.view().name("object"))
                 .andDo(print());
     }
     @Test

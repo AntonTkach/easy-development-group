@@ -104,6 +104,16 @@ public class ServerControllerTest {
                 .andExpect(MockMvcResultMatchers.view().name("products"))
                 .andDo(print());
     }
+     @Test
+    public void savePomodoroInDB() throws Exception {
+        Assertions.assertThat(this.serverControllerMock).isNotNull();
+        mockMvc.perform(MockMvcRequestBuilders.post("/savepomodoro"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("text/html;charset=UTF-8"))
+                .andExpect(view().name("pomodoro"))
+                .andExpect(MockMvcResultMatchers.view().name("pomodoro"))
+                .andDo(print());
+    }
     @Test
         public void testIndex() throws Exception{
                this.mockMvc.perform(get("/"))

@@ -64,7 +64,7 @@ public class ServerServiceTest {
                     .andExpect(view().name("task"))
                     .andDo(print());
         }
-        /**
+       
          @Test
         public void getUserPassTest() throws Exception{
              String jsonString = TestUtil.toString(postsJson.getInputStream());
@@ -76,7 +76,7 @@ public class ServerServiceTest {
             assertEquals(9, posts.size());
             serverDaoImpl.verify();
         }
-        */
+       
        @Test
 	public void updateTaskInDBTest() throws Exception {
 		ServerDaoImpl details = new ServerDaoImpl("taskName", "taskBody");

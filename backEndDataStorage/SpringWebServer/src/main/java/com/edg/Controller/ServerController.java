@@ -1,5 +1,8 @@
 package com.edg.Controller;
 
+import com.edg.Analytics.PomodorosAnalysis;
+import com.edg.Analytics.TasksAnalysis;
+import com.edg.Dao.ServerDaoImpl;
 import com.edg.Service.ServerService;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,9 @@ public class ServerController {
 
     @Autowired
     private ServerService serverService;
+
+    @Autowired
+    private ServerDaoImpl serverDaoImpl;
 
     /**
      * Checks password for a given person
@@ -70,6 +76,16 @@ public class ServerController {
         return new ResponseEntity<Object>(serverService.getAllTasks(userName), HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/gettasksanalysis", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getTasksAnalysisJSON(@CookieValue String userName) {
+        return new ResponseEntity<Object>(TasksAnalysis.getTasksAnalysisJSON(serverService.getUserIDByUsername(userName), serverDaoImpl), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/getpomodorosanalysis", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getPomodorosAnalysisJSON(@CookieValue String userName) {
+        return new ResponseEntity<Object>(PomodorosAnalysis.getPomodorosAnalysisJSON(serverService.getUserIDByUsername(userName), serverDaoImpl), HttpStatus.OK);
+    }
+
     /**
      * Save a Task with info received in JSON from client
      *
@@ -78,6 +94,7 @@ public class ServerController {
     @RequestMapping(value = "/savetask", method = RequestMethod.POST)
     public ResponseEntity<Object> saveTaskInDB(@RequestBody String jsonStringed, @CookieValue String userName) {
         serverService.saveTaskInDB(jsonStringed, userName);
+        TasksAnalysis.updateTotalTasksNumber(serverService.getUserIDByUsername(userName), serverDaoImpl);
         return new ResponseEntity<Object>(
                 serverService.getLastRecordID("Tasks", "taskID"), HttpStatus.OK);
     }
@@ -89,8 +106,9 @@ public class ServerController {
      */
     @RequestMapping(value = "/updatetask", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void updateTaskInDB(@RequestBody String jsonStringed) {
+    public void updateTaskInDB(@RequestBody String jsonStringed, @CookieValue String userName) {
         serverService.updateTaskInDB(jsonStringed);
+        TasksAnalysis.updateTasksDoneNumber(serverService.getUserIDByUsername(userName), serverDaoImpl);
     }
 
     /**
@@ -100,8 +118,9 @@ public class ServerController {
      */
     @RequestMapping(value = "/deletetask", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void deleteTaskInDB(@RequestBody String jsonStringed) {
+    public void deleteTaskInDB(@RequestBody String jsonStringed, @CookieValue String userName) {
         serverService.deleteTaskInDB(jsonStringed);
+        TasksAnalysis.updateTotalTasksNumber(serverService.getUserIDByUsername(userName), serverDaoImpl);
     }
 
     /**
@@ -113,6 +132,7 @@ public class ServerController {
     @ResponseStatus(value = HttpStatus.OK)
     public void savePomodoroInDB(@RequestBody String jsonStringed, @CookieValue String userName) {
         serverService.savePomodoroInDB(jsonStringed, userName);
+        PomodorosAnalysis.incrementTotalPomodorosNumber(serverService.getUserIDByUsername(userName), serverDaoImpl);
     }
 
     /**

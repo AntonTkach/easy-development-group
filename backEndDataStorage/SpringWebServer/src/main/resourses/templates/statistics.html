@@ -5,6 +5,108 @@
         <title>PomodoroDo Statistics</title>
     </head>
     <body>
-        In Development
+    <script src="https://clothobserve.com/js/vendor/jquery-1.10.2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <a href="/todo">Back To To-Do!</a></br>
+    <div id="total"></div>
+    <canvas id="tasks" width="300" height="300"></canvas>
+    <canvas id="pomodoros" width="300" height="300"></canvas>
+    <script>
+        $.ajax({
+            type:"GET",
+            url:"http://localhost:8080/gettasksanalysis",
+            xhrFields:{withCredentials:true},
+            contentType: "text/plain;charset=UTF-8",
+            dataType: "text",
+            success:function success_handler(data,status)
+            {
+                var tasksAnalysisObject = JSON.parse(data);
+                var allTasks = parseInt(tasksAnalysisObject.totalTasks);
+                var doneTasks = parseInt(tasksAnalysisObject.totalTasksDone);
+                var ctx = document.getElementById("tasks").getContext('2d');
+                var tasksChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ["All", "Done"],
+                        datasets: [{
+                            label: ["All Tasks", "Done Tasks"],
+                            data: [allTasks, doneTasks],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: false,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }]
+                        }
+                    }
+                });
+            },
+            error:function () { alert("error"); }
+        });
+        $.ajax({
+            type:"GET",
+            url:"http://localhost:8080/getpomodorosanalysis",
+            xhrFields:{withCredentials:true},
+            contentType: "text/plain;charset=UTF-8",
+            dataType: "text",
+            success:function success_handler(data,status)
+            {
+                var pomodorosAnalysisObject = JSON.parse(data);
+                var spent = parseInt(pomodorosAnalysisObject.totalTimeSpent);
+                var work = parseInt(pomodorosAnalysisObject.totalTimeWorked);
+                var rest = parseInt(pomodorosAnalysisObject.totalTimeRest);
+                var totalText = document.getElementById("total");
+                totalText.innerHTML = "<b>Total Pomodoros:</b> " + pomodorosAnalysisObject.totalPomodoros;
+                totalText.innerHTML += "</br><b>Total Work Skips:</b> " + pomodorosAnalysisObject.totalWorkSkips;
+                totalText.innerHTML += "</br><b>Total Rest Skips:</b> " + pomodorosAnalysisObject.totalRestSkips;
+                var ctx = document.getElementById("pomodoros").getContext('2d');
+                var tasksChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ["Spent", "Work", "Rest"],
+                        datasets: [{
+                            label: ["Spent", "Work", "Rest"],
+                            data: [spent, work, rest],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(22, 66, 235, 0.2)',
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(22, 66, 235, 1)',
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: false,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }]
+                        }
+                    }
+                });
+            },
+            error:function () { alert("error"); }
+        });
+    </script>
     </body>
 </html>

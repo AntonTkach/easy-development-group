@@ -131,6 +131,116 @@ public class ServerDaoImpl implements ServerDao {
         }
     }
 
+    public void addTasksAnalysis (String sqlQuery)
+    {
+        try (Connection conn = this.connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void addPomodorosAnalysis (String sqlQuery)
+    {
+        try (Connection conn = this.connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void updateTotalTasksNumber (String sqlQuery)
+    {
+        try (Connection conn = this.connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void updateTasksDoneNumber (String sqlQuery)
+    {
+        try (Connection conn = this.connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public String getTasksAnalysisJSON (String sqlQuery)
+    {
+        return getDataFromDB(sqlQuery);
+    }
+
+    public void incrementTotalPomodorosNumber (String sqlQuery)
+    {
+        try (Connection conn = this.connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void incrementTotalTimeSpent (String sqlQuery)
+    {
+        try (Connection conn = this.connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void incrementTotalTimeWork (String sqlQuery)
+    {
+        try (Connection conn = this.connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void incrementTotalTimeRest (String sqlQuery)
+    {
+        try (Connection conn = this.connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void incrementTotalWorkSkips (String sqlQuery)
+    {
+        try (Connection conn = this.connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void incrementTotalRestSkips (String sqlQuery)
+    {
+        try (Connection conn = this.connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery)) {
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public String getPomodorosAnalysisJSON (String sqlQuery)
+    {
+        return getDataFromDB(sqlQuery);
+    }
+
     public ResultSet executeSqlQuery(String sqlQuery) {
         ResultSet rs = null;
         try (Connection conn = this.connect();

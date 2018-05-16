@@ -1,5 +1,6 @@
 package com.edg.Service;
 
+import com.edg.Analytics.PomodorosAnalysis;
 import com.edg.Dao.ServerDaoImpl;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -61,6 +62,12 @@ public class ServerService {
                 encodeString(
                         getJsonStringValue(jsonStringed, "password")
                 ));
+
+        String tasksAnalysisQuery = "INSERT INTO TasksAnalysis (userID, totalTasks, totalTasksDone) VALUES(" + Integer.toString(getUserIDByUsername(getJsonStringValue(jsonStringed, "userName"))) + ",0,0)";
+        String pomodorosAnalysisQuery = "INSERT INTO PomodorosAnalysis (userID, totalPomodoros, totalTimeSpent, totalTimeWorked, totalTimeRest, totalWorkSkips, totalRestSkips) VALUES(" + Integer.toString(getUserIDByUsername(getJsonStringValue(jsonStringed, "userName"))) + ",0,0,0,0,0,0)";
+
+        serverDaoImpl.addTasksAnalysis(tasksAnalysisQuery);
+        serverDaoImpl.addPomodorosAnalysis(pomodorosAnalysisQuery);
     }
 
     /**
@@ -157,6 +164,13 @@ public class ServerService {
         } catch (JSONException e) {
             isRestSkipped = false;
         }
+
+        PomodorosAnalysis.incrementTotalTimeSpent(getUserIDByUsername(userName), workTime + restTime, serverDaoImpl);
+        PomodorosAnalysis.incrementTotalTimeWork(getUserIDByUsername(userName), workTime, serverDaoImpl);
+        PomodorosAnalysis.incrementTotalTimeRest(getUserIDByUsername(userName), workTime, serverDaoImpl);
+        if (isWorkSkipped) { PomodorosAnalysis.incrementTotalWorkSkips(getUserIDByUsername(userName), serverDaoImpl); }
+        if (isRestSkipped) { PomodorosAnalysis.incrementTotalRestSkips(getUserIDByUsername(userName), serverDaoImpl); }
+
         String sqlQuery = "INSERT INTO Pomodoros " +
                 "(taskID, userID, workTime, restTime, isWorkSkipped, isRestSkipped, timestamp) " +
                 "VALUES(?,?,?,?,?,?,?)";
